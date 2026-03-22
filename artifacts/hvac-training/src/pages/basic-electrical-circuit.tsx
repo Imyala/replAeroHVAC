@@ -715,6 +715,355 @@ export default function BasicElectricalCircuit() {
         </div>
       </section>
 
+      {/* Circuit Symbols */}
+      <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
+          <Info className="w-4 h-4 text-primary" />
+          <h2 className="font-semibold text-foreground">Circuit Symbols</h2>
+        </div>
+        <div className="p-6 space-y-8">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Every component in a circuit is represented by a standard symbol. Circuit diagrams use these symbols — not pictures — to show how a circuit is connected. <span className="text-foreground font-medium">All symbols are drawn in their non-operated (resting) condition.</span>
+          </p>
+
+          {/* Component Symbols */}
+          <div>
+            <h3 className="text-sm font-semibold text-foreground mb-4">Component Symbols</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+              {[
+                {
+                  name: "Single Cell", desc: "One electrochemical cell — short line is –ve, long line is +ve",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="8" y1="20" x2="30" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <line x1="30" y1="10" x2="30" y2="30" stroke="currentColor" strokeWidth="1.5"/>
+                      <line x1="38" y1="14" x2="38" y2="26" stroke="currentColor" strokeWidth="3"/>
+                      <line x1="38" y1="20" x2="72" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <text x="42" y="12" fontSize="7" fill="currentColor">+</text>
+                    </svg>
+                  )
+                },
+                {
+                  name: "Battery", desc: "Group of cells — alternating long and short lines with dashes",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="4" y1="20" x2="18" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <line x1="18" y1="12" x2="18" y2="28" stroke="currentColor" strokeWidth="1.5"/>
+                      <line x1="24" y1="15" x2="24" y2="25" stroke="currentColor" strokeWidth="3"/>
+                      <line x1="24" y1="20" x2="34" y2="20" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2,2"/>
+                      <line x1="46" y1="20" x2="56" y2="20" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2,2"/>
+                      <line x1="56" y1="12" x2="56" y2="28" stroke="currentColor" strokeWidth="1.5"/>
+                      <line x1="62" y1="15" x2="62" y2="25" stroke="currentColor" strokeWidth="3"/>
+                      <line x1="62" y1="20" x2="76" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <text x="64" y="12" fontSize="7" fill="currentColor">+</text>
+                    </svg>
+                  )
+                },
+                {
+                  name: "Lamp", desc: "Circle with X through centre — represents light globe/lamp",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="4" y1="20" x2="24" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <circle cx="40" cy="20" r="12" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                      <line x1="31.5" y1="11.5" x2="48.5" y2="28.5" stroke="currentColor" strokeWidth="1.5"/>
+                      <line x1="48.5" y1="11.5" x2="31.5" y2="28.5" stroke="currentColor" strokeWidth="1.5"/>
+                      <line x1="52" y1="20" x2="76" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                    </svg>
+                  )
+                },
+                {
+                  name: "Fuse", desc: "Rectangle in line — melts to break the circuit under excess current",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="4" y1="20" x2="20" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <rect x="20" y="13" width="40" height="14" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                      <line x1="60" y1="20" x2="76" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                    </svg>
+                  )
+                },
+                {
+                  name: "Closed Switch", desc: "Line connects both contacts — current CAN flow (ON)",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="4" y1="20" x2="22" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <circle cx="22" cy="20" r="2" stroke="currentColor" strokeWidth="1" fill="none"/>
+                      <line x1="22" y1="20" x2="56" y2="14" stroke="currentColor" strokeWidth="1.5"/>
+                      <circle cx="58" cy="20" r="2" stroke="currentColor" strokeWidth="1" fill="none"/>
+                      <line x1="58" y1="20" x2="76" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <line x1="58" y1="25" x2="58" y2="32" stroke="currentColor" strokeWidth="1.5"/>
+                    </svg>
+                  )
+                },
+                {
+                  name: "Open Switch", desc: "Gap between contacts — current CANNOT flow (OFF)",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="4" y1="20" x2="22" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <circle cx="22" cy="20" r="2" stroke="currentColor" strokeWidth="1" fill="none"/>
+                      <line x1="22" y1="20" x2="52" y2="8" stroke="currentColor" strokeWidth="1.5"/>
+                      <circle cx="58" cy="20" r="2" stroke="currentColor" strokeWidth="1" fill="none"/>
+                      <line x1="58" y1="20" x2="76" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <line x1="58" y1="25" x2="58" y2="32" stroke="currentColor" strokeWidth="1.5"/>
+                    </svg>
+                  )
+                },
+                {
+                  name: "Resistor", desc: "Rectangle — limits current flow in a circuit",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="4" y1="20" x2="18" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <rect x="18" y="13" width="44" height="14" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                      <line x1="62" y1="20" x2="76" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                    </svg>
+                  )
+                },
+                {
+                  name: "Variable Resistor", desc: "Rectangle with diagonal arrow — adjustable resistance (rheostat)",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="4" y1="20" x2="18" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <rect x="18" y="13" width="44" height="14" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                      <line x1="24" y1="27" x2="54" y2="13" stroke="currentColor" strokeWidth="1.5"/>
+                      <polygon points="54,10 54,16 58,13" fill="currentColor"/>
+                      <line x1="62" y1="20" x2="76" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                    </svg>
+                  )
+                },
+                {
+                  name: "Voltmeter", desc: "Circle with V — measures voltage; connected in parallel",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="4" y1="20" x2="24" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <circle cx="40" cy="20" r="13" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                      <text x="35" y="25" fontSize="11" fontWeight="bold" fill="currentColor">V</text>
+                      <line x1="53" y1="20" x2="76" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                    </svg>
+                  )
+                },
+                {
+                  name: "Ammeter", desc: "Circle with A — measures current; connected in series",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="4" y1="20" x2="24" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <circle cx="40" cy="20" r="13" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                      <text x="35" y="25" fontSize="11" fontWeight="bold" fill="currentColor">A</text>
+                      <line x1="53" y1="20" x2="76" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                    </svg>
+                  )
+                },
+                {
+                  name: "Motor", desc: "Circle with M — converts electrical energy to mechanical energy",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="4" y1="20" x2="24" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <circle cx="40" cy="20" r="13" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                      <text x="34" y="25" fontSize="11" fontWeight="bold" fill="currentColor">M</text>
+                      <line x1="53" y1="20" x2="76" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                    </svg>
+                  )
+                },
+                {
+                  name: "Earth / Ground", desc: "Three decreasing horizontal lines — safety reference point (0V)",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="40" y1="4" x2="40" y2="18" stroke="currentColor" strokeWidth="1.5"/>
+                      <line x1="24" y1="18" x2="56" y2="18" stroke="currentColor" strokeWidth="2"/>
+                      <line x1="29" y1="24" x2="51" y2="24" stroke="currentColor" strokeWidth="2"/>
+                      <line x1="34" y1="30" x2="46" y2="30" stroke="currentColor" strokeWidth="2"/>
+                    </svg>
+                  )
+                },
+              ].map((item) => (
+                <div key={item.name} className="bg-background/40 border border-white/8 rounded-xl p-4 flex flex-col items-center gap-2">
+                  <div className="text-primary">{item.svg}</div>
+                  <div className="font-semibold text-foreground text-xs text-center">{item.name}</div>
+                  <div className="text-muted-foreground text-xs text-center leading-tight">{item.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Conductor Connections */}
+          <div>
+            <h3 className="text-sm font-semibold text-foreground mb-3">Conductor Connections</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {[
+                {
+                  name: "Conductor",
+                  desc: "A simple wire carrying current",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="4" y1="20" x2="76" y2="20" stroke="currentColor" strokeWidth="2"/>
+                    </svg>
+                  )
+                },
+                {
+                  name: "Crossing — Not Connected",
+                  desc: "Two conductors cross but are NOT joined; no electrical connection",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="40" y1="4" x2="40" y2="36" stroke="currentColor" strokeWidth="1.5"/>
+                      <line x1="4" y1="20" x2="76" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                    </svg>
+                  )
+                },
+                {
+                  name: "Connected Junction",
+                  desc: "Filled dot at crossing = conductors ARE electrically joined",
+                  svg: (
+                    <svg viewBox="0 0 80 40" className="w-16 h-8">
+                      <line x1="40" y1="4" x2="40" y2="36" stroke="currentColor" strokeWidth="1.5"/>
+                      <line x1="4" y1="20" x2="76" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+                      <circle cx="40" cy="20" r="4" fill="currentColor"/>
+                    </svg>
+                  )
+                },
+              ].map((item) => (
+                <div key={item.name} className="bg-background/40 border border-white/8 rounded-xl p-4 flex flex-col items-center gap-2">
+                  <div className="text-primary">{item.svg}</div>
+                  <div className="font-semibold text-foreground text-xs text-center">{item.name}</div>
+                  <div className="text-muted-foreground text-xs text-center leading-tight">{item.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Drawing Standards note */}
+          <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 text-sm">
+            <div className="font-semibold text-amber-400 mb-1">Drawing Standard</div>
+            <p className="text-muted-foreground leading-relaxed">All symbols are drawn in their <span className="text-foreground font-medium">non-operated condition</span> — meaning switches are shown open, relays de-energised, and contactors open. This is the default resting state of the device before any power is applied.</p>
+          </div>
+
+          {/* Circuit Diagram explanation */}
+          <div className="bg-background/40 border border-white/8 rounded-xl p-4 text-sm space-y-2">
+            <div className="font-semibold text-foreground">Reading a Circuit Diagram</div>
+            <p className="text-muted-foreground leading-relaxed">A circuit diagram replaces the realistic picture of components with standard symbols and straight connecting lines. This makes it easier to trace current paths and analyse the circuit regardless of the physical layout.</p>
+            <ul className="list-disc list-inside text-muted-foreground space-y-1 mt-2">
+              <li>Components are drawn as standard symbols</li>
+              <li>Connecting wires are drawn as straight horizontal or vertical lines</li>
+              <li>Junctions (connected wires) are shown with a filled dot <span className="inline-block w-2 h-2 rounded-full bg-primary align-middle mx-1"/></li>
+              <li>Crossing wires without a dot are <span className="font-medium text-foreground">not connected</span></li>
+              <li>Labels (e.g. S1, LP1, CB1) identify individual components on the diagram</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Open, Closed & Short Circuits */}
+      <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
+          <Info className="w-4 h-4 text-primary" />
+          <h2 className="font-semibold text-foreground">Open, Closed & Short Circuits</h2>
+        </div>
+        <div className="p-6 space-y-6">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            A circuit can exist in three key states. Understanding each state is fundamental to fault-finding and safe operation.
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {/* Open Circuit */}
+            <div className="bg-background/40 border border-orange-500/30 rounded-xl p-5 space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-bold text-orange-400">⊘</span>
+                <span className="font-semibold text-foreground">Open Circuit</span>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">The current path is <span className="text-orange-400 font-medium">broken</span> — there is a gap somewhere in the circuit. Current cannot flow.</p>
+              <div className="space-y-1 text-xs text-muted-foreground">
+                <div className="font-medium text-foreground text-xs mb-1">Characteristics:</div>
+                <div className="flex items-start gap-2"><span className="text-orange-400 mt-0.5">•</span><span>Ammeter reads <span className="font-mono text-foreground">0 A</span></span></div>
+                <div className="flex items-start gap-2"><span className="text-orange-400 mt-0.5">•</span><span>Voltmeter across the open point reads <span className="font-mono text-foreground">full supply voltage</span></span></div>
+                <div className="flex items-start gap-2"><span className="text-orange-400 mt-0.5">•</span><span>Voltmeter across a load reads <span className="font-mono text-foreground">0 V</span></span></div>
+                <div className="flex items-start gap-2"><span className="text-orange-400 mt-0.5">•</span><span>Load does not operate</span></div>
+              </div>
+              <div className="bg-orange-500/10 rounded-lg p-3 text-xs text-muted-foreground">
+                <span className="font-medium text-orange-400">Analogy:</span> Like a water pipe with a closed tap — the pump is running but no water flows because the path is blocked.
+              </div>
+              <div className="bg-background/60 rounded-lg p-3 text-xs text-muted-foreground">
+                <span className="font-medium text-foreground">Common causes:</span> Blown fuse, broken wire, open switch, faulty connection, tripped breaker.
+              </div>
+            </div>
+
+            {/* Closed Circuit */}
+            <div className="bg-background/40 border border-green-500/30 rounded-xl p-5 space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-bold text-green-400">◎</span>
+                <span className="font-semibold text-foreground">Closed Circuit</span>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">The current path is <span className="text-green-400 font-medium">complete</span> — current flows from source, through components, and back to source. Normal operation.</p>
+              <div className="space-y-1 text-xs text-muted-foreground">
+                <div className="font-medium text-foreground text-xs mb-1">Characteristics:</div>
+                <div className="flex items-start gap-2"><span className="text-green-400 mt-0.5">•</span><span>Ammeter reads <span className="font-mono text-foreground">normal current</span> (e.g. 2 A)</span></div>
+                <div className="flex items-start gap-2"><span className="text-green-400 mt-0.5">•</span><span>Voltage is distributed across components</span></div>
+                <div className="flex items-start gap-2"><span className="text-green-400 mt-0.5">•</span><span>Loads operate normally</span></div>
+                <div className="flex items-start gap-2"><span className="text-green-400 mt-0.5">•</span><span>Switch is in closed (ON) position</span></div>
+              </div>
+              <div className="bg-green-500/10 rounded-lg p-3 text-xs text-muted-foreground">
+                <span className="font-medium text-green-400">Analogy:</span> Like a fully open tap in a pipe loop — the pump circulates water continuously around the closed loop.
+              </div>
+              <div className="bg-background/60 rounded-lg p-3 text-xs text-muted-foreground">
+                <span className="font-medium text-foreground">Switch ON:</span> When the switch closes, current flows through the ammeter and lamp — the ammeter shows the current value, and the lamp illuminates.
+              </div>
+            </div>
+
+            {/* Short Circuit */}
+            <div className="bg-background/40 border border-red-500/30 rounded-xl p-5 space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-bold text-red-400">⚡</span>
+                <span className="font-semibold text-foreground">Short Circuit</span>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">An <span className="text-red-400 font-medium">accidental low-resistance connection</span> directly across the supply terminals, bypassing the intended load.</p>
+              <div className="space-y-1 text-xs text-muted-foreground">
+                <div className="font-medium text-foreground text-xs mb-1">Characteristics:</div>
+                <div className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span><span>Extremely <span className="font-mono text-foreground">high current</span> flows instantly</span></div>
+                <div className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span><span>Voltage across load drops to near <span className="font-mono text-foreground">0 V</span></span></div>
+                <div className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span><span>Severe heat generated in conductors</span></div>
+                <div className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span><span>Fuse blows or breaker trips to protect circuit</span></div>
+              </div>
+              <div className="bg-red-500/10 rounded-lg p-3 text-xs text-muted-foreground">
+                <span className="font-medium text-red-400">Analogy:</span> Like a pipe that bypasses the tap entirely — all the pressure (voltage) is used pushing water through nothing, overwhelming the pump.
+              </div>
+              <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3 text-xs text-muted-foreground">
+                <span className="font-medium text-red-400">Danger:</span> A short circuit is a serious fault. It can cause fires, equipment damage, and electric shock. Always protected by fuses or circuit breakers.
+              </div>
+            </div>
+          </div>
+
+          {/* Summary comparison table */}
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-white/8">
+                  <th className="text-left py-2 pr-4 font-semibold text-muted-foreground">State</th>
+                  <th className="text-left py-2 pr-4 font-semibold text-muted-foreground">Current</th>
+                  <th className="text-left py-2 pr-4 font-semibold text-muted-foreground">Voltage at Load</th>
+                  <th className="text-left py-2 font-semibold text-muted-foreground">Load Operates?</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5 text-xs">
+                <tr>
+                  <td className="py-2 pr-4 text-orange-400 font-medium">Open Circuit</td>
+                  <td className="py-2 pr-4 font-mono text-foreground">0 A</td>
+                  <td className="py-2 pr-4 font-mono text-foreground">0 V</td>
+                  <td className="py-2 text-muted-foreground">No</td>
+                </tr>
+                <tr>
+                  <td className="py-2 pr-4 text-green-400 font-medium">Closed Circuit</td>
+                  <td className="py-2 pr-4 font-mono text-foreground">Normal (e.g. 2 A)</td>
+                  <td className="py-2 pr-4 font-mono text-foreground">Full supply</td>
+                  <td className="py-2 text-muted-foreground">Yes — normally</td>
+                </tr>
+                <tr>
+                  <td className="py-2 pr-4 text-red-400 font-medium">Short Circuit</td>
+                  <td className="py-2 pr-4 font-mono text-foreground">Very high</td>
+                  <td className="py-2 pr-4 font-mono text-foreground">≈ 0 V</td>
+                  <td className="py-2 text-muted-foreground">No — bypassed</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       {/* Series & Parallel */}
       <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
         <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
