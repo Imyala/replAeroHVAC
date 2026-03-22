@@ -746,9 +746,9 @@ export default function BasicElectricalCircuit() {
                 },
                 {
                   clause: "(c) High Voltage (HV)",
-                  def: "Exceeding low voltage.",
+                  def: "Exceeding 1,000 V a.c. or 1,500 V d.c. — typically ranging from 1 kV up to 500 kV for national transmission networks.",
                   colour: "text-red-400", border: "border-red-400/20", bg: "bg-red-400/5",
-                  note: "Power transmission and large industrial plant. Specialist licencing required beyond standard electrician.",
+                  note: "Common HV levels: 11 kV & 22 kV (local distribution), 66 kV, 132 kV, 275 kV & 500 kV (transmission). Power transmission and large industrial plant. Specialist licencing required beyond standard electrician.",
                 },
               ].map((v) => (
                 <div key={v.clause} className={cn("rounded-xl border p-4 space-y-1.5", v.border, v.bg)}>
