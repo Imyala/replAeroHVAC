@@ -206,6 +206,39 @@ export default function BasicElectricalCircuit() {
             <p className="text-xl font-display font-bold text-foreground mb-2">Electricity is the flow of electrons.</p>
             <p className="text-sm text-muted-foreground">To achieve a flow of electrons in a circuit, a <span className="text-foreground font-medium">pressure difference</span> in that circuit must be created.</p>
           </div>
+
+          {/* Pressure Difference Explanation */}
+          <div className="rounded-xl border border-white/8 bg-background/40 p-5 space-y-4">
+            <h3 className="text-sm font-semibold text-foreground">What does "pressure difference" mean?</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              In electrical terms, <span className="text-foreground font-medium">pressure difference</span> is called <span className="text-primary font-medium">voltage</span> — also known as <span className="text-foreground font-medium">potential difference</span> or <span className="text-foreground font-medium">electromotive force (EMF)</span>. It is the force that pushes electrons along a conductor from one point to another.
+            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Electrons in a conductor are free to move, but they will only move in a consistent direction if something is pushing them. That push comes from a difference in electrical potential between two points — one point has an excess of electrons (negative terminal) and the other has a shortage (positive terminal). Electrons are attracted from the negative side toward the positive side, and that directed movement is what we call <span className="text-foreground font-medium">electric current</span>.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+              <div className="bg-white/3 border border-white/8 rounded-lg p-3 text-center space-y-1">
+                <div className="text-primary font-mono font-bold text-lg">No voltage</div>
+                <div className="text-xs text-muted-foreground">No pressure difference → electrons have no reason to move → <span className="text-foreground font-medium">no current flows</span></div>
+              </div>
+              <div className="bg-white/3 border border-white/8 rounded-lg p-3 text-center space-y-1">
+                <div className="text-primary font-mono font-bold text-lg">Low voltage</div>
+                <div className="text-xs text-muted-foreground">Small pressure difference → slow, limited electron flow → <span className="text-foreground font-medium">small current</span></div>
+              </div>
+              <div className="bg-white/3 border border-white/8 rounded-lg p-3 text-center space-y-1">
+                <div className="text-primary font-mono font-bold text-lg">High voltage</div>
+                <div className="text-xs text-muted-foreground">Large pressure difference → strong electron flow → <span className="text-foreground font-medium">greater current</span></div>
+              </div>
+            </div>
+            <div className="rounded-lg bg-blue-500/10 border border-blue-500/20 p-4 text-sm space-y-1">
+              <p className="font-semibold text-blue-300 text-xs">Water Pipe Analogy</p>
+              <p className="text-muted-foreground text-xs leading-relaxed">
+                Think of a water pipe connected to a pump. The pump creates a pressure difference between its two sides — water is pushed from the high-pressure side, through the pipe, to the low-pressure side. Without the pump running, there is no pressure difference and no water flows. <br className="hidden sm:block"/><br className="hidden sm:block"/>
+                In a circuit, the <span className="text-foreground font-medium">battery or power supply</span> is the pump. The <span className="text-foreground font-medium">voltage</span> is the pressure difference. The <span className="text-foreground font-medium">conductors (wires)</span> are the pipes. And the <span className="text-foreground font-medium">current</span> is the flow of electrons through those wires.
+              </p>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Static */}
             <div className="rounded-xl border border-white/8 p-5 space-y-3">
