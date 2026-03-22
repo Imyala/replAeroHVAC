@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Wrench, ChevronDown, ChevronUp, Info } from "lucide-react";
+import { ZoomableImage } from "@/components/zoomable-image";
 
 const boltParts = [
   {
@@ -119,9 +120,7 @@ function GradeTables() {
           transition={{ duration: 0.2 }}
           className="p-6"
         >
-          <div className="bg-white rounded-xl p-4">
-            <img src={current.img} alt={current.alt} className="w-full object-contain" />
-          </div>
+          <ZoomableImage src={current.img} alt={current.alt} containerClassName="bg-white rounded-xl p-4" />
           {active === "inch-bolts" && (
             <p className="mt-4 text-xs text-muted-foreground leading-relaxed">
               SAE Grade 5 (3 head marks) and Grade 8 (6 head marks) are the grades most commonly encountered in HVAC/R equipment. Proof load is the maximum stress a bolt can withstand without permanent deformation. Tensile strength is the load at which the bolt fractures.
@@ -206,11 +205,11 @@ export default function BasicTools() {
         </div>
         <div className="p-6 flex flex-col md:flex-row gap-8 items-start">
           {/* Diagram image */}
-          <div className="flex-shrink-0 w-full md:w-1/2 bg-white rounded-xl overflow-hidden flex items-center justify-center p-4">
-            <img
+          <div className="flex-shrink-0 w-full md:w-1/2">
+            <ZoomableImage
               src="/images/bolt-diagram.png"
               alt="Bolt anatomy diagram showing Thread, Nut, Runout, Shank, Radius, Head and their measurements"
-              className="w-full object-contain"
+              containerClassName="bg-white rounded-xl p-4"
             />
           </div>
 
@@ -317,11 +316,11 @@ export default function BasicTools() {
         </div>
         <div className="p-6 flex flex-col lg:flex-row gap-8 items-start">
           {/* Image */}
-          <div className="w-full lg:w-1/2 bg-white rounded-xl overflow-hidden flex items-center justify-center p-4">
-            <img
+          <div className="w-full lg:w-1/2">
+            <ZoomableImage
               src="/images/fastener-types.png"
               alt="Comparison of Bolt, Machine Screw, and Self Tapping Screw with cross-section showing how bolt and screw engage with material"
-              className="w-full object-contain"
+              containerClassName="bg-white rounded-xl p-4"
             />
           </div>
 
@@ -383,8 +382,8 @@ export default function BasicTools() {
             <h3 className="font-semibold text-foreground">Imperial vs Metric — Head Markings at a Glance</h3>
           </div>
           <div className="p-6 flex flex-col lg:flex-row gap-6 items-start">
-            <div className="w-full lg:w-1/2 bg-white rounded-xl p-4 flex items-center justify-center">
-              <img src="/images/bolt-grades-overview.png" alt="Imperial Grade 2, 5, 8 and Metric Class 8.8, 10.9, 12.9 bolt head markings" className="w-full object-contain" />
+            <div className="w-full lg:w-1/2">
+              <ZoomableImage src="/images/bolt-grades-overview.png" alt="Imperial Grade 2, 5, 8 and Metric Class 8.8, 10.9, 12.9 bolt head markings" containerClassName="bg-white rounded-xl p-4" />
             </div>
             <div className="flex-1 space-y-4 text-sm text-muted-foreground">
               <div>
@@ -418,8 +417,8 @@ export default function BasicTools() {
             <h3 className="font-semibold text-foreground">SAE International — The Standards Body</h3>
           </div>
           <div className="p-6 flex flex-col lg:flex-row gap-6 items-start">
-            <div className="w-full lg:w-96 bg-white rounded-xl p-4 flex-shrink-0">
-              <img src="/images/sae-standards.png" alt="SAE International history and standards" className="w-full object-contain" />
+            <div className="w-full lg:w-96 flex-shrink-0">
+              <ZoomableImage src="/images/sae-standards.png" alt="SAE International history and standards" containerClassName="bg-white rounded-xl p-4" />
             </div>
             <div className="flex-1 text-sm text-muted-foreground space-y-3">
               <p>The <span className="text-foreground font-medium">Society of Automotive Engineers (SAE International)</span> was formed in the early 1900s when dozens of US automobile manufacturers joined trade groups to standardise engineering components — including fasteners, screw threads, lock washers, and fittings.</p>
@@ -447,8 +446,8 @@ export default function BasicTools() {
           <h2 className="font-semibold text-foreground">Thread Pitch &amp; How to Measure It</h2>
         </div>
         <div className="p-6 flex flex-col lg:flex-row gap-6 items-start">
-          <div className="w-full lg:w-1/2 bg-white rounded-xl p-4">
-            <img src="/images/screw-pitch-gauge.png" alt="Screw pitch measurement using a pitch gauge" className="w-full object-contain" />
+          <div className="w-full lg:w-1/2">
+            <ZoomableImage src="/images/screw-pitch-gauge.png" alt="Screw pitch measurement using a pitch gauge" containerClassName="bg-white rounded-xl p-4" />
           </div>
           <div className="flex-1 text-sm text-muted-foreground space-y-3">
             <p><span className="text-foreground font-medium">Thread pitch</span> is the distance between adjacent thread crests, measured in:</p>
@@ -480,7 +479,7 @@ export default function BasicTools() {
               <h3 className="font-semibold text-foreground text-sm">Aircraft Bolt Head Markings (AN / NAS)</h3>
             </div>
             <div className="p-4 bg-white rounded-b-2xl">
-              <img src="/images/aircraft-bolt-markings.png" alt="Aircraft bolt head markings including AN standard, NAS close tolerance, aluminum alloy, drilled head, clevis, and reworked bolt markings" className="w-full object-contain" />
+              <ZoomableImage src="/images/aircraft-bolt-markings.png" alt="Aircraft bolt head markings including AN standard, NAS close tolerance, aluminum alloy, drilled head, clevis, and reworked bolt markings" />
             </div>
             <div className="px-5 py-4 text-xs text-muted-foreground leading-relaxed">
               Aircraft bolts follow Army-Navy (AN) and National Aerospace Standards (NAS). You may encounter these on specialist HVAC/R plant for aviation hangars or military facilities. The head markings identify the manufacturer, material (steel/aluminium alloy), and any special treatment (drilled for safety wire, corrosion resistant, close tolerance). Never substitute a standard bolt for an AN/NAS bolt in certified equipment.
@@ -491,7 +490,7 @@ export default function BasicTools() {
               <h3 className="font-semibold text-foreground text-sm">Manufacturer &amp; Arsenal Markings</h3>
             </div>
             <div className="p-4 bg-white rounded-b-2xl">
-              <img src="/images/manufacturer-markings.png" alt="Auto and arsenal manufacturer bolt head markings including Tokyo Arsenal, Mopar Motors examples" className="w-full object-contain" />
+              <ZoomableImage src="/images/manufacturer-markings.png" alt="Auto and arsenal manufacturer bolt head markings including Tokyo Arsenal, Mopar Motors examples" />
             </div>
             <div className="px-5 py-4 text-xs text-muted-foreground leading-relaxed">
               Manufacturer markings identify who produced the fastener. Modern HVAC/R OEM equipment often features proprietary head markings to indicate factory-spec fasteners. On older plant or heritage equipment, markings can help trace the origin of a component. Always replace with an equivalent grade and material specification — never go by markings alone when ordering replacements.
