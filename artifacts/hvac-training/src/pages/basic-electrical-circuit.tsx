@@ -146,7 +146,7 @@ export default function BasicElectricalCircuit() {
         </div>
         <h1 className="text-4xl font-display font-bold text-foreground tracking-tight mb-3">Electrical Fundamentals</h1>
         <p className="text-muted-foreground text-base leading-relaxed max-w-2xl">
-          A solid understanding of electrical circuits is essential for every HVAC/R technician. From reading wiring diagrams to diagnosing faults, everything builds on these fundamentals.
+          A solid understanding of electrical circuits underpins all work in the electrical trades. From reading wiring diagrams to diagnosing faults, everything builds on these fundamentals.
         </p>
       </div>
 
@@ -165,7 +165,7 @@ export default function BasicElectricalCircuit() {
               { label: "Electrical Supply", desc: "Covering power generation, transmission and distribution.", colour: "text-yellow-400", dot: "bg-yellow-400" },
               { label: "Industrial", desc: "Installing and maintaining electrical machinery and wiring in factories and industrial complexes.", colour: "text-blue-400", dot: "bg-blue-400" },
               { label: "Commercial & Domestic", desc: "Installation of wiring (lighting, power, data) and appliances.", colour: "text-green-400", dot: "bg-green-400" },
-              { label: "Refrigeration & Air Conditioning", desc: "Your sector — electrical systems in HVAC/R equipment across residential, commercial, and industrial applications.", colour: "text-red-400", dot: "bg-red-400" },
+              { label: "Refrigeration & Air Conditioning", desc: "Electrical systems within HVAC/R equipment across residential, commercial, and industrial applications.", colour: "text-red-400", dot: "bg-red-400" },
             ].map((s) => (
               <div key={s.label} className="flex items-start gap-3 rounded-xl border border-white/8 p-4">
                 <span className={cn("mt-1.5 w-2 h-2 rounded-full flex-shrink-0", s.dot)} />
@@ -1149,7 +1149,7 @@ export default function BasicElectricalCircuit() {
         </div>
         <div className="p-6 space-y-4">
           <p className="text-sm text-muted-foreground leading-relaxed">
-            A digital multimeter (DMM) is your primary electrical diagnostic tool. It measures voltage, current, and resistance. Always select the correct function and range before connecting leads.
+            A digital multimeter (DMM) is the primary electrical diagnostic tool in the trade. It measures voltage, current, and resistance. Always select the correct function and range before connecting leads.
           </p>
           <div className="space-y-3">
             {[
@@ -1198,7 +1198,7 @@ export default function BasicElectricalCircuit() {
               "Never work alone on live circuits above extra-low voltage (ELV, > 50 V AC / 120 V DC).",
               "Discharge capacitors before touching — run capacitors can hold lethal charge for hours after power is removed.",
               "Use insulated tools rated for the voltage level you are working on.",
-              "In Australia, electrical work on fixed wiring must be performed by a licensed electrician (unless you hold a refrigeration and air conditioning licence with the appropriate permit).",
+              "In Australia, electrical work on fixed wiring must be performed by a licensed electrician (unless a refrigeration and air conditioning licence with the appropriate electrical permit is held).",
             ].map((rule) => (
               <li key={rule} className="flex items-start gap-3 text-sm text-red-200/80">
                 <span className="mt-1.5 w-2 h-2 rounded-full bg-red-400 flex-shrink-0" />
