@@ -158,7 +158,7 @@ export default function BasicElectricalCircuit() {
         </div>
         <div className="p-6 space-y-5">
           <p className="text-sm text-muted-foreground leading-relaxed">
-            The electrical industry is broad. As an HVAC/R technician you work within the <span className="text-foreground font-medium">Refrigeration &amp; Air Conditioning</span> sector, but you will regularly interact with all of the sectors below.
+            The electrical industry is broad and covers many sectors. Each sector applies the same fundamental electrical principles — from generation and distribution through to installation and maintenance.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
