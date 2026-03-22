@@ -418,8 +418,8 @@ export default function EmfSources() {
                         <th className="text-left py-2 px-3 font-semibold text-muted-foreground">Negative plate</th>
                         <th className="text-left py-2 px-3 font-semibold text-muted-foreground">Positive plate</th>
                         <th className="text-left py-2 px-3 font-semibold text-muted-foreground">
-                          SG — Specific Gravity
-                          <span className="block text-xs font-normal text-muted-foreground/60">density relative to water (1.000)</span>
+                          Electrolyte SG
+                          <span className="block text-xs font-normal text-muted-foreground/60">Specific Gravity — density relative to water (1.000)</span>
                         </th>
                         <th className="text-right py-2 px-3 font-semibold text-muted-foreground">Volts/cell</th>
                       </tr>
@@ -477,8 +477,8 @@ export default function EmfSources() {
                         <th className="text-left py-2 px-3 font-semibold text-muted-foreground">Negative plate</th>
                         <th className="text-left py-2 px-3 font-semibold text-muted-foreground">Positive plate</th>
                         <th className="text-left py-2 px-3 font-semibold text-muted-foreground">
-                          SG — Specific Gravity
-                          <span className="block text-xs font-normal text-muted-foreground/60">density relative to water (1.000)</span>
+                          Electrolyte SG
+                          <span className="block text-xs font-normal text-muted-foreground/60">Specific Gravity — density relative to water (1.000)</span>
                         </th>
                         <th className="text-right py-2 px-3 font-semibold text-muted-foreground">Volts/cell</th>
                       </tr>
