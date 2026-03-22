@@ -10,6 +10,7 @@ import {
   GraduationCap, 
   ChevronLeft, 
   ChevronRight,
+  ChevronDown,
   Wind,
   Hammer,
   Zap,
@@ -55,6 +56,41 @@ const navSections: NavSection[] = [
   { href: "/fault-finding", label: "Fault Finding", icon: Activity },
   { href: "/quiz", label: "Assessment", icon: GraduationCap },
 ];
+
+function CollapsibleNavGroup({ group, location, isCollapsed }: { group: NavGroup; location: string; isCollapsed: boolean }) {
+  const hasActive = group.items.some(i => i.href === location);
+  const [open, setOpen] = useState(true);
+
+  return (
+    <div className="pt-2 pb-1">
+      {!isCollapsed ? (
+        <button
+          onClick={() => setOpen(o => !o)}
+          className="flex items-center justify-between w-full px-3 mb-1 group"
+        >
+          <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 select-none group-hover:text-muted-foreground transition-colors">
+            {group.heading}
+          </span>
+          <ChevronDown
+            className={cn(
+              "w-3 h-3 text-muted-foreground/40 group-hover:text-muted-foreground transition-all duration-200",
+              open ? "rotate-0" : "-rotate-90"
+            )}
+          />
+        </button>
+      ) : (
+        <div className="border-t border-white/8 mb-1" />
+      )}
+      {(open || isCollapsed) && (
+        <div className={cn("space-y-1", !isCollapsed && "pl-2 border-l-2 ml-1", hasActive ? "border-primary/40" : "border-primary/20")}>
+          {group.items.map(item => (
+            <NavLink key={item.href} item={item} isActive={location === item.href} isCollapsed={isCollapsed} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function NavLink({ item, isActive, isCollapsed }: { item: NavItem; isActive: boolean; isCollapsed: boolean }) {
   return (
@@ -109,21 +145,7 @@ export function Layout({ children }: LayoutProps) {
           {navSections.map((section, i) => {
             if (isGroup(section)) {
               return (
-                <div key={section.heading} className="pt-2 pb-1">
-                  {!isCollapsed && (
-                    <p className="px-3 mb-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 select-none">
-                      {section.heading}
-                    </p>
-                  )}
-                  {isCollapsed && (
-                    <div className="border-t border-white/8 mb-1" />
-                  )}
-                  <div className="space-y-1 pl-2 border-l-2 border-primary/20 ml-1">
-                    {section.items.map((item) => (
-                      <NavLink key={item.href} item={item} isActive={location === item.href} isCollapsed={isCollapsed} />
-                    ))}
-                  </div>
-                </div>
+                <CollapsibleNavGroup key={section.heading} group={section} location={location} isCollapsed={isCollapsed} />
               );
             }
             return (
