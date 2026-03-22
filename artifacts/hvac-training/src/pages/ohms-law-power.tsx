@@ -1,4 +1,4 @@
-import { Calculator, Zap, Info, BookOpen, FlameKindling, ArrowLeftRight } from "lucide-react";
+import { Calculator, Zap, Info, BookOpen, FlameKindling, ArrowLeftRight, AlertTriangle } from "lucide-react";
 
 export default function OhmsLawPower() {
   return (
@@ -1087,6 +1087,499 @@ export default function OhmsLawPower() {
               <div className={`text-lg font-display font-bold ${colour}`}>{answer}</div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* ── Wattmeter ── */}
+      <div className="bg-card border border-border rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-border">
+          <Zap className="w-4 h-4 text-yellow-400" />
+          <h2 className="font-semibold text-foreground">Wattmeter</h2>
+        </div>
+        <div className="p-6 space-y-4">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            A wattmeter measures electrical power directly. It consists of <span className="text-foreground font-medium">two coils</span>:
+            a <span className="text-blue-300 font-medium">current coil</span> (connected in series with the load) and a{" "}
+            <span className="text-yellow-300 font-medium">voltage coil</span> (connected in parallel). Because P = V × I, the interaction of
+            the two magnetic fields deflects a pointer proportional to power.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            {/* Schematic symbol */}
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Schematic Connection</p>
+              <svg viewBox="0 0 280 160" className="w-full max-w-xs mx-auto" aria-label="Wattmeter schematic">
+                {/* supply rails */}
+                <line x1="20" y1="30" x2="100" y2="30" stroke="#9ca3af" strokeWidth="1.5"/>
+                <line x1="20" y1="130" x2="260" y2="130" stroke="#9ca3af" strokeWidth="1.5"/>
+                {/* current coil (series, top rail) */}
+                <rect x="100" y="20" width="60" height="20" rx="3" fill="#1e40af" fillOpacity="0.3" stroke="#60a5fa" strokeWidth="1.5"/>
+                <text x="130" y="33" textAnchor="middle" fill="#60a5fa" fontSize="8" fontFamily="monospace">current coil</text>
+                <line x1="160" y1="30" x2="200" y2="30" stroke="#9ca3af" strokeWidth="1.5"/>
+                {/* voltage coil (shunt, vertical) */}
+                <rect x="190" y="30" width="20" height="60" rx="3" fill="#92400e" fillOpacity="0.3" stroke="#fbbf24" strokeWidth="1.5"/>
+                <text x="200" y="98" textAnchor="middle" fill="#fbbf24" fontSize="8" fontFamily="monospace">voltage</text>
+                <text x="200" y="108" textAnchor="middle" fill="#fbbf24" fontSize="8" fontFamily="monospace">coil</text>
+                <line x1="200" y1="90" x2="200" y2="130" stroke="#9ca3af" strokeWidth="1.5"/>
+                {/* load */}
+                <line x1="200" y1="30" x2="260" y2="30" stroke="#9ca3af" strokeWidth="1.5"/>
+                <rect x="240" y="20" width="20" height="20" rx="3" fill="#374151" stroke="#6b7280" strokeWidth="1.5"/>
+                <text x="250" y="33" textAnchor="middle" fill="#d1d5db" fontSize="7">LOAD</text>
+                <line x1="260" y1="30" x2="260" y2="130" stroke="#9ca3af" strokeWidth="1.5"/>
+                {/* supply label */}
+                <text x="10" y="82" fill="#6b7280" fontSize="8">supply</text>
+                <line x1="20" y1="30" x2="20" y2="130" stroke="#9ca3af" strokeWidth="1.5"/>
+              </svg>
+            </div>
+            {/* Electrodynamometer wattmeter */}
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Electrodynamometer Wattmeter</p>
+              <svg viewBox="0 0 260 180" className="w-full max-w-xs mx-auto" aria-label="Electrodynamometer wattmeter internals">
+                {/* scale arc */}
+                <path d="M 50,140 A 80,80 0 0,1 210,140" fill="none" stroke="#4ade80" strokeWidth="8" strokeLinecap="round" opacity="0.5"/>
+                <text x="130" y="60" textAnchor="middle" fill="#d1d5db" fontSize="9">Scale</text>
+                <text x="210" y="75" textAnchor="middle" fill="#d1d5db" fontSize="9">Watts</text>
+                {/* pointer */}
+                <line x1="130" y1="140" x2="155" y2="80" stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round"/>
+                <text x="175" y="82" fill="#ef4444" fontSize="9">Pointer</text>
+                {/* fixed coils */}
+                <ellipse cx="55" cy="138" rx="22" ry="12" fill="none" stroke="#60a5fa" strokeWidth="1.5"/>
+                <text x="40" y="164" fill="#60a5fa" fontSize="8">Fixed Coil</text>
+                <ellipse cx="205" cy="138" rx="22" ry="12" fill="none" stroke="#60a5fa" strokeWidth="1.5"/>
+                <text x="192" y="164" fill="#60a5fa" fontSize="8">Fixed Coil</text>
+                {/* moving coil */}
+                <ellipse cx="130" cy="138" rx="15" ry="8" fill="none" stroke="#fbbf24" strokeWidth="1.5"/>
+                <text x="105" y="164" fill="#fbbf24" fontSize="8">Moving Coil</text>
+                {/* series resistor */}
+                <rect x="148" y="134" width="20" height="8" rx="2" fill="none" stroke="#a78bfa" strokeWidth="1.5"/>
+                <text x="148" y="178" fill="#a78bfa" fontSize="8">Series Resistor</text>
+                {/* supply/load lines */}
+                <line x1="10" y1="120" x2="33" y2="138" stroke="#9ca3af" strokeWidth="1"/>
+                <line x1="10" y1="155" x2="33" y2="148" stroke="#9ca3af" strokeWidth="1"/>
+                <text x="5" y="118" fill="#6b7280" fontSize="7">Supply</text>
+                <text x="5" y="128" fill="#6b7280" fontSize="7">Voltage</text>
+                <line x1="227" y1="138" x2="252" y2="120" stroke="#9ca3af" strokeWidth="1"/>
+                <text x="240" y="118" fill="#6b7280" fontSize="7">LOAD</text>
+              </svg>
+            </div>
+          </div>
+          <div className="bg-yellow-400/5 border border-yellow-400/20 rounded-xl px-4 py-3 text-sm text-yellow-200">
+            <span className="font-mono font-bold text-yellow-300">P = V × I</span> — the wattmeter measures both quantities simultaneously and displays their product directly in watts.
+          </div>
+        </div>
+      </div>
+
+      {/* ── Kilowatt Hour Meter ── */}
+      <div className="bg-card border border-border rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-border">
+          <Zap className="w-4 h-4 text-green-400" />
+          <h2 className="font-semibold text-foreground">Kilowatt Hour Meter — kWh</h2>
+        </div>
+        <div className="p-6 space-y-4">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Supply companies use a <span className="text-foreground font-medium">kWh meter</span> to measure the quantity of electrical energy consumed.
+            Like the wattmeter it uses a current coil and a voltage coil (P = V × I), but the meter integrates power over time to register energy in kilowatt-hours.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            {/* Part labels */}
+            <div className="space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Key Components</p>
+              {[
+                { name: "Current Coil", colour: "text-blue-300", desc: "Carries the full load current — in series with the load." },
+                { name: "Potential Coil", colour: "text-yellow-300", desc: "Connected in parallel with the supply — senses voltage." },
+                { name: "Rotor (Disk)", colour: "text-green-300", desc: "Aluminium disc that spins at a rate proportional to power." },
+                { name: "Permanent Magnet", colour: "text-red-300", desc: "Provides braking torque to prevent over-spin — ensures accuracy." },
+                { name: "Stator", colour: "text-purple-300", desc: "Iron core carrying both coils and guiding the magnetic flux." },
+              ].map(({ name, colour, desc }) => (
+                <div key={name} className="flex gap-3">
+                  <span className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 bg-current ${colour}`} />
+                  <div>
+                    <span className={`text-sm font-semibold ${colour}`}>{name}</span>
+                    <p className="text-xs text-muted-foreground">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* SVG schematic */}
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Internal Diagram</p>
+              <svg viewBox="0 0 220 200" className="w-full max-w-xs mx-auto" aria-label="kWh meter internals">
+                {/* stator box */}
+                <rect x="60" y="50" width="100" height="90" rx="4" fill="#1e293b" stroke="#4b5563" strokeWidth="1.5"/>
+                <text x="110" y="43" textAnchor="middle" fill="#9ca3af" fontSize="9">Stator</text>
+                {/* potential coil windings */}
+                {[0,1,2,3,4].map(i => (
+                  <rect key={i} x="70" y={58 + i*8} width="36" height="6" rx="1" fill="none" stroke="#fbbf24" strokeWidth="1" opacity="0.8"/>
+                ))}
+                <text x="88" y="108" textAnchor="middle" fill="#fbbf24" fontSize="7">Potential</text>
+                <text x="88" y="117" textAnchor="middle" fill="#fbbf24" fontSize="7">Coil</text>
+                {/* rotor disk */}
+                <ellipse cx="130" cy="120" rx="18" ry="24" fill="#374151" stroke="#4ade80" strokeWidth="1.5"/>
+                <text x="130" y="122" textAnchor="middle" fill="#4ade80" fontSize="7">Rotor</text>
+                <text x="130" y="132" textAnchor="middle" fill="#4ade80" fontSize="7">(Disk)</text>
+                {/* current coil */}
+                {[0,1,2].map(i => (
+                  <rect key={i} x="80" y={126 + i*8} width="22" height="6" rx="1" fill="none" stroke="#60a5fa" strokeWidth="1" opacity="0.8"/>
+                ))}
+                <text x="91" y="158" textAnchor="middle" fill="#60a5fa" fontSize="7">Current</text>
+                <text x="91" y="167" textAnchor="middle" fill="#60a5fa" fontSize="7">Coil</text>
+                {/* permanent magnet */}
+                <rect x="150" y="105" width="16" height="30" rx="2" fill="#7f1d1d" stroke="#ef4444" strokeWidth="1.5"/>
+                <text x="175" y="118" fill="#ef4444" fontSize="7">Perm.</text>
+                <text x="175" y="127" fill="#ef4444" fontSize="7">Magnet</text>
+                <text x="175" y="136" fill="#ef4444" fontSize="7">(brake)</text>
+                {/* Line/Load connectors */}
+                <line x1="60" y1="65" x2="20" y2="65" stroke="#9ca3af" strokeWidth="1"/>
+                <line x1="60" y1="135" x2="20" y2="135" stroke="#9ca3af" strokeWidth="1"/>
+                <text x="5" y="68" fill="#6b7280" fontSize="7">Line</text>
+                <text x="5" y="138" fill="#6b7280" fontSize="7">Load</text>
+              </svg>
+            </div>
+          </div>
+          <div className="bg-green-400/5 border border-green-400/20 rounded-xl px-4 py-3 space-y-1">
+            <p className="text-sm font-semibold text-green-300">Reading your electricity meter</p>
+            <p className="text-sm text-muted-foreground">
+              Each unit on the dial = 1 kWh. A 2 kW heater running for 3 hours consumes <span className="font-mono font-bold text-green-300">6 kWh</span> of electrical energy.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Effect on Power if Voltage Changes ── */}
+      <div className="bg-card border border-border rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-border">
+          <Zap className="w-4 h-4 text-orange-400" />
+          <h2 className="font-semibold text-foreground">Effect on Power When Voltage Changes</h2>
+        </div>
+        <div className="p-6 space-y-4">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Because <span className="font-mono font-bold text-orange-300">P = V² / R</span>, power changes by the <span className="font-semibold text-foreground">square</span> of the voltage change:
+          </p>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li className="flex items-start gap-2"><span className="mt-1.5 w-2 h-2 rounded-full bg-orange-400 flex-shrink-0"/><span>If voltage doubles, power increases <span className="text-orange-300 font-bold">four times</span> (2² = 4).</span></li>
+            <li className="flex items-start gap-2"><span className="mt-1.5 w-2 h-2 rounded-full bg-orange-400 flex-shrink-0"/><span>If voltage halves, power falls to <span className="text-orange-300 font-bold">one quarter</span> (½² = ¼).</span></li>
+          </ul>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            {[
+              { label: "(a)", v: 5, r: 10, p: "2.5", colour: "border-blue-400/40 bg-blue-400/5" },
+              { label: "(b)", v: 10, r: 10, p: "10", colour: "border-orange-400/40 bg-orange-400/5" },
+            ].map(({ label, v, r, p, colour }) => (
+              <div key={label} className={`border rounded-xl p-4 ${colour} space-y-3`}>
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{label} R = {r} Ω, V = {v} V</p>
+                {/* mini meter SVG */}
+                <svg viewBox="0 0 120 70" className="w-full max-w-[140px] mx-auto" aria-label={`Voltmeter at ${v}V`}>
+                  <rect x="5" y="5" width="110" height="55" rx="6" fill="#1e293b" stroke="#4b5563" strokeWidth="1.5"/>
+                  <path d={`M 15,50 A 45,45 0 0,1 105,50`} fill="none" stroke="#4b5563" strokeWidth="4" strokeLinecap="round"/>
+                  <path d={`M 15,50 A 45,45 0 0,1 ${v === 5 ? "55,14" : "85,18"}`} fill="none" stroke="#4ade80" strokeWidth="4" strokeLinecap="round"/>
+                  <line x1="60" y1="50" x2={v === 5 ? "42" : "76"} y2={v === 5 ? "18" : "15"} stroke="#ef4444" strokeWidth="2" strokeLinecap="round"/>
+                  <text x="60" y="63" textAnchor="middle" fill="#9ca3af" fontSize="8">VOLTS</text>
+                  <text x="18" y="48" fill="#9ca3af" fontSize="7">0</text>
+                  <text x="95" y="48" fill="#9ca3af" fontSize="7">20</text>
+                </svg>
+                <div className="text-center space-y-1">
+                  <p className="font-mono text-sm text-muted-foreground">P = V² / R = {v}² / {r}</p>
+                  <p className="font-mono text-2xl font-bold text-foreground">P = {p} W</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="bg-orange-400/5 border border-orange-400/20 rounded-xl px-4 py-3 text-sm text-orange-200">
+            Voltage doubled from 5 V → 10 V, and power quadrupled: 2.5 W → 10 W. This is why voltage variations have a disproportionate effect on appliance power consumption.
+          </div>
+        </div>
+      </div>
+
+      {/* ── Power and Energy Rating ── */}
+      <div className="bg-card border border-border rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-border">
+          <BookOpen className="w-4 h-4 text-teal-400" />
+          <h2 className="font-semibold text-foreground">Power and Energy Rating</h2>
+        </div>
+        <div className="p-6 space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-teal-400/5 border border-teal-400/20 rounded-xl p-4 text-center space-y-1">
+              <p className="text-xs text-muted-foreground uppercase tracking-widest">In Joules (SI)</p>
+              <p className="font-mono text-lg font-bold text-teal-300">E = P × t</p>
+              <p className="text-xs text-muted-foreground">energy (J) = power (W) × time (s)</p>
+            </div>
+            <div className="bg-teal-400/5 border border-teal-400/20 rounded-xl p-4 text-center space-y-1">
+              <p className="text-xs text-muted-foreground uppercase tracking-widest">In kWh (commercial)</p>
+              <p className="font-mono text-lg font-bold text-teal-300">E = kW × hours</p>
+              <p className="text-xs text-muted-foreground">energy (kWh) = kilowatts × hours run</p>
+            </div>
+          </div>
+          {/* Nameplate */}
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground pt-2">Appliance Nameplate Example</p>
+          <div className="bg-zinc-800 border border-zinc-600 rounded-2xl overflow-hidden max-w-xs mx-auto text-xs font-mono">
+            <div className="bg-zinc-700 text-center py-1 text-zinc-100 tracking-widest text-sm font-bold">SUNBEAM</div>
+            <div className="grid grid-cols-3 gap-px bg-zinc-600">
+              {[
+                { label: "V", value: "230" },
+                { label: "~50Hz", value: "" },
+                { label: "W", value: "2300" },
+                { label: "MODEL", value: "RA-D" },
+                { label: "SER", value: "0410E" },
+                { label: "", value: "" },
+                { label: "APP. No.", value: "N/17/47" },
+                { label: "", value: "MADE IN ENGLAND" },
+                { label: "", value: "" },
+              ].map((cell, i) => (
+                <div key={i} className="bg-zinc-800 px-2 py-1 flex items-center gap-1">
+                  {cell.label && <span className="text-zinc-400">{cell.label}</span>}
+                  {cell.value && <span className="bg-zinc-700 text-zinc-100 px-1 rounded">{cell.value}</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="bg-teal-400/5 border border-teal-400/20 rounded-xl px-4 py-3 text-sm text-teal-200 text-center">
+            This heater runs at 2300 W (2.3 kW). After one hour: <span className="font-mono font-bold text-teal-300">E = 2.3 kW × 1 h = 2.3 kWh</span>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Losses ── */}
+      <div className="bg-card border border-border rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-border">
+          <AlertTriangle className="w-4 h-4 text-red-400" />
+          <h2 className="font-semibold text-foreground">Losses</h2>
+        </div>
+        <div className="p-6 space-y-4">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Energy cannot be created or destroyed — but what you put in <span className="font-semibold text-foreground">does not</span> equal what you get out.
+            The difference is <span className="text-red-300 font-semibold">losses</span>: unwanted energy forms (usually heat, noise, or vibration) that reduce useful output.
+          </p>
+          {/* Power station chain */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Power-Station Energy Chain (coal → pump output)</p>
+            <div className="overflow-x-auto">
+              <div className="flex items-center gap-1 min-w-max pb-2">
+                {[
+                  { label: "Coal Input", value: "100 units", colour: "bg-yellow-700/30 border-yellow-600/40 text-yellow-200" },
+                  { arrow: "70% lost\n(power plant)" },
+                  { label: "Transmission", value: "30 units", colour: "bg-orange-700/30 border-orange-600/40 text-orange-200" },
+                  { arrow: "9% lost\n(lines)" },
+                  { label: "Motor", value: "21 units", colour: "bg-blue-700/30 border-blue-600/40 text-blue-200" },
+                  { arrow: "10% lost\n(motor)" },
+                  { label: "Drivetrain", value: "11 units", colour: "bg-purple-700/30 border-purple-600/40 text-purple-200" },
+                  { arrow: "2% lost\n(friction)" },
+                  { label: "Output", value: "9.5 units", colour: "bg-green-700/30 border-green-600/40 text-green-200" },
+                ].map((item, i) =>
+                  item.arrow ? (
+                    <div key={i} className="flex flex-col items-center gap-0.5 px-1">
+                      <span className="text-red-400 text-lg">→</span>
+                      <span className="text-xs text-red-400/80 text-center whitespace-pre-line leading-tight">{item.arrow}</span>
+                    </div>
+                  ) : (
+                    <div key={i} className={`border rounded-lg px-3 py-2 text-center ${item.colour}`}>
+                      <div className="text-xs font-semibold">{item.label}</div>
+                      <div className="font-mono font-bold text-sm">{item.value}</div>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          </div>
+          {/* House heat loss */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Typical House Heat Losses</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {[
+                { loc: "Roof",        pct: 25, colour: "text-orange-300", bar: "bg-orange-400" },
+                { loc: "Walls",       pct: 35, colour: "text-red-300",    bar: "bg-red-400"    },
+                { loc: "Floor",       pct: 15, colour: "text-yellow-300", bar: "bg-yellow-400" },
+                { loc: "Windows",     pct: 10, colour: "text-blue-300",   bar: "bg-blue-400"   },
+                { loc: "Doors/Gaps",  pct: 15, colour: "text-purple-300", bar: "bg-purple-400" },
+              ].map(({ loc, pct, colour, bar }) => (
+                <div key={loc} className="flex items-center gap-2 text-sm">
+                  <div className="w-16 bg-muted rounded-full h-1.5 flex-shrink-0">
+                    <div className={`${bar} h-1.5 rounded-full`} style={{ width: `${pct * 2.5}%` }}/>
+                  </div>
+                  <span className={`font-bold font-mono ${colour}`}>{pct}%</span>
+                  <span className="text-muted-foreground">{loc}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Efficiency ── */}
+      <div className="bg-card border border-border rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-border">
+          <Zap className="w-4 h-4 text-purple-400" />
+          <h2 className="font-semibold text-foreground">Efficiency — η</h2>
+        </div>
+        <div className="p-6 space-y-4">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Efficiency is the ratio of <span className="text-foreground font-semibold">useful work output</span> to{" "}
+            <span className="text-foreground font-semibold">work input</span>.
+            Because some input is always lost, efficiency is always less than 100 %.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+            <div className="bg-purple-400/5 border border-purple-400/20 rounded-xl p-4 text-center space-y-1">
+              <p className="font-mono font-bold text-purple-300 text-lg">η = (P<sub>out</sub> / P<sub>in</sub>) × 100</p>
+              <p className="text-xs text-muted-foreground">η (eta) expressed as a percentage</p>
+            </div>
+            <div className="bg-zinc-800 border border-border rounded-xl p-4 text-center space-y-1">
+              <p className="text-xs text-muted-foreground uppercase tracking-widest">Useful output</p>
+              <p className="font-mono font-bold text-foreground">= Input − Losses</p>
+            </div>
+            <div className="bg-zinc-800 border border-border rounded-xl p-4 text-center space-y-1">
+              <p className="text-xs text-muted-foreground uppercase tracking-widest">100 % efficient</p>
+              <p className="text-sm text-muted-foreground">= no losses — impossible in practice</p>
+            </div>
+          </div>
+          {/* Petrol vs Electric comparison */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Worked Example — Petrol vs Electric Vehicle</p>
+            <p className="text-xs text-muted-foreground mb-3">Petrol car: η = 12.6 % &nbsp;|&nbsp; Electric car: η ≈ 88 %</p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="bg-muted/30">
+                    <th className="text-left px-3 py-2 text-muted-foreground font-semibold">Energy loss</th>
+                    <th className="px-3 py-2 text-yellow-300 font-semibold text-center">Petrol</th>
+                    <th className="px-3 py-2 text-green-300 font-semibold text-center">Electric</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { loss: "Idling",        petrol: "17%",   elec: "0%" },
+                    { loss: "Engine losses", petrol: "62%",   elec: "10%" },
+                    { loss: "Accessories",   petrol: "2%",    elec: "2%" },
+                    { loss: "Drive train",   petrol: "5.6%",  elec: "0%" },
+                    { loss: "Total losses",  petrol: "86.6%", elec: "12%", bold: true },
+                    { loss: "Engine size",   petrol: "100 kW",elec: "14 kW" },
+                    { loss: "Torque peak",   petrol: "100% @ 3000 RPM", elec: "100% @ 10 RPM" },
+                  ].map(({ loss, petrol, elec, bold }) => (
+                    <tr key={loss} className={`border-t border-border ${bold ? "bg-red-950/20 font-bold" : ""}`}>
+                      <td className="px-3 py-2 text-muted-foreground">{loss}</td>
+                      <td className={`px-3 py-2 text-center font-mono ${bold ? "text-red-300" : "text-yellow-300"}`}>{petrol}</td>
+                      <td className={`px-3 py-2 text-center font-mono ${bold ? "text-green-300" : "text-green-300"}`}>{elec}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {/* Fan impeller efficiency */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Fan Impeller Efficiency by Type</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {[
+                { name: "Radial",          pct: 72 },
+                { name: "Radial Tip",      pct: 79 },
+                { name: "Forward Curved",  pct: 76 },
+                { name: "Backward Flat",   pct: 81 },
+                { name: "Backward Curved", pct: 83 },
+                { name: "Aerofoil",        pct: 88 },
+              ].map(({ name, pct }) => (
+                <div key={name} className="bg-muted/20 border border-border rounded-xl p-3 space-y-2">
+                  <div className="flex justify-between items-baseline">
+                    <span className="text-xs text-muted-foreground">{name}</span>
+                    <span className="font-mono font-bold text-green-300 text-sm">{pct}%</span>
+                  </div>
+                  <div className="w-full bg-muted rounded-full h-1.5">
+                    <div className="bg-green-400 h-1.5 rounded-full" style={{ width: `${pct}%` }}/>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Rotational Energy & Torque ── */}
+      <div className="bg-card border border-border rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-border">
+          <Zap className="w-4 h-4 text-blue-400" />
+          <h2 className="font-semibold text-foreground">Rotational Energy — Torque</h2>
+        </div>
+        <div className="p-6 space-y-4">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Rotational force is called <span className="text-blue-300 font-semibold">torque</span>. When a force is applied at right angles to the radius:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+            <div className="bg-blue-400/5 border border-blue-400/20 rounded-xl p-4 text-center space-y-1">
+              <p className="font-mono font-bold text-blue-300 text-xl">T = F × r</p>
+              <p className="text-xs text-muted-foreground">torque = force × radius</p>
+            </div>
+            <div className="bg-zinc-800 border border-border rounded-xl p-4 space-y-2 text-xs text-muted-foreground">
+              <p><span className="font-mono text-blue-300 font-bold">T</span> = torque in newton-metres (Nm)</p>
+              <p><span className="font-mono text-blue-300 font-bold">F</span> = applied force in newtons (N)</p>
+              <p><span className="font-mono text-blue-300 font-bold">r</span> = distance from fulcrum to force (m)</p>
+            </div>
+            <div className="bg-zinc-800 border border-border rounded-xl p-4 space-y-2">
+              <p className="text-xs text-muted-foreground uppercase tracking-widest">Worked example (F = 1000 N)</p>
+              <p className="font-mono text-sm text-blue-200">r = 100 mm (0.1 m):</p>
+              <p className="font-mono font-bold text-blue-300">T = 1000 × 0.1 = <span className="text-white">100 Nm</span></p>
+              <p className="font-mono text-sm text-blue-200">r = 200 mm (0.2 m):</p>
+              <p className="font-mono font-bold text-blue-300">T = 1000 × 0.2 = <span className="text-white">200 Nm</span></p>
+            </div>
+          </div>
+          {/* Torque SVG - wrench */}
+          <div className="flex justify-center">
+            <svg viewBox="0 0 260 120" className="w-full max-w-sm" aria-label="Torque wrench diagram">
+              {/* bolt/fulcrum */}
+              <circle cx="80" cy="60" r="12" fill="#374151" stroke="#6b7280" strokeWidth="2"/>
+              <text x="80" y="64" textAnchor="middle" fill="#9ca3af" fontSize="8">A</text>
+              {/* wrench body */}
+              <rect x="78" y="57" width="120" height="6" rx="2" fill="#4b5563" stroke="#6b7280" strokeWidth="1"/>
+              {/* r1 = 100mm */}
+              <line x1="80" y1="60" x2="80" y2="30" stroke="#3b82f6" strokeWidth="1.5" strokeDasharray="3 2"/>
+              <text x="65" y="45" fill="#60a5fa" fontSize="8">r=100mm</text>
+              {/* r2 = 200mm */}
+              <line x1="200" y1="57" x2="200" y2="25" stroke="#8b5cf6" strokeWidth="1.5" strokeDasharray="3 2"/>
+              <text x="202" y="35" fill="#a78bfa" fontSize="8">r=200mm</text>
+              <text x="185" y="22" fill="#a78bfa" fontSize="7">200Nm</text>
+              {/* force arrow */}
+              <line x1="200" y1="120" x2="200" y2="68" stroke="#ef4444" strokeWidth="2" markerEnd="url(#arr)"/>
+              <text x="207" y="115" fill="#ef4444" fontSize="8">F=1000N</text>
+              <defs>
+                <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#ef4444"/>
+                </marker>
+              </defs>
+              {/* T annotations */}
+              <text x="72" y="24" fill="#60a5fa" fontSize="7">100Nm</text>
+              <text x="80" y="88" textAnchor="middle" fill="#6b7280" fontSize="7">fulcrum (axis)</text>
+            </svg>
+          </div>
+          {/* Bicycle gears */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Torque in Practice — Bicycle Gears</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                {
+                  gear: "Low Gear", colour: "text-green-300", bg: "bg-green-400/5", border: "border-green-400/25",
+                  points: ["Smaller R_front / R_back ratio", "Larger F_out / F_in", "Smaller D_out / D_in", "Larger mechanical advantage (MA)"],
+                  dout: "34 cm", fout: "440 N", fin: "1000 N", din: "15 cm",
+                },
+                {
+                  gear: "High Gear", colour: "text-yellow-300", bg: "bg-yellow-400/5", border: "border-yellow-400/25",
+                  points: ["Larger R_front / R_back ratio", "Smaller F_out / F_in", "Larger D_out / D_in", "Smaller mechanical advantage (MA)"],
+                  dout: "68 cm", fout: "220 N", fin: "1000 N", din: "15 cm",
+                },
+              ].map(({ gear, colour, bg, border, points, dout, fout, fin, din }) => (
+                <div key={gear} className={`${bg} border ${border} rounded-xl p-4 space-y-3`}>
+                  <p className={`font-bold ${colour}`}>{gear}</p>
+                  <ul className="space-y-1">
+                    {points.map(p => (
+                      <li key={p} className="flex items-start gap-2 text-xs text-muted-foreground">
+                        <span className={`mt-1 w-1.5 h-1.5 rounded-full bg-current ${colour} flex-shrink-0`}/>
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="grid grid-cols-2 gap-1 text-xs font-mono">
+                    <span className="text-red-300">D_out: {dout}</span>
+                    <span className="text-blue-300">D_in: {din}</span>
+                    <span className="text-red-300">F_out: {fout}</span>
+                    <span className="text-blue-300">F_in: {fin}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
