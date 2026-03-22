@@ -1,0 +1,25 @@
+packages:
+  "framer-motion": "For page transitions, wizard animations, and interactive diagnostic trees"
+  "canvas-confetti": "For celebrating quiz completions"
+  "@types/canvas-confetti": "Type definitions for canvas-confetti"
+  "clsx": "Utility for conditionally joining classNames"
+  "tailwind-merge": "Utility for merging tailwind classes without style conflicts"
+
+images:
+  - path: "artifacts/hvac-training/public/images/hero-bg.png"
+    description: "Dark technical blueprint background with subtle glowing blue circuit lines, HVAC schematics, and thermodynamic charts. Deep navy and electric blue tones."
+    aspect_ratio: "16:9"
+  - path: "artifacts/hvac-training/public/images/compressor.png"
+    description: "High-end 3D isometric technical illustration of an industrial HVAC compressor on a dark background with neon blue accents"
+    aspect_ratio: "1:1"
+  - path: "artifacts/hvac-training/public/images/condenser.png"
+    description: "High-end 3D isometric technical illustration of an HVAC condenser unit with fans on a dark background with neon blue accents"
+    aspect_ratio: "1:1"
+  - path: "artifacts/hvac-training/public/images/evaporator.png"
+    description: "High-end 3D isometric technical illustration of an HVAC evaporator coil on a dark background with icy blue glowing accents"
+    aspect_ratio: "1:1"
+
+notes:
+  - "Import generated React Query hooks from @workspace/api-client-react"
+  - "Progress is saved using useSaveProgress and fetched with useGetProgress"
+  - "Quiz results use useSubmitQuizResult and useGetQuizResults"

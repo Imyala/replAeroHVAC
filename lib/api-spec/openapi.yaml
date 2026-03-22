@@ -1,15 +1,18 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: HVAC Training App API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: progress
+    description: User progress tracking
+  - name: quiz
+    description: Quiz operations
 paths:
   /healthz:
     get:
@@ -24,6 +27,71 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /progress:
+    get:
+      operationId: getProgress
+      tags: [progress]
+      summary: Get all user progress
+      responses:
+        "200":
+          description: List of progress entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Progress"
+    post:
+      operationId: saveProgress
+      tags: [progress]
+      summary: Save or update user progress for a module
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SaveProgressInput"
+      responses:
+        "200":
+          description: Saved progress
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Progress"
+
+  /quiz/results:
+    post:
+      operationId: submitQuizResult
+      tags: [quiz]
+      summary: Submit a quiz result
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuizResultInput"
+      responses:
+        "200":
+          description: Saved quiz result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QuizResult"
+    get:
+      operationId: getQuizResults
+      tags: [quiz]
+      summary: Get all quiz results
+      responses:
+        "200":
+          description: List of quiz results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/QuizResult"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +102,84 @@ components:
       required:
         - status
 
+    Progress:
+      type: object
+      properties:
+        id:
+          type: integer
+        moduleId:
+          type: string
+        moduleName:
+          type: string
+        completed:
+          type: boolean
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        score:
+          type: integer
+          nullable: true
+      required:
+        - id
+        - moduleId
+        - moduleName
+        - completed
+
+    SaveProgressInput:
+      type: object
+      properties:
+        moduleId:
+          type: string
+        moduleName:
+          type: string
+        completed:
+          type: boolean
+        score:
+          type: integer
+          nullable: true
+      required:
+        - moduleId
+        - moduleName
+        - completed
+
+    QuizResult:
+      type: object
+      properties:
+        id:
+          type: integer
+        quizId:
+          type: string
+        quizName:
+          type: string
+        score:
+          type: integer
+        totalQuestions:
+          type: integer
+        completedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - quizId
+        - quizName
+        - score
+        - totalQuestions
+        - completedAt
+
+    QuizResultInput:
+      type: object
+      properties:
+        quizId:
+          type: string
+        quizName:
+          type: string
+        score:
+          type: integer
+        totalQuestions:
+          type: integer
+      required:
+        - quizId
+        - quizName
+        - score
+        - totalQuestions
