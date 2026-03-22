@@ -226,7 +226,10 @@ export default function EmfSources() {
               <div>
                 <div className="flex items-baseline gap-3 mb-1">
                   <span className="font-mono text-xs font-bold opacity-50 text-yellow-400">01</span>
-                  <h3 className="font-semibold text-sm text-yellow-400">Chemical (Electrochemical) — 1800</h3>
+                  <h3 className="font-semibold text-sm text-yellow-400">Chemical (Electrochemical)</h3>
+                  <span className="inline-flex items-center gap-1 text-xs bg-yellow-400/10 border border-yellow-400/25 text-yellow-300 px-2 py-0.5 rounded-full">
+                    <span className="opacity-60">discovered</span><span className="font-mono font-bold">1800</span>
+                  </span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   Chemical reactions between dissimilar metals and an electrolyte cause electrons to accumulate on one electrode (−) and deplete on the other (+), creating a potential difference. Named after Luigi Galvani and Alessandro Volta, a <span className="text-foreground font-medium">galvanic (voltaic) cell</span> derives electrical energy from spontaneous redox reactions. A <span className="text-foreground font-medium">battery</span> is a collective noun for one or more cells connected together.
@@ -574,7 +577,11 @@ export default function EmfSources() {
               <div>
                 <div className="flex items-baseline gap-3 mb-1">
                   <span className="font-mono text-xs font-bold opacity-50 text-blue-400">02</span>
-                  <h3 className="font-semibold text-sm text-blue-400">Electromagnetic Induction — 1831 (Michael Faraday)</h3>
+                  <h3 className="font-semibold text-sm text-blue-400">Electromagnetic Induction</h3>
+                  <span className="inline-flex items-center gap-1 text-xs bg-blue-400/10 border border-blue-400/25 text-blue-300 px-2 py-0.5 rounded-full">
+                    <span className="opacity-60">discovered</span><span className="font-mono font-bold">1831</span>
+                  </span>
+                  <span className="text-xs text-blue-400/60 italic">Michael Faraday</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   When a conductor moves through a magnetic field — or a magnetic field changes around a stationary conductor — an EMF is induced in the conductor. This is <span className="text-foreground font-medium">Faraday's Law of Electromagnetic Induction</span>, discovered in 1831. Generators and transformers are both applications of this law.
@@ -688,7 +695,11 @@ export default function EmfSources() {
               <div>
                 <div className="flex items-baseline gap-3 mb-1">
                   <span className="font-mono text-xs font-bold opacity-50 text-red-400">03</span>
-                  <h3 className="font-semibold text-sm text-red-400">Thermoelectric (Seebeck Effect) — 1834</h3>
+                  <h3 className="font-semibold text-sm text-red-400">Thermoelectric (Seebeck Effect)</h3>
+                  <span className="inline-flex items-center gap-1 text-xs bg-red-400/10 border border-red-400/25 text-red-300 px-2 py-0.5 rounded-full">
+                    <span className="opacity-60">discovered</span><span className="font-mono font-bold">1834</span>
+                  </span>
+                  <span className="text-xs text-red-400/60 italic">Thomas Seebeck</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   When two dissimilar metals (or semiconductors) are joined at two junctions and those junctions are held at <span className="text-foreground font-medium">different temperatures</span>, an EMF is produced. The magnitude is proportional to the temperature difference. This is the <span className="text-foreground font-medium">Seebeck Effect</span>, discovered by Thomas Johann Seebeck in 1821 and further developed into practical thermoelectric devices by the 1834 period.
@@ -779,7 +790,10 @@ export default function EmfSources() {
               <div>
                 <div className="flex items-baseline gap-3 mb-1">
                   <span className="font-mono text-xs font-bold opacity-50 text-amber-400">04</span>
-                  <h3 className="font-semibold text-sm text-amber-400">Photoelectric (Photovoltaic) — 1954</h3>
+                  <h3 className="font-semibold text-sm text-amber-400">Photoelectric (Photovoltaic)</h3>
+                  <span className="inline-flex items-center gap-1 text-xs bg-amber-400/10 border border-amber-400/25 text-amber-300 px-2 py-0.5 rounded-full">
+                    <span className="opacity-60">first practical cell</span><span className="font-mono font-bold">1954</span>
+                  </span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   Photons (light particles) striking a semiconductor material — typically silicon — dislodge electrons, creating electron-hole pairs. The built-in electric field at the <span className="text-foreground font-medium">p-n junction</span> separates the charges, producing an EMF. The first practical silicon solar cell was demonstrated in 1954.
@@ -848,7 +862,11 @@ export default function EmfSources() {
               <div>
                 <div className="flex items-baseline gap-3 mb-1">
                   <span className="font-mono text-xs font-bold opacity-50 text-purple-400">05</span>
-                  <h3 className="font-semibold text-sm text-purple-400">Piezoelectric — 1880</h3>
+                  <h3 className="font-semibold text-sm text-purple-400">Piezoelectric</h3>
+                  <span className="inline-flex items-center gap-1 text-xs bg-purple-400/10 border border-purple-400/25 text-purple-300 px-2 py-0.5 rounded-full">
+                    <span className="opacity-60">discovered</span><span className="font-mono font-bold">1880</span>
+                  </span>
+                  <span className="text-xs text-purple-400/60 italic">Pierre &amp; Jacques Curie</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   Certain crystalline materials produce an EMF when mechanically stressed. The <span className="text-foreground font-medium">piezoelectric effect</span> results from the linear electromechanical interaction between the mechanical and electrical states in crystalline materials — pressure applied to opposite faces of the crystal produces a voltage. The effect is <span className="text-foreground font-medium">reversible</span>: applying a voltage causes mechanical deformation; applying mechanical stress produces a voltage.
@@ -984,6 +1002,9 @@ export default function EmfSources() {
                 <div className="flex items-baseline gap-3 mb-1">
                   <span className="font-mono text-xs font-bold opacity-50 text-green-400">06</span>
                   <h3 className="font-semibold text-sm text-green-400">Friction (Triboelectric)</h3>
+                  <span className="inline-flex items-center gap-1 text-xs bg-green-400/10 border border-green-400/25 text-green-300 px-2 py-0.5 rounded-full">
+                    <span className="opacity-60">known since</span><span className="font-mono font-bold">antiquity</span>
+                  </span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   When two different materials are rubbed together, electrons are transferred from one surface to the other, leaving one surface positively charged and the other negatively charged. This creates a static EMF. The triboelectric series ranks materials by their tendency to gain or lose electrons on contact.
