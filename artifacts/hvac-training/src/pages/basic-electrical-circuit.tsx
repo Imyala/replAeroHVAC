@@ -311,45 +311,338 @@ export default function BasicElectricalCircuit() {
         </div>
       </section>
 
+      {/* Electrical Units Defined */}
+      <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
+          <Zap className="w-4 h-4 text-yellow-400" />
+          <h2 className="font-semibold text-foreground">Electrical Units Defined</h2>
+        </div>
+        <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            {
+              sym: "A", name: "Ampere", colour: "text-blue-400", border: "border-blue-400/20", bg: "bg-blue-400/5",
+              def: "The unit of electric current — current is the flow of electrons, similar to the flow of water. The ampere represents the quantity of electricity flowing.",
+            },
+            {
+              sym: "V", name: "Volt", colour: "text-yellow-400", border: "border-yellow-400/20", bg: "bg-yellow-400/5",
+              def: "The difference of electrical pressure between two points of a circuit. Also called potential or potential difference (PD).",
+            },
+            {
+              sym: "Ω", name: "Ohm", colour: "text-red-400", border: "border-red-400/20", bg: "bg-red-400/5",
+              def: "The electric resistance in a circuit that opposes the flow of current.",
+            },
+            {
+              sym: "W", name: "Watt", colour: "text-green-400", border: "border-green-400/20", bg: "bg-green-400/5",
+              def: "The unit of power — used when energy is converted from one form to another, e.g., electricity to light or heat.",
+            },
+          ].map((u) => (
+            <div key={u.name} className={cn("rounded-xl border p-4 space-y-2", u.border, u.bg)}>
+              <div className="flex items-baseline gap-3">
+                <span className={cn("text-3xl font-display font-black", u.colour)}>{u.sym}</span>
+                <span className="font-semibold text-foreground">{u.name}</span>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">{u.def}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* SI Units */}
       <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
         <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
           <Info className="w-4 h-4 text-primary" />
           <h2 className="font-semibold text-foreground">SI Units — Système Internationale</h2>
         </div>
+        <div className="p-6 space-y-6">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Electrical quantities are measured using the <span className="text-foreground font-medium">International System of Units (SI)</span>. There are <span className="text-foreground font-medium">seven base units</span> and two supplementary units. All other units are derived — for example, velocity = metre/second, power = joule/second (watt).
+          </p>
+
+          {/* 7 Base Units table */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">The 7 Base Units</p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-white/8">
+                    <th className="text-left py-2 pr-4 font-semibold text-muted-foreground">Quantity</th>
+                    <th className="text-left py-2 pr-4 font-semibold text-muted-foreground">Unit</th>
+                    <th className="text-left py-2 font-semibold text-muted-foreground">Symbol</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {[
+                    { qty: "Length", unit: "Metre", sym: "m", highlight: false },
+                    { qty: "Mass", unit: "Kilogram", sym: "kg", highlight: false },
+                    { qty: "Time", unit: "Second", sym: "s", highlight: false },
+                    { qty: "Electric Current", unit: "Ampere", sym: "A", highlight: true },
+                    { qty: "Thermodynamic Temperature", unit: "Kelvin", sym: "K", highlight: false },
+                    { qty: "Amount of Substance", unit: "Mole", sym: "mol", highlight: false },
+                    { qty: "Luminous Intensity", unit: "Candela", sym: "cd", highlight: false },
+                  ].map((row) => (
+                    <tr key={row.qty} className={cn(row.highlight && "bg-primary/5")}>
+                      <td className={cn("py-2 pr-4", row.highlight ? "text-foreground font-medium" : "text-muted-foreground")}>{row.qty}</td>
+                      <td className="py-2 pr-4 text-muted-foreground">{row.unit}</td>
+                      <td className={cn("py-2 font-bold font-display", row.highlight ? "text-primary" : "text-muted-foreground")}>{row.sym}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Derived electrical units */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Key Derived Electrical Units</p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-white/8">
+                    <th className="text-left py-2 pr-3 font-semibold text-muted-foreground">Quantity</th>
+                    <th className="text-left py-2 pr-3 font-semibold text-muted-foreground">Unit</th>
+                    <th className="text-left py-2 pr-3 font-semibold text-muted-foreground">Symbol</th>
+                    <th className="text-left py-2 font-semibold text-muted-foreground">Derived from</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {[
+                    { qty: "Voltage / EMF", unit: "Volt", sym: "V", from: "W/A" },
+                    { qty: "Resistance", unit: "Ohm", sym: "Ω", from: "V/A" },
+                    { qty: "Power", unit: "Watt", sym: "W", from: "J/s" },
+                    { qty: "Energy", unit: "Joule", sym: "J", from: "N·m" },
+                    { qty: "Frequency", unit: "Hertz", sym: "Hz", from: "1/s" },
+                    { qty: "Capacitance", unit: "Farad", sym: "F", from: "C/V" },
+                    { qty: "Inductance", unit: "Henry", sym: "H", from: "Wb/A" },
+                    { qty: "Pressure", unit: "Pascal", sym: "Pa", from: "N/m²" },
+                    { qty: "Electric Conductance", unit: "Siemens", sym: "S", from: "1/Ω" },
+                  ].map((row) => (
+                    <tr key={row.qty}>
+                      <td className="py-2 pr-3 text-foreground font-medium">{row.qty}</td>
+                      <td className="py-2 pr-3 text-muted-foreground">{row.unit}</td>
+                      <td className="py-2 pr-3 font-bold font-display text-primary">{row.sym}</td>
+                      <td className="py-2 text-muted-foreground font-mono">{row.from}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-muted-foreground mt-2">Note: Solid lines in the SI chart represent multiplication; dashed red lines represent division.</p>
+          </div>
+
+          {/* Historical origins */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Historical Origin of the 7 Base Units</p>
+            <div className="space-y-2">
+              {[
+                { num: "1", name: "Metre", origin: "1/10,000,000 of the distance from the Earth's equator to the North Pole, measured on the circumference through Paris." },
+                { num: "2", name: "Kilogram", origin: "The mass of one litre of water. A litre is one thousandth of a cubic metre." },
+                { num: "3", name: "Second", origin: "The day is divided into 24 hours, each hour into 60 minutes, each minute into 60 seconds. A second is 1/(24 × 60 × 60) of the day." },
+                { num: "4", name: "Ampere", origin: "Originally defined electrochemically as the current required to deposit 1.118 milligrams of silver per second from a silver nitrate solution. 1 A = 6,280,000,000,000,000,000 electrons past a point per second." },
+                { num: "5", name: "Kelvin", origin: "Uses the degree Celsius for its unit increment but is a thermodynamic scale. 0 K = absolute zero (−273.15 °C)." },
+                { num: "6", name: "Mole", origin: "Atomic or molecular weight multiplied by the molar mass constant, 1 g/mol." },
+                { num: "7", name: "Candela", origin: "The candlepower — based on the light emitted from a burning candle of standard properties." },
+              ].map((item) => (
+                <div key={item.num} className="flex items-start gap-3 rounded-xl border border-white/8 p-3">
+                  <span className="w-6 h-6 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">{item.num}</span>
+                  <div>
+                    <span className="font-semibold text-xs text-foreground">{item.name}: </span>
+                    <span className="text-xs text-muted-foreground">{item.origin}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Multiplies & Sub-Multiplies */}
+      <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
+          <Info className="w-4 h-4 text-primary" />
+          <h2 className="font-semibold text-foreground">Multiples &amp; Sub-Multiples</h2>
+        </div>
+        <div className="p-6 space-y-6">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Electrical values span an enormous range — from microvolts in sensors to megavolts in transmission lines. SI prefixes let us express these values concisely. The base unit (×10⁰ = 1) sits at the centre; prefixes to the left multiply, prefixes to the right divide.
+          </p>
+
+          {/* Common prefixes table */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Common Prefixes in Electrical Work</p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-white/8">
+                    <th className="text-left py-2 pr-4 font-semibold text-muted-foreground">Power of 10</th>
+                    <th className="text-left py-2 pr-4 font-semibold text-muted-foreground">Prefix</th>
+                    <th className="text-left py-2 pr-4 font-semibold text-muted-foreground">Symbol</th>
+                    <th className="text-left py-2 font-semibold text-muted-foreground">Example</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {[
+                    { pow: "10¹²", prefix: "tera", sym: "T", ex: "1 TW = 1 trillion watts" },
+                    { pow: "10⁹", prefix: "giga", sym: "G", ex: "1 GHz = 1 billion hertz" },
+                    { pow: "10⁶", prefix: "mega", sym: "M", ex: "47.84 MΩ = 47,840,000 ohms" },
+                    { pow: "10³", prefix: "kilo", sym: "k", ex: "5 kW = 5,000 watts" },
+                    { pow: "10⁰", prefix: "(none)", sym: "—", ex: "Base unit" },
+                    { pow: "10⁻³", prefix: "milli", sym: "m", ex: "500 mA = 0.5 amps" },
+                    { pow: "10⁻⁶", prefix: "micro", sym: "μ", ex: "12.3 μA = 0.0000123 amps" },
+                    { pow: "10⁻⁹", prefix: "nano", sym: "n", ex: "100 nF capacitor" },
+                    { pow: "10⁻¹²", prefix: "pico", sym: "p", ex: "22 pF ceramic cap" },
+                  ].map((r, i) => (
+                    <tr key={r.prefix} className={cn(i === 4 && "bg-primary/5 font-semibold")}>
+                      <td className="py-2 pr-4 font-mono text-muted-foreground">{r.pow}</td>
+                      <td className="py-2 pr-4 text-foreground">{r.prefix}</td>
+                      <td className="py-2 pr-4 font-bold text-primary">{r.sym}</td>
+                      <td className="py-2 text-muted-foreground">{r.ex}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Practical examples */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Reading Multimeter Displays</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="rounded-xl border border-white/8 bg-white/2 p-4 space-y-2">
+                <div className="font-display font-black text-2xl text-foreground">47.84 MΩ</div>
+                <p className="text-xs text-muted-foreground">Megaohms — M = 10⁶</p>
+                <div className="rounded-lg bg-primary/5 border border-primary/15 p-2 font-mono text-xs text-primary">= 47.84 × 10⁶ Ω</div>
+                <p className="text-xs text-muted-foreground">Keep between 1 and 3 digits left of the decimal. Exponent must be 0 or a multiple of 3.</p>
+              </div>
+              <div className="rounded-xl border border-white/8 bg-white/2 p-4 space-y-2">
+                <div className="font-display font-black text-2xl text-foreground">12.3 μA</div>
+                <p className="text-xs text-muted-foreground">Microamps — μ = 10⁻⁶</p>
+                <div className="rounded-lg bg-primary/5 border border-primary/15 p-2 font-mono text-xs text-primary">= 12.3 × 10⁻⁶ A = 0.0000123 A</div>
+                <p className="text-xs text-muted-foreground">Count 6 places from decimal to convert to amps.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Full prefix table */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Full SI Prefix Table</p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-white/8">
+                    <th className="text-left py-2 pr-3 font-semibold text-muted-foreground">10ⁿ</th>
+                    <th className="text-left py-2 pr-3 font-semibold text-muted-foreground">Prefix</th>
+                    <th className="text-left py-2 pr-3 font-semibold text-muted-foreground">Symbol</th>
+                    <th className="text-left py-2 pr-3 font-semibold text-muted-foreground">Since</th>
+                    <th className="text-left py-2 font-semibold text-muted-foreground">Scale name</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {[
+                    { pow: "10²⁴", pre: "yotta-", sym: "Y", since: "1991", scale: "Septillion" },
+                    { pow: "10²¹", pre: "zetta-", sym: "Z", since: "1991", scale: "Sextillion" },
+                    { pow: "10¹⁸", pre: "exa-", sym: "E", since: "1975", scale: "Quintillion" },
+                    { pow: "10¹⁵", pre: "peta-", sym: "P", since: "1975", scale: "Quadrillion" },
+                    { pow: "10¹²", pre: "tera-", sym: "T", since: "1960", scale: "Trillion", common: true },
+                    { pow: "10⁹", pre: "giga-", sym: "G", since: "1960", scale: "Billion", common: true },
+                    { pow: "10⁶", pre: "mega-", sym: "M", since: "1960", scale: "Million", common: true },
+                    { pow: "10³", pre: "kilo-", sym: "k", since: "1795", scale: "Thousand", common: true },
+                    { pow: "1", pre: "(none)", sym: "—", since: "—", scale: "One (base unit)", base: true },
+                    { pow: "10⁻³", pre: "milli-", sym: "m", since: "1795", scale: "Thousandth", common: true },
+                    { pow: "10⁻⁶", pre: "micro-", sym: "μ", since: "1960", scale: "Millionth", common: true },
+                    { pow: "10⁻⁹", pre: "nano-", sym: "n", since: "1960", scale: "Billionth", common: true },
+                    { pow: "10⁻¹²", pre: "pico-", sym: "p", since: "1960", scale: "Trillionth", common: true },
+                    { pow: "10⁻¹⁵", pre: "femto-", sym: "f", since: "1964", scale: "Quadrillionth" },
+                    { pow: "10⁻¹⁸", pre: "atto-", sym: "a", since: "1964", scale: "Quintillionth" },
+                    { pow: "10⁻²¹", pre: "zepto-", sym: "z", since: "1991", scale: "Sextillionth" },
+                    { pow: "10⁻²⁴", pre: "yocto-", sym: "y", since: "1991", scale: "Septillionth" },
+                  ].map((r) => (
+                    <tr key={r.pre} className={cn(r.base && "bg-primary/5", r.common && "text-foreground")}>
+                      <td className="py-1.5 pr-3 font-mono text-muted-foreground">{r.pow}</td>
+                      <td className={cn("py-1.5 pr-3", r.common ? "text-foreground font-medium" : "text-muted-foreground")}>{r.pre}</td>
+                      <td className={cn("py-1.5 pr-3 font-bold font-display", r.common ? "text-primary" : "text-muted-foreground/50")}>{r.sym}</td>
+                      <td className="py-1.5 pr-3 text-muted-foreground">{r.since}</td>
+                      <td className="py-1.5 text-muted-foreground">{r.scale}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AS/NZS Wiring Rules */}
+      <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
+          <AlertTriangle className="w-4 h-4 text-yellow-400" />
+          <h2 className="font-semibold text-foreground">AS/NZS 3000 — Australian Wiring Rules Definitions</h2>
+        </div>
         <div className="p-6 space-y-5">
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Electrical quantities are measured using the <span className="text-foreground font-medium">International System of Units (SI)</span>. There are seven base units and two supplementary units. All other units are derived from these bases — for example, velocity = metre/second.
+            The <span className="text-foreground font-medium">Australian/New Zealand Standard for Electrical Installations (AS/NZS 3000)</span>, known as the Wiring Rules, defines key electrical terms. These definitions apply in all HVAC/R electrical work across Australia and New Zealand.
           </p>
-          <div className="overflow-x-auto">
-            <table className="w-full text-xs">
-              <thead>
-                <tr className="border-b border-white/8">
-                  <th className="text-left py-2 pr-4 font-semibold text-muted-foreground">Quantity</th>
-                  <th className="text-left py-2 pr-4 font-semibold text-muted-foreground">Unit</th>
-                  <th className="text-left py-2 font-semibold text-muted-foreground">Symbol</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5">
-                {[
-                  { qty: "Electric Current", unit: "Ampere", sym: "A", highlight: true },
-                  { qty: "Voltage (EMF)", unit: "Volt", sym: "V", highlight: true },
-                  { qty: "Resistance", unit: "Ohm", sym: "Ω", highlight: true },
-                  { qty: "Power", unit: "Watt", sym: "W", highlight: true },
-                  { qty: "Length", unit: "Metre", sym: "m", highlight: false },
-                  { qty: "Mass", unit: "Kilogram", sym: "kg", highlight: false },
-                  { qty: "Time", unit: "Second", sym: "s", highlight: false },
-                  { qty: "Temperature", unit: "Kelvin", sym: "K", highlight: false },
-                  { qty: "Luminous intensity", unit: "Candela", sym: "cd", highlight: false },
-                ].map((row) => (
-                  <tr key={row.qty} className={cn(row.highlight && "bg-primary/5")}>
-                    <td className={cn("py-2 pr-4", row.highlight ? "text-foreground font-medium" : "text-muted-foreground")}>{row.qty}</td>
-                    <td className="py-2 pr-4 text-muted-foreground">{row.unit}</td>
-                    <td className={cn("py-2 font-bold font-display", row.highlight ? "text-primary" : "text-muted-foreground")}>{row.sym}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+
+          {/* Voltage categories */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Clause 1.4.90 — Voltage Categories</p>
+            <div className="space-y-3">
+              {[
+                {
+                  clause: "(a) Extra-Low Voltage (ELV)",
+                  def: "Not exceeding 50 V a.c. or 120 V ripple-free d.c.",
+                  colour: "text-green-400", border: "border-green-400/20", bg: "bg-green-400/5",
+                  note: "Safe for direct skin contact (below shock threshold). Examples: 24 V control circuits, 12 V DC sensor loops.",
+                },
+                {
+                  clause: "(b) Low Voltage (LV)",
+                  def: "Exceeding extra-low voltage, but not exceeding 1000 V a.c. or 1500 V d.c.",
+                  colour: "text-yellow-400", border: "border-yellow-400/20", bg: "bg-yellow-400/5",
+                  note: "Most HVAC/R equipment operates in this band — 240 V single-phase, 415 V three-phase. Licensed work required.",
+                },
+                {
+                  clause: "(c) High Voltage (HV)",
+                  def: "Exceeding low voltage.",
+                  colour: "text-red-400", border: "border-red-400/20", bg: "bg-red-400/5",
+                  note: "Power transmission and large industrial plant. Specialist licencing required beyond standard electrician.",
+                },
+              ].map((v) => (
+                <div key={v.clause} className={cn("rounded-xl border p-4 space-y-1.5", v.border, v.bg)}>
+                  <p className={cn("font-semibold text-sm", v.colour)}>{v.clause}</p>
+                  <p className="text-sm text-foreground">{v.def}</p>
+                  <p className="text-xs text-muted-foreground">{v.note}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Current types */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Fault Current Definitions</p>
+            <div className="space-y-3">
+              {[
+                {
+                  clause: "1.4.34 — Current, Fault",
+                  def: "A current resulting from an insulation failure or from the bridging of insulation.",
+                  note: "Typically flows via earth due to damaged cable or moisture ingress. Detected by RCDs (residual current devices).",
+                },
+                {
+                  clause: "1.4.35 — Current, Overload",
+                  def: "An overcurrent occurring in a circuit which is electrically sound.",
+                  note: "The wiring is intact but the load draws more than rated current — e.g. a seized compressor motor. Protected by fuses and overload relays.",
+                },
+                {
+                  clause: "1.4.36 — Current, Short-Circuit",
+                  def: "A fault current resulting from a fault of negligible impedance between live conductors having a difference in potential under normal operating conditions. The fault path may include the path from active via earth to neutral.",
+                  note: "Causes an almost instantaneous and very large current surge. Protected by fuses or circuit breakers rated for the prospective short-circuit current (PSCC).",
+                },
+              ].map((c) => (
+                <div key={c.clause} className="rounded-xl border border-white/8 p-4 space-y-1.5">
+                  <p className="font-semibold text-sm text-primary">{c.clause}</p>
+                  <p className="text-sm text-foreground leading-relaxed">{c.def}</p>
+                  <p className="text-xs text-muted-foreground">{c.note}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
