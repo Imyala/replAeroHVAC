@@ -31,7 +31,7 @@ export default function OhmsLawPower() {
           <p className="text-sm font-bold text-foreground">If one value increases, so does the other.</p>
         </div>
         <div className="flex flex-col md:flex-row gap-6 items-center justify-center">
-          <svg viewBox="0 0 280 130" className="w-72 h-auto" aria-label="Direct proportionality — hexagon proportional to square, star proportional to circle">
+          <svg viewBox="0 0 340 130" className="w-80 h-auto" aria-label="Direct proportionality — hexagon proportional to square, star proportional to circle">
             {/* Row 1: Hexagon ↔ Square */}
             <polygon points="48,15 72,2 96,15 96,41 72,54 48,41" fill="#ec4899" stroke="#f472b6" strokeWidth="1.5"/>
             <rect x="118" y="4" width="50" height="48" rx="3" fill="#4ade80" stroke="#86efac" strokeWidth="1.5"/>
@@ -45,8 +45,8 @@ export default function OhmsLawPower() {
                 <path d="M0,0 L6,3 L0,6 Z" fill="#93c5fd"/>
               </marker>
             </defs>
-            <text x="192" y="22" fill="#d1d5db" fontSize="9">Hexagon is proportional</text>
-            <text x="192" y="34" fill="#d1d5db" fontSize="9">to the square.</text>
+            <text x="180" y="22" fill="#d1d5db" fontSize="9">Hexagon is proportional</text>
+            <text x="180" y="34" fill="#d1d5db" fontSize="9">to the square.</text>
             {/* Divider */}
             <line x1="20" y1="64" x2="100" y2="64" stroke="#6b7280" strokeWidth="2"/>
             <text x="105" y="69" fill="#9ca3af" fontSize="12" fontWeight="bold">=</text>
@@ -55,8 +55,8 @@ export default function OhmsLawPower() {
             <polygon points="55,120 60,100 72,115 85,100 90,120 75,108 58,120" fill="#60a5fa" stroke="#93c5fd" strokeWidth="1.5"/>
             <circle cx="143" cy="105" r="22" fill="#fde047" stroke="#facc15" strokeWidth="1.5"/>
             <line x1="100" y1="105" x2="116" y2="105" stroke="#93c5fd" strokeWidth="1.5" markerEnd="url(#arrowR)" markerStart="url(#arrowL)"/>
-            <text x="192" y="99" fill="#d1d5db" fontSize="9">Star is proportional to</text>
-            <text x="192" y="111" fill="#d1d5db" fontSize="9">the circle.</text>
+            <text x="180" y="99" fill="#d1d5db" fontSize="9">Star is proportional to</text>
+            <text x="180" y="111" fill="#d1d5db" fontSize="9">the circle.</text>
           </svg>
           <div className="max-w-xs space-y-3 text-sm text-muted-foreground">
             <p>In the formula <span className="font-mono text-foreground">V = I × R</span>, voltage (V) and current (I) are directly opposite each other — they are <span className="text-cyan-300 font-medium">proportional</span>.</p>
@@ -84,7 +84,7 @@ export default function OhmsLawPower() {
           <p className="text-sm font-bold text-foreground">If one value increases, the other decreases.</p>
         </div>
         <div className="flex flex-col md:flex-row gap-6 items-center justify-center">
-          <svg viewBox="0 0 280 140" className="w-72 h-auto" aria-label="Inverse proportionality — diagonal crossing arrows between shapes">
+          <svg viewBox="0 0 370 140" className="w-[22rem] h-auto" aria-label="Inverse proportionality — diagonal crossing arrows between shapes">
             {/* Row 1 top-left: Hexagon */}
             <polygon points="48,15 72,2 96,15 96,41 72,54 48,41" fill="#ec4899" stroke="#f472b6" strokeWidth="1.5"/>
             {/* Row 1 top-right: Square */}
@@ -108,10 +108,10 @@ export default function OhmsLawPower() {
                 <path d="M0,0 L6,3 L0,6 Z" fill="#93c5fd"/>
               </marker>
             </defs>
-            <text x="192" y="32" fill="#d1d5db" fontSize="9">The star is inversely</text>
-            <text x="192" y="44" fill="#d1d5db" fontSize="9">proportional to the square.</text>
-            <text x="192" y="110" fill="#d1d5db" fontSize="9">The hexagon is inversely</text>
-            <text x="192" y="122" fill="#d1d5db" fontSize="9">proportional to the circle.</text>
+            <text x="180" y="32" fill="#d1d5db" fontSize="9">The star is inversely</text>
+            <text x="180" y="44" fill="#d1d5db" fontSize="9">proportional to the square.</text>
+            <text x="180" y="110" fill="#d1d5db" fontSize="9">The hexagon is inversely</text>
+            <text x="180" y="122" fill="#d1d5db" fontSize="9">proportional to the circle.</text>
           </svg>
           <div className="max-w-xs space-y-3 text-sm text-muted-foreground">
             <p>In the formula <span className="font-mono text-foreground">I = V ÷ R</span>, current (I) and resistance (R) are diagonal — they are <span className="text-orange-300 font-medium">inversely proportional</span>.</p>
