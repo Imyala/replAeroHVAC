@@ -242,6 +242,66 @@ export default function BasicTools() {
         </div>
       </motion.section>
 
+      {/* Fastener Types Visual */}
+      <motion.section
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35 }}
+        className="mb-10 bg-card border border-white/8 rounded-2xl overflow-hidden"
+      >
+        <div className="px-6 py-4 border-b border-white/8 flex items-center gap-2">
+          <Info className="w-4 h-4 text-primary" />
+          <h2 className="font-semibold text-foreground">Fastener Types at a Glance</h2>
+        </div>
+        <div className="p-6 flex flex-col lg:flex-row gap-8 items-start">
+          {/* Image */}
+          <div className="w-full lg:w-1/2 bg-white rounded-xl overflow-hidden flex items-center justify-center p-4">
+            <img
+              src="/images/fastener-types.png"
+              alt="Comparison of Bolt, Machine Screw, and Self Tapping Screw with cross-section showing how bolt and screw engage with material"
+              className="w-full object-contain"
+            />
+          </div>
+
+          {/* Explanation */}
+          <div className="flex-1 space-y-5">
+            <div>
+              <h3 className="font-semibold text-foreground mb-1">Bolt</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                A bolt passes completely through the material and is secured with a <span className="text-foreground font-medium">nut</span> on the other side.
+                This through-fixing method spreads clamping load across both faces and is ideal for high-strength connections such as compressor mounting feet and fan motor flanges.
+                A washer under both the head and the nut is best practice.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-1">Machine Screw</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                A machine screw has a uniform thread and is driven into a <span className="text-foreground font-medium">pre-tapped hole</span> or used with a nut.
+                The flat or pan head sits flush or proud of the surface. Common for panel covers, electrical enclosures, and control board brackets.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-1">Self Tapping Screw</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                A self tapping screw cuts its own thread as it is driven in — no pre-tapped hole required.
+                The sharp, tapered tip pierces and forms threads in sheet metal. Widely used on ductwork, casing panels, and condenser housings.
+                <span className="text-primary font-medium"> Always pre-drill a pilot hole</span> in material thicker than 1.5 mm to prevent splitting or stripping.
+              </p>
+            </div>
+
+            {/* Bolt vs Screw difference callout */}
+            <div className="mt-4 bg-primary/5 border border-primary/15 rounded-xl p-4">
+              <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-2">Key Difference</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                A <span className="text-foreground font-medium">bolt</span> relies on a nut — the fastener itself does not thread into the material.
+                A <span className="text-foreground font-medium">screw</span> threads directly into the material (tapped hole or self-cut), so no nut is needed.
+                The cross-section diagram illustrates this clearly: the bolt's thread engages a separate nut beneath the joint, while the screw's tip cuts into the base material itself.
+              </p>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
       {/* Key Rules */}
       <motion.section
         initial={{ opacity: 0, y: 16 }}
