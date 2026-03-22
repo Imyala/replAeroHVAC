@@ -435,26 +435,55 @@ export default function BasicElectricalCircuit() {
             {
               sym: "A", name: "Ampere", colour: "text-blue-400", border: "border-blue-400/20", bg: "bg-blue-400/5",
               def: "The unit of electric current — current is the flow of electrons, similar to the flow of water. The ampere represents the quantity of electricity flowing.",
+              equations: [
+                { eq: "I = V ÷ R", desc: "Current = Voltage ÷ Resistance" },
+                { eq: "I = P ÷ V", desc: "Current = Power ÷ Voltage" },
+                { eq: "I = Q ÷ t", desc: "Current = Charge ÷ Time" },
+              ],
             },
             {
               sym: "V", name: "Volt", colour: "text-yellow-400", border: "border-yellow-400/20", bg: "bg-yellow-400/5",
               def: "The difference of electrical pressure between two points of a circuit. Also called potential or potential difference (PD).",
+              equations: [
+                { eq: "V = I × R", desc: "Voltage = Current × Resistance" },
+                { eq: "V = P ÷ I", desc: "Voltage = Power ÷ Current" },
+                { eq: "V = W ÷ Q", desc: "Voltage = Work ÷ Charge" },
+              ],
             },
             {
               sym: "Ω", name: "Ohm", colour: "text-red-400", border: "border-red-400/20", bg: "bg-red-400/5",
               def: "The electric resistance in a circuit that opposes the flow of current.",
+              equations: [
+                { eq: "R = V ÷ I", desc: "Resistance = Voltage ÷ Current" },
+                { eq: "R = V² ÷ P", desc: "Resistance = Voltage² ÷ Power" },
+                { eq: "R = P ÷ I²", desc: "Resistance = Power ÷ Current²" },
+              ],
             },
             {
               sym: "W", name: "Watt", colour: "text-green-400", border: "border-green-400/20", bg: "bg-green-400/5",
               def: "The unit of power — used when energy is converted from one form to another, e.g., electricity to light or heat.",
+              equations: [
+                { eq: "P = V × I", desc: "Power = Voltage × Current" },
+                { eq: "P = I² × R", desc: "Power = Current² × Resistance" },
+                { eq: "P = V² ÷ R", desc: "Power = Voltage² ÷ Resistance" },
+              ],
             },
           ].map((u) => (
-            <div key={u.name} className={cn("rounded-xl border p-4 space-y-2", u.border, u.bg)}>
+            <div key={u.name} className={cn("rounded-xl border p-4 space-y-3", u.border, u.bg)}>
               <div className="flex items-baseline gap-3">
                 <span className={cn("text-3xl font-display font-black", u.colour)}>{u.sym}</span>
                 <span className="font-semibold text-foreground">{u.name}</span>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">{u.def}</p>
+              <div className="border-t border-white/8 pt-3 space-y-1.5">
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Equations</p>
+                {u.equations.map((e) => (
+                  <div key={e.eq} className="flex items-baseline gap-3">
+                    <span className={cn("font-mono font-bold text-sm w-28 flex-shrink-0", u.colour)}>{e.eq}</span>
+                    <span className="text-xs text-muted-foreground">{e.desc}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
