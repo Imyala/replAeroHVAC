@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Zap, Info, ChevronDown, ChevronUp, BookOpen, AlertTriangle } from "lucide-react";
+import { Zap, Info, ChevronDown, ChevronUp, BookOpen, AlertTriangle, Leaf, Flame } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ZoomableImage } from "@/components/zoomable-image";
 
@@ -150,6 +150,209 @@ export default function BasicElectricalCircuit() {
           A solid understanding of electrical circuits is essential for every HVAC/R technician. From reading wiring diagrams to diagnosing faults, everything builds on these fundamentals.
         </p>
       </div>
+
+      {/* The Electrical Industry */}
+      <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
+          <Info className="w-4 h-4 text-primary" />
+          <h2 className="font-semibold text-foreground">The Electrical Industry</h2>
+        </div>
+        <div className="p-6 space-y-5">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            The electrical industry is broad. As an HVAC/R technician you work within the <span className="text-foreground font-medium">Refrigeration &amp; Air Conditioning</span> sector, but you will regularly interact with all of the sectors below.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { label: "Electrical Supply", desc: "Covering power generation, transmission and distribution.", colour: "text-yellow-400", dot: "bg-yellow-400" },
+              { label: "Industrial", desc: "Installing and maintaining electrical machinery and wiring in factories and industrial complexes.", colour: "text-blue-400", dot: "bg-blue-400" },
+              { label: "Commercial & Domestic", desc: "Installation of wiring (lighting, power, data) and appliances.", colour: "text-green-400", dot: "bg-green-400" },
+              { label: "Refrigeration & Air Conditioning", desc: "Your sector — electrical systems in HVAC/R equipment across residential, commercial, and industrial applications.", colour: "text-red-400", dot: "bg-red-400" },
+            ].map((s) => (
+              <div key={s.label} className="flex items-start gap-3 rounded-xl border border-white/8 p-4">
+                <span className={cn("mt-1.5 w-2 h-2 rounded-full flex-shrink-0", s.dot)} />
+                <div>
+                  <p className={cn("font-semibold text-sm mb-0.5", s.colour)}>{s.label}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="rounded-xl border border-white/8 p-4">
+            <p className="text-xs font-semibold text-foreground mb-2">Electronics Industry</p>
+            <p className="text-xs text-muted-foreground leading-relaxed mb-3">The electronics industry overlaps with electrical but focuses on lower-voltage signal and data systems. It includes:</p>
+            <div className="space-y-1.5">
+              {[
+                { label: "Data & Voice Communications", desc: "Telecommunications, radio and TV transmission, communication systems." },
+                { label: "Consumer Electronics", desc: "Maintenance of domestic electronic appliances." },
+                { label: "Commercial Electronics", desc: "Repairing and servicing electronic equipment used by commerce." },
+              ].map((e) => (
+                <div key={e.label} className="flex items-start gap-2 text-xs text-muted-foreground">
+                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary/60 flex-shrink-0" />
+                  <span><span className="text-foreground font-medium">{e.label}</span> — {e.desc}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What is Electricity */}
+      <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
+          <Zap className="w-4 h-4 text-yellow-400" />
+          <h2 className="font-semibold text-foreground">What is Electricity?</h2>
+        </div>
+        <div className="p-6 space-y-5">
+          <div className="rounded-xl border border-yellow-400/20 bg-yellow-400/5 p-5 text-center">
+            <p className="text-xl font-display font-bold text-foreground mb-2">Electricity is the flow of electrons.</p>
+            <p className="text-sm text-muted-foreground">To achieve a flow of electrons in a circuit, a <span className="text-foreground font-medium">pressure difference</span> in that circuit must be created.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Static */}
+            <div className="rounded-xl border border-white/8 p-5 space-y-3">
+              <p className="font-semibold text-sm text-foreground">Static Electricity</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Static electricity is usually caused when materials are rubbed against each other — like wool on plastic. The process causes electrons to be pulled from the surface of one material and relocated on the surface of the other.
+              </p>
+              <div className="rounded-lg bg-white/3 border border-white/8 p-3 space-y-1.5">
+                <p className="text-xs font-semibold text-foreground">Laws of Static Electricity</p>
+                {["Likes repel", "Opposites attract", "Charged objects attract neutral objects"].map((l) => (
+                  <div key={l} className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400/60 flex-shrink-0" />{l}
+                  </div>
+                ))}
+              </div>
+              <div className="rounded-lg bg-white/3 border border-white/8 p-3 space-y-1.5">
+                <p className="text-xs font-semibold text-foreground">Methods of Charging</p>
+                {["Friction — rubbing two materials together", "Conduction (contact) — touching a charged object", "Induction — bringing a charge close without touching"].map((m) => (
+                  <div key={m} className="flex items-start gap-2 text-xs text-muted-foreground">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-green-400/60 flex-shrink-0" />{m}
+                  </div>
+                ))}
+              </div>
+              <div className="rounded-lg bg-white/3 border border-white/8 p-3 space-y-1.5">
+                <p className="text-xs font-semibold text-foreground">Applications of Static</p>
+                {["Spray painting (electrostatic attraction)", "Dust precipitators (air filtration)", "Photocopiers (selenium drum)", "Lightning — natural discharge"].map((a) => (
+                  <div key={a} className="flex items-start gap-2 text-xs text-muted-foreground">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-400/60 flex-shrink-0" />{a}
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Current */}
+            <div className="rounded-xl border border-white/8 p-5 space-y-3">
+              <p className="font-semibold text-sm text-foreground">Current Electricity</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Current electricity is <span className="text-foreground font-medium">dynamic</span>. Current is the measured flow of electrons in a given time.
+              </p>
+              <div className="rounded-lg border border-blue-400/20 bg-blue-400/5 p-3 text-center">
+                <p className="text-sm font-bold text-blue-300 mb-1">1 Ampere</p>
+                <p className="text-xs text-muted-foreground">= 6,280,000,000,000,000,000 electrons past a point per second</p>
+                <p className="text-xs text-muted-foreground mt-1">i.e. 10 A = 10 packages of electrons past a point in 1 second</p>
+              </div>
+              <div className="rounded-lg bg-white/3 border border-white/8 p-3 space-y-2">
+                <p className="text-xs font-semibold text-foreground">Current Flow — Two Conventions</p>
+                <div className="flex items-start gap-2 text-xs text-muted-foreground">
+                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0" />
+                  <span><span className="text-foreground font-medium">Conventional current flow</span> — flows from positive (+) to negative (−). Used in circuit diagrams.</span>
+                </div>
+                <div className="flex items-start gap-2 text-xs text-muted-foreground">
+                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" />
+                  <span><span className="text-foreground font-medium">Electron current flow</span> — actual electron movement from negative (−) to positive (+).</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Energy Sources */}
+      <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
+          <Leaf className="w-4 h-4 text-green-400" />
+          <h2 className="font-semibold text-foreground">Energy Sources</h2>
+        </div>
+        <div className="p-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Renewable */}
+          <div className="rounded-xl border border-green-400/20 bg-green-400/5 p-5 space-y-3">
+            <div className="flex items-center gap-2">
+              <Leaf className="w-4 h-4 text-green-400" />
+              <p className="font-semibold text-sm text-green-400">Renewable Energy Sources</p>
+            </div>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              With Australia's signing of the Kyoto Agreement, there is a growing movement toward energy production from renewable sources. These sources are naturally replenished and produce little to no greenhouse emissions.
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {["Solar", "Wind", "Tidal & wave energy", "Biomass & Biogas", "Geothermal", "Hydro"].map((s) => (
+                <div key={s} className="flex items-center gap-2 rounded-lg border border-green-400/15 bg-green-400/5 px-3 py-2 text-xs text-green-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />{s}
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Non-Renewable */}
+          <div className="rounded-xl border border-orange-400/20 bg-orange-400/5 p-5 space-y-3">
+            <div className="flex items-center gap-2">
+              <Flame className="w-4 h-4 text-orange-400" />
+              <p className="font-semibold text-sm text-orange-400">Non-Renewable Energy Sources</p>
+            </div>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Non-renewable sources are finite — once consumed they cannot be replaced on a human timescale. They currently provide the majority of grid electricity in Australia, though this is changing rapidly.
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {["Coal", "Gas", "Oil", "Nuclear"].map((s) => (
+                <div key={s} className="flex items-center gap-2 rounded-lg border border-orange-400/15 bg-orange-400/5 px-3 py-2 text-xs text-orange-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-400 flex-shrink-0" />{s}
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground leading-relaxed pt-1">Electricity is generated from these fuels by burning them to produce steam which drives turbines connected to generators (coal, gas, oil), or by controlled nuclear fission (nuclear).</p>
+          </div>
+        </div>
+      </section>
+
+      {/* SI Units */}
+      <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
+          <Info className="w-4 h-4 text-primary" />
+          <h2 className="font-semibold text-foreground">SI Units — Système Internationale</h2>
+        </div>
+        <div className="p-6 space-y-5">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Electrical quantities are measured using the <span className="text-foreground font-medium">International System of Units (SI)</span>. There are seven base units and two supplementary units. All other units are derived from these bases — for example, velocity = metre/second.
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-white/8">
+                  <th className="text-left py-2 pr-4 font-semibold text-muted-foreground">Quantity</th>
+                  <th className="text-left py-2 pr-4 font-semibold text-muted-foreground">Unit</th>
+                  <th className="text-left py-2 font-semibold text-muted-foreground">Symbol</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {[
+                  { qty: "Electric Current", unit: "Ampere", sym: "A", highlight: true },
+                  { qty: "Voltage (EMF)", unit: "Volt", sym: "V", highlight: true },
+                  { qty: "Resistance", unit: "Ohm", sym: "Ω", highlight: true },
+                  { qty: "Power", unit: "Watt", sym: "W", highlight: true },
+                  { qty: "Length", unit: "Metre", sym: "m", highlight: false },
+                  { qty: "Mass", unit: "Kilogram", sym: "kg", highlight: false },
+                  { qty: "Time", unit: "Second", sym: "s", highlight: false },
+                  { qty: "Temperature", unit: "Kelvin", sym: "K", highlight: false },
+                  { qty: "Luminous intensity", unit: "Candela", sym: "cd", highlight: false },
+                ].map((row) => (
+                  <tr key={row.qty} className={cn(row.highlight && "bg-primary/5")}>
+                    <td className={cn("py-2 pr-4", row.highlight ? "text-foreground font-medium" : "text-muted-foreground")}>{row.qty}</td>
+                    <td className="py-2 pr-4 text-muted-foreground">{row.unit}</td>
+                    <td className={cn("py-2 font-bold font-display", row.highlight ? "text-primary" : "text-muted-foreground")}>{row.sym}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
 
       {/* Ohm's Law */}
       <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
