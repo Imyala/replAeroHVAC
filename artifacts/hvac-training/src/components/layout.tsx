@@ -66,14 +66,14 @@ function CollapsibleNavGroup({ group, location, isCollapsed }: { group: NavGroup
       {!isCollapsed ? (
         <button
           onClick={() => setOpen(o => !o)}
-          className="flex items-center justify-between w-full px-3 mb-1 group"
+          className="flex items-center justify-between w-full px-3 py-2 mb-1 rounded-lg hover:bg-white/5 group transition-colors"
         >
-          <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 select-none group-hover:text-muted-foreground transition-colors">
+          <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground/70 select-none group-hover:text-muted-foreground transition-colors">
             {group.heading}
           </span>
           <ChevronDown
             className={cn(
-              "w-3 h-3 text-muted-foreground/40 group-hover:text-muted-foreground transition-all duration-200",
+              "w-4 h-4 text-muted-foreground/40 group-hover:text-muted-foreground transition-all duration-200",
               open ? "rotate-0" : "-rotate-90"
             )}
           />
