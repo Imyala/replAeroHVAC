@@ -52,7 +52,7 @@ export function Layout({ children }: LayoutProps) {
           {!isCollapsed && (
             <div className="flex items-center gap-2 text-primary font-display font-bold text-xl tracking-tight">
               <Wind className="w-6 h-6 text-primary" />
-              <span>AeroHVAC</span>
+              <span>AeroHVACR</span>
             </div>
           )}
           {isCollapsed && <Wind className="w-8 h-8 text-primary mx-auto" />}
