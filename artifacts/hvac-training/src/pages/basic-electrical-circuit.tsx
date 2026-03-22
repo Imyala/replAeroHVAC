@@ -402,7 +402,7 @@ export default function BasicElectricalCircuit() {
                     <th className="text-left py-2 pr-3 font-semibold text-muted-foreground">Quantity</th>
                     <th className="text-left py-2 pr-3 font-semibold text-muted-foreground">Unit</th>
                     <th className="text-left py-2 pr-3 font-semibold text-muted-foreground">Symbol</th>
-                    <th className="text-left py-2 font-semibold text-muted-foreground">Equals</th>
+                    <th className="text-left py-2 font-semibold text-muted-foreground">Equation</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">
@@ -422,7 +422,7 @@ export default function BasicElectricalCircuit() {
                       <td className="py-2 pr-3 text-muted-foreground">{row.unit}</td>
                       <td className="py-2 pr-3 font-bold font-display text-primary">{row.sym}</td>
                       <td className="py-2">
-                        <span className="font-mono text-primary">{row.from}</span>
+                        <span className="font-mono text-primary">{row.sym} = {row.from}</span>
                         <span className="text-muted-foreground ml-2">({row.plain})</span>
                       </td>
                     </tr>
