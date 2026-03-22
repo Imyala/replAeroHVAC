@@ -426,7 +426,6 @@ export default function BasicElectricalCircuit() {
                 </tbody>
               </table>
             </div>
-            <p className="text-xs text-muted-foreground mt-2">Note: Solid lines in the SI chart represent multiplication; dashed red lines represent division.</p>
           </div>
 
           {/* Historical origins */}
