@@ -57,6 +57,39 @@ const circuitTypes = [
     ],
     hvac: "Safety controls wired in series (high-pressure cutout, low-pressure cutout, freeze stat, motor overload). Any one trip opens the circuit and shuts down the compressor.",
     electrical: "Three 100 Ω resistors in series across a 12 V supply. Total R = 100 + 100 + 100 = 300 Ω. Current: I = V ÷ R = 12 ÷ 300 = 0.04 A (40 mA). Each resistor drops 4 V — the voltages add up to the full 12 V supply.",
+    diagram: (
+      <svg viewBox="0 0 300 145" className="w-full text-blue-400" style={{maxHeight: 145}}>
+        {/* Left vertical — battery */}
+        <line x1="30" y1="25" x2="30" y2="50" stroke="currentColor" strokeWidth="1.5"/>
+        <line x1="16" y1="50" x2="44" y2="50" stroke="currentColor" strokeWidth="2"/>
+        <line x1="22" y1="59" x2="38" y2="59" stroke="currentColor" strokeWidth="3.5"/>
+        <line x1="30" y1="59" x2="30" y2="112" stroke="currentColor" strokeWidth="1.5"/>
+        <text x="6" y="54" fontSize="9" fill="currentColor">+</text>
+        <text x="6" y="65" fontSize="9" fill="currentColor">−</text>
+        <text x="4" y="85" fontSize="8" fill="currentColor" opacity="0.6">12V</text>
+        {/* Top wire then R1 */}
+        <line x1="30" y1="25" x2="68" y2="25" stroke="currentColor" strokeWidth="1.5"/>
+        <rect x="68" y="17" width="38" height="16" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+        <text x="87" y="42" fontSize="8" fill="currentColor" textAnchor="middle" opacity="0.8">R1</text>
+        {/* Wire R1→R2 */}
+        <line x1="106" y1="25" x2="126" y2="25" stroke="currentColor" strokeWidth="1.5"/>
+        <rect x="126" y="17" width="38" height="16" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+        <text x="145" y="42" fontSize="8" fill="currentColor" textAnchor="middle" opacity="0.8">R2</text>
+        {/* Wire R2→R3 */}
+        <line x1="164" y1="25" x2="184" y2="25" stroke="currentColor" strokeWidth="1.5"/>
+        <rect x="184" y="17" width="38" height="16" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+        <text x="203" y="42" fontSize="8" fill="currentColor" textAnchor="middle" opacity="0.8">R3</text>
+        {/* Wire R3 to right corner */}
+        <line x1="222" y1="25" x2="270" y2="25" stroke="currentColor" strokeWidth="1.5"/>
+        {/* Right vertical */}
+        <line x1="270" y1="25" x2="270" y2="112" stroke="currentColor" strokeWidth="1.5"/>
+        {/* Bottom wire */}
+        <line x1="30" y1="112" x2="270" y2="112" stroke="currentColor" strokeWidth="1.5"/>
+        {/* Current arrow */}
+        <polygon points="155,108 144,112 155,116" fill="currentColor" opacity="0.5"/>
+        <text x="150" y="130" fontSize="8" fill="currentColor" textAnchor="middle" opacity="0.6">I = 40 mA (same throughout)</text>
+      </svg>
+    ),
   },
   {
     name: "Parallel Circuit",
@@ -71,6 +104,50 @@ const circuitTypes = [
     ],
     hvac: "Multiple evaporator fan motors or condenser fans wired in parallel across the supply. Failure of one fan does not kill the others.",
     electrical: "Three 60 W lamps wired in parallel across a 240 V supply. Each draws I = P ÷ V = 60 ÷ 240 = 0.25 A. Total current = 0.75 A. Each lamp receives the full 240 V — removing one lamp has no effect on the others.",
+    diagram: (
+      <svg viewBox="0 0 300 165" className="w-full text-green-400" style={{maxHeight: 165}}>
+        {/* Battery on left */}
+        <line x1="30" y1="20" x2="30" y2="60" stroke="currentColor" strokeWidth="1.5"/>
+        <line x1="16" y1="60" x2="44" y2="60" stroke="currentColor" strokeWidth="2"/>
+        <line x1="22" y1="69" x2="38" y2="69" stroke="currentColor" strokeWidth="3.5"/>
+        <line x1="30" y1="69" x2="30" y2="140" stroke="currentColor" strokeWidth="1.5"/>
+        <text x="6" y="64" fontSize="9" fill="currentColor">+</text>
+        <text x="6" y="75" fontSize="9" fill="currentColor">−</text>
+        <text x="3" y="100" fontSize="8" fill="currentColor" opacity="0.6">240V</text>
+        {/* Top bus */}
+        <line x1="30" y1="20" x2="270" y2="20" stroke="currentColor" strokeWidth="1.5"/>
+        {/* Bottom bus */}
+        <line x1="30" y1="140" x2="270" y2="140" stroke="currentColor" strokeWidth="1.5"/>
+        {/* Right vertical */}
+        <line x1="270" y1="20" x2="270" y2="140" stroke="currentColor" strokeWidth="1.5"/>
+        {/* Branch 1 — lamp at x=100 */}
+        <line x1="100" y1="20" x2="100" y2="55" stroke="currentColor" strokeWidth="1.5"/>
+        <circle cx="100" cy="72" r="14" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+        <line x1="90.1" y1="62.1" x2="109.9" y2="81.9" stroke="currentColor" strokeWidth="1.5"/>
+        <line x1="109.9" y1="62.1" x2="90.1" y2="81.9" stroke="currentColor" strokeWidth="1.5"/>
+        <line x1="100" y1="86" x2="100" y2="140" stroke="currentColor" strokeWidth="1.5"/>
+        <text x="100" y="104" fontSize="8" fill="currentColor" textAnchor="middle" opacity="0.7">L1</text>
+        <text x="100" y="113" fontSize="7" fill="currentColor" textAnchor="middle" opacity="0.6">0.25A</text>
+        {/* Branch 2 — lamp at x=170 */}
+        <line x1="170" y1="20" x2="170" y2="55" stroke="currentColor" strokeWidth="1.5"/>
+        <circle cx="170" cy="72" r="14" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+        <line x1="160.1" y1="62.1" x2="179.9" y2="81.9" stroke="currentColor" strokeWidth="1.5"/>
+        <line x1="179.9" y1="62.1" x2="160.1" y2="81.9" stroke="currentColor" strokeWidth="1.5"/>
+        <line x1="170" y1="86" x2="170" y2="140" stroke="currentColor" strokeWidth="1.5"/>
+        <text x="170" y="104" fontSize="8" fill="currentColor" textAnchor="middle" opacity="0.7">L2</text>
+        <text x="170" y="113" fontSize="7" fill="currentColor" textAnchor="middle" opacity="0.6">0.25A</text>
+        {/* Branch 3 — lamp at x=240 */}
+        <line x1="240" y1="20" x2="240" y2="55" stroke="currentColor" strokeWidth="1.5"/>
+        <circle cx="240" cy="72" r="14" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+        <line x1="230.1" y1="62.1" x2="249.9" y2="81.9" stroke="currentColor" strokeWidth="1.5"/>
+        <line x1="249.9" y1="62.1" x2="230.1" y2="81.9" stroke="currentColor" strokeWidth="1.5"/>
+        <line x1="240" y1="86" x2="240" y2="140" stroke="currentColor" strokeWidth="1.5"/>
+        <text x="240" y="104" fontSize="8" fill="currentColor" textAnchor="middle" opacity="0.7">L3</text>
+        <text x="240" y="113" fontSize="7" fill="currentColor" textAnchor="middle" opacity="0.6">0.25A</text>
+        {/* Total current label */}
+        <text x="150" y="157" fontSize="8" fill="currentColor" textAnchor="middle" opacity="0.6">Total I = 0.75 A — 240 V across each lamp</text>
+      </svg>
+    ),
   },
 ];
 
@@ -1218,6 +1295,9 @@ export default function BasicElectricalCircuit() {
           {circuitTypes.map((ct) => (
             <div key={ct.name} className={cn("rounded-xl border p-5 space-y-3", ct.border, ct.bg)}>
               <h3 className={cn("font-semibold text-sm", ct.colour)}>{ct.name}</h3>
+              <div className="rounded-lg bg-black/20 border border-white/8 p-3">
+                {ct.diagram}
+              </div>
               <ul className="space-y-1.5">
                 {ct.rules.map((r) => (
                   <li key={r} className="flex items-start gap-2 text-sm text-muted-foreground">
