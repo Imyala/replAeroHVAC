@@ -143,9 +143,8 @@ export default function BasicElectricalCircuit() {
           <div className="w-10 h-10 rounded-xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center">
             <Zap className="w-5 h-5 text-yellow-400" />
           </div>
-          <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Basic Tools · 1A</p>
         </div>
-        <h1 className="text-4xl font-display font-bold text-foreground tracking-tight mb-3">Basic Electrical Circuit</h1>
+        <h1 className="text-4xl font-display font-bold text-foreground tracking-tight mb-3">Electrical Fundamentals</h1>
         <p className="text-muted-foreground text-base leading-relaxed max-w-2xl">
           A solid understanding of electrical circuits is essential for every HVAC/R technician. From reading wiring diagrams to diagnosing faults, everything builds on these fundamentals.
         </p>
