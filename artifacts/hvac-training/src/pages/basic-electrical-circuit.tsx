@@ -343,6 +343,87 @@ export default function BasicElectricalCircuit() {
         </div>
       </section>
 
+      {/* Kyoto Protocol */}
+      <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
+          <Leaf className="w-4 h-4 text-green-400" />
+          <h2 className="font-semibold text-foreground">The Kyoto Protocol</h2>
+        </div>
+        <div className="p-6 space-y-6">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            The <span className="text-foreground font-medium">Kyoto Protocol</span> is an international treaty linked to the United Nations Framework Convention on Climate Change (UNFCCC). It was the first binding international agreement to commit developed nations to specific, measurable targets for reducing greenhouse gas emissions.
+          </p>
+
+          {/* Key dates timeline */}
+          <div>
+            <h3 className="text-sm font-semibold text-foreground mb-3">Key Dates</h3>
+            <div className="space-y-3">
+              {[
+                { date: "11 Dec 1997", label: "Adopted", detail: "Adopted at the 3rd Conference of the Parties (COP3) in Kyoto, Japan. Representatives from over 160 nations attended the negotiations." },
+                { date: "16 Feb 2005", label: "Entered into Force", detail: "Became legally binding after Russia ratified the treaty, meeting the requirement that nations accounting for at least 55% of global emissions had signed." },
+                { date: "2008 – 2012", label: "First Commitment Period", detail: "Developed (Annex I) countries committed to reducing overall greenhouse gas emissions by an average of 5% below 1990 levels." },
+                { date: "3 Dec 2007", label: "Australia Ratified", detail: "Australia ratified the Protocol under Prime Minister Kevin Rudd — one of the first acts of the new Labor government, reversing the previous Howard government's position of refusing to ratify." },
+                { date: "2013 – 2020", label: "Second Commitment Period (Doha Amendment)", detail: "Extended the Protocol with new, deeper reduction targets. Several major emitters (Canada, Japan, Russia, USA) did not participate in this phase." },
+                { date: "2016", label: "Succeeded by the Paris Agreement", detail: "The Paris Agreement, adopted in 2015 and entered into force in 2016, replaced the Kyoto Protocol for post-2020 climate commitments, covering all nations rather than only developed ones." },
+              ].map((item) => (
+                <div key={item.date} className="flex gap-4">
+                  <div className="flex flex-col items-center">
+                    <div className="w-2.5 h-2.5 rounded-full bg-green-400 flex-shrink-0 mt-1" />
+                    <div className="w-px flex-1 bg-white/10 mt-1" />
+                  </div>
+                  <div className="pb-4">
+                    <div className="flex flex-wrap items-baseline gap-2 mb-1">
+                      <span className="font-mono text-xs text-green-400">{item.date}</span>
+                      <span className="text-sm font-semibold text-foreground">{item.label}</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{item.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* What it covered */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-background/40 border border-white/8 rounded-xl p-4 space-y-3">
+              <p className="text-sm font-semibold text-foreground">Greenhouse Gases Covered</p>
+              <p className="text-xs text-muted-foreground">The Protocol targeted six greenhouse gases responsible for global warming:</p>
+              <div className="space-y-1.5">
+                {[
+                  { formula: "CO₂", name: "Carbon Dioxide", source: "Burning fossil fuels, deforestation" },
+                  { formula: "CH₄", name: "Methane", source: "Livestock, landfill, natural gas leaks" },
+                  { formula: "N₂O", name: "Nitrous Oxide", source: "Agriculture, industrial processes" },
+                  { formula: "HFCs", name: "Hydrofluorocarbons", source: "Refrigerants, aerosols" },
+                  { formula: "PFCs", name: "Perfluorocarbons", source: "Aluminium production, semiconductors" },
+                  { formula: "SF₆", name: "Sulphur Hexafluoride", source: "Electrical switchgear insulation" },
+                ].map((g) => (
+                  <div key={g.formula} className="flex items-start gap-2 text-xs">
+                    <span className="font-mono text-primary font-bold w-10 flex-shrink-0">{g.formula}</span>
+                    <span className="text-foreground font-medium w-36 flex-shrink-0">{g.name}</span>
+                    <span className="text-muted-foreground">{g.source}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="bg-background/40 border border-white/8 rounded-xl p-4 space-y-2">
+                <p className="text-sm font-semibold text-foreground">Who Was Bound?</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">The Protocol applied binding targets only to <span className="text-foreground font-medium">developed (Annex I) nations</span> — including Australia, EU member states, Canada, Japan, and others. Developing countries including China and India had no binding targets, which became a major point of criticism.</p>
+              </div>
+              <div className="bg-background/40 border border-white/8 rounded-xl p-4 space-y-2">
+                <p className="text-sm font-semibold text-foreground">Notable Non-Participation</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">The <span className="text-foreground font-medium">United States</span> signed the Protocol in 1998 but never ratified it, meaning it had no binding obligation. The US was the world's largest emitter at the time of adoption, significantly reducing the Protocol's overall impact.</p>
+              </div>
+              <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-4 space-y-2">
+                <p className="text-sm font-semibold text-green-400">Relevance to the Electrical Industry</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">The Kyoto Protocol accelerated the global shift toward renewable energy generation and more efficient electrical systems. HFCs and SF₆ — both commonly used in electrical equipment and refrigeration — are listed gases, driving industry to adopt lower-emission alternatives.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Electrical Units Defined */}
       <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
         <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
