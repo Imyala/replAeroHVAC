@@ -38,7 +38,7 @@ const navSections: NavSection[] = [
   {
     heading: "1A",
     items: [
-      { href: "/basic-tools", label: "Basic Tools", icon: Hammer },
+      { href: "/basic-tools", label: "Bolts & Screws", icon: Hammer },
       { href: "/basic-electrical-circuit", label: "Electrical Fundamentals", icon: Zap },
       { href: "/emf-sources", label: "EMF Sources", icon: Battery },
       { href: "/resistance", label: "Resistance", icon: Gauge },
