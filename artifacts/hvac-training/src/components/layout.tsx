@@ -36,7 +36,7 @@ const navSections: NavSection[] = [
   { href: "/learn", label: "Learn Theory", icon: BookOpen },
   { href: "/components", label: "Component Library", icon: Box },
   {
-    heading: "1A",
+    heading: "1B",
     items: [
       { href: "/basic-tools", label: "Bolts & Screws", icon: Hammer },
       { href: "/basic-electrical-circuit", label: "Electrical Fundamentals", icon: Zap },
