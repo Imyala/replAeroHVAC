@@ -393,7 +393,8 @@ export default function BasicElectricalCircuit() {
 
           {/* Derived electrical units */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Key Derived Electrical Units</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Key Derived Electrical Units</p>
+            <p className="text-xs text-muted-foreground mb-3">These units are not base units — they are calculated from combinations of the 7 base units. The "Equals" column shows the formula that defines each unit.</p>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
@@ -401,26 +402,29 @@ export default function BasicElectricalCircuit() {
                     <th className="text-left py-2 pr-3 font-semibold text-muted-foreground">Quantity</th>
                     <th className="text-left py-2 pr-3 font-semibold text-muted-foreground">Unit</th>
                     <th className="text-left py-2 pr-3 font-semibold text-muted-foreground">Symbol</th>
-                    <th className="text-left py-2 font-semibold text-muted-foreground">Derived from</th>
+                    <th className="text-left py-2 font-semibold text-muted-foreground">Equals</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">
                   {[
-                    { qty: "Voltage / EMF", unit: "Volt", sym: "V", from: "W/A" },
-                    { qty: "Resistance", unit: "Ohm", sym: "Ω", from: "V/A" },
-                    { qty: "Power", unit: "Watt", sym: "W", from: "J/s" },
-                    { qty: "Energy", unit: "Joule", sym: "J", from: "N·m" },
-                    { qty: "Frequency", unit: "Hertz", sym: "Hz", from: "1/s" },
-                    { qty: "Capacitance", unit: "Farad", sym: "F", from: "C/V" },
-                    { qty: "Inductance", unit: "Henry", sym: "H", from: "Wb/A" },
-                    { qty: "Pressure", unit: "Pascal", sym: "Pa", from: "N/m²" },
-                    { qty: "Electric Conductance", unit: "Siemens", sym: "S", from: "1/Ω" },
+                    { qty: "Voltage / EMF", unit: "Volt", sym: "V", from: "W/A", plain: "Watts ÷ Amps" },
+                    { qty: "Resistance", unit: "Ohm", sym: "Ω", from: "V/A", plain: "Volts ÷ Amps" },
+                    { qty: "Power", unit: "Watt", sym: "W", from: "J/s", plain: "Joules per second" },
+                    { qty: "Energy", unit: "Joule", sym: "J", from: "N·m", plain: "Newtons × Metres" },
+                    { qty: "Frequency", unit: "Hertz", sym: "Hz", from: "1/s", plain: "Cycles per second" },
+                    { qty: "Capacitance", unit: "Farad", sym: "F", from: "C/V", plain: "Coulombs ÷ Volts" },
+                    { qty: "Inductance", unit: "Henry", sym: "H", from: "Wb/A", plain: "Webers ÷ Amps" },
+                    { qty: "Pressure", unit: "Pascal", sym: "Pa", from: "N/m²", plain: "Newtons per m²" },
+                    { qty: "Electric Conductance", unit: "Siemens", sym: "S", from: "1/Ω", plain: "Inverse of Ohms" },
                   ].map((row) => (
                     <tr key={row.qty}>
                       <td className="py-2 pr-3 text-foreground font-medium">{row.qty}</td>
                       <td className="py-2 pr-3 text-muted-foreground">{row.unit}</td>
                       <td className="py-2 pr-3 font-bold font-display text-primary">{row.sym}</td>
-                      <td className="py-2 text-muted-foreground font-mono">{row.from}</td>
+                      <td className="py-2">
+                        <span className="font-mono text-primary">{row.from}</span>
+                        <span className="text-muted-foreground ml-2">({row.plain})</span>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
