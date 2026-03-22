@@ -13,7 +13,8 @@ import {
   Wind,
   Hammer,
   Zap,
-  Battery
+  Battery,
+  Gauge
 } from "lucide-react";
 import { useGetProgress } from "@workspace/api-client-react";
 
@@ -39,6 +40,7 @@ const navSections: NavSection[] = [
       { href: "/basic-tools", label: "Basic Tools", icon: Hammer },
       { href: "/basic-electrical-circuit", label: "Electrical Fundamentals", icon: Zap },
       { href: "/emf-sources", label: "EMF Sources", icon: Battery },
+      { href: "/resistance", label: "Resistance", icon: Gauge },
     ],
   },
   { href: "/build", label: "Build & Assemble", icon: Wrench },
