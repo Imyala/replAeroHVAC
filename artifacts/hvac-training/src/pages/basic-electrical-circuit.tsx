@@ -724,7 +724,7 @@ export default function BasicElectricalCircuit() {
         </div>
         <div className="p-6 space-y-5">
           <p className="text-sm text-muted-foreground leading-relaxed">
-            The <span className="text-foreground font-medium">Australian/New Zealand Standard for Electrical Installations (AS/NZS 3000)</span>, known as the Wiring Rules, defines key electrical terms. These definitions apply in all HVAC/R electrical work across Australia and New Zealand.
+            The <span className="text-foreground font-medium">Australian/New Zealand Standard for Electrical Installations (AS/NZS 3000)</span>, known as the Wiring Rules, defines key electrical terms. These definitions are standard across all HVAC/R and electrical installations throughout Australia and New Zealand.
           </p>
 
           {/* Voltage categories */}
