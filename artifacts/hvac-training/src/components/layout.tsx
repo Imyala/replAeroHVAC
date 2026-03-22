@@ -1,4 +1,4 @@
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { 
@@ -19,32 +19,64 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-const navItems = [
+type NavItem = { href: string; label: string; icon: React.ElementType };
+type NavGroup = { heading: string; items: NavItem[] };
+type NavSection = NavItem | NavGroup;
+
+function isGroup(s: NavSection): s is NavGroup {
+  return "heading" in s;
+}
+
+const navSections: NavSection[] = [
   { href: "/", label: "Dashboard", icon: Activity },
   { href: "/learn", label: "Learn Theory", icon: BookOpen },
   { href: "/components", label: "Component Library", icon: Box },
-  { href: "/basic-tools", label: "Basic Tools", icon: Hammer },
+  {
+    heading: "1A",
+    items: [
+      { href: "/basic-tools", label: "Basic Tools", icon: Hammer },
+    ],
+  },
   { href: "/build", label: "Build & Assemble", icon: Wrench },
   { href: "/disassemble", label: "Disassemble", icon: PenTool },
   { href: "/fault-finding", label: "Fault Finding", icon: Activity },
   { href: "/quiz", label: "Assessment", icon: GraduationCap },
 ];
 
+function NavLink({ item, isActive, isCollapsed }: { item: NavItem; isActive: boolean; isCollapsed: boolean }) {
+  return (
+    <Link
+      href={item.href}
+      className={cn(
+        "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group relative",
+        isActive
+          ? "bg-primary/10 text-primary border border-primary/20"
+          : "text-muted-foreground hover:bg-white/5 hover:text-foreground border border-transparent"
+      )}
+      title={isCollapsed ? item.label : undefined}
+    >
+      {isActive && (
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-1/2 bg-primary rounded-r-full shadow-[0_0_10px_var(--color-primary)]" />
+      )}
+      <item.icon className={cn("w-5 h-5 flex-shrink-0", isActive && "drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]")} />
+      {!isCollapsed && <span className="font-medium text-sm">{item.label}</span>}
+    </Link>
+  );
+}
+
 export function Layout({ children }: LayoutProps) {
   const [location] = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { data: progressData } = useGetProgress();
 
-  // Calculate global progress
   const modulesCompleted = progressData?.filter(p => p.completed).length || 0;
-  // There are 6 main trackable modules (learn, components, build, disassemble, fault-finding, quiz)
-  const totalModules = 6; 
+  const totalModules = 6;
   const progressPercent = Math.min(Math.round((modulesCompleted / totalModules) * 100), 100);
 
   return (
     <div className="flex h-screen bg-background overflow-hidden selection:bg-primary/30">
       {/* Sidebar */}
-      <aside 
+      <aside
         className={cn(
           "relative flex flex-col glass-panel border-r border-y-0 border-l-0 border-white/5 transition-all duration-300 z-20",
           isCollapsed ? "w-20" : "w-64"
@@ -61,26 +93,28 @@ export function Layout({ children }: LayoutProps) {
         </div>
 
         <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
-          {navItems.map((item) => {
-            const isActive = location === item.href;
+          {navSections.map((section, i) => {
+            if (isGroup(section)) {
+              return (
+                <div key={section.heading} className="pt-2 pb-1">
+                  {!isCollapsed && (
+                    <p className="px-3 mb-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 select-none">
+                      {section.heading}
+                    </p>
+                  )}
+                  {isCollapsed && (
+                    <div className="border-t border-white/8 mb-1" />
+                  )}
+                  <div className="space-y-1 pl-2 border-l-2 border-primary/20 ml-1">
+                    {section.items.map((item) => (
+                      <NavLink key={item.href} item={item} isActive={location === item.href} isCollapsed={isCollapsed} />
+                    ))}
+                  </div>
+                </div>
+              );
+            }
             return (
-              <Link 
-                key={item.href} 
-                href={item.href}
-                className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group relative",
-                  isActive 
-                    ? "bg-primary/10 text-primary border border-primary/20" 
-                    : "text-muted-foreground hover:bg-white/5 hover:text-foreground border border-transparent"
-                )}
-                title={isCollapsed ? item.label : undefined}
-              >
-                {isActive && (
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-1/2 bg-primary rounded-r-full shadow-[0_0_10px_var(--color-primary)]" />
-                )}
-                <item.icon className={cn("w-5 h-5 flex-shrink-0", isActive && "drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]")} />
-                {!isCollapsed && <span className="font-medium text-sm">{item.label}</span>}
-              </Link>
+              <NavLink key={section.href} item={section} isActive={location === section.href} isCollapsed={isCollapsed} />
             );
           })}
         </nav>
@@ -93,7 +127,7 @@ export function Layout({ children }: LayoutProps) {
               <span className="text-xs font-bold text-primary">{progressPercent}%</span>
             </div>
             <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-              <div 
+              <div
                 className="h-full bg-primary shadow-[0_0_10px_var(--color-primary)] transition-all duration-1000 ease-out"
                 style={{ width: `${progressPercent}%` }}
               />
