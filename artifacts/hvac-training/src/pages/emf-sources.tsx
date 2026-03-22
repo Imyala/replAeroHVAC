@@ -991,16 +991,168 @@ export default function EmfSources() {
               </div>
             </div>
 
-            <div className="space-y-2 pl-0">
-              {[
-                { item: "Static electricity buildup", detail: "Produced by friction between dissimilar materials — walking on carpet, belts running on pulleys, plastic components rubbing together." },
-                { item: "Van de Graaff generator", detail: "A belt-driven device that continuously transfers charge to a metal dome, producing very high static voltages (up to hundreds of thousands of volts) at negligible current." },
-              ].map((ex) => (
-                <div key={ex.item} className="flex gap-3 text-xs">
-                  <span className="mt-0.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-green-400" />
-                  <div><span className="text-foreground font-medium">{ex.item} — </span><span className="text-muted-foreground">{ex.detail}</span></div>
+            {/* Static electricity example */}
+            <div className="flex gap-3 text-xs">
+              <span className="mt-0.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-green-400" />
+              <div><span className="text-foreground font-medium">Static electricity buildup — </span><span className="text-muted-foreground">Produced by friction between dissimilar materials — walking on carpet, belts running on pulleys, plastic components rubbing together.</span></div>
+            </div>
+
+            {/* ── Van de Graaff biography + generator ── */}
+            <div className="bg-background/40 border border-white/8 rounded-xl overflow-hidden">
+              {/* Header */}
+              <div className="flex items-start gap-4 p-4 border-b border-white/8">
+                {/* Portrait placeholder */}
+                <div className="w-14 h-14 rounded-xl bg-green-400/10 border border-green-400/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-green-400 text-xl font-bold font-display">VdG</span>
                 </div>
-              ))}
+                <div>
+                  <h4 className="font-semibold text-foreground text-sm">Robert Jemison Van de Graaff</h4>
+                  <p className="text-xs text-muted-foreground mt-0.5">1901 – 1967 &nbsp;·&nbsp; American physicist &amp; inventor</p>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {["MIT", "Rhodes Scholar — Oxford", "University of Alabama", "Sorbonne, Paris"].map((t) => (
+                      <span key={t} className="bg-green-400/10 border border-green-400/20 text-green-300 text-xs px-2 py-0.5 rounded-full">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 space-y-4">
+                {/* Biography */}
+                <div className="space-y-2 text-xs text-muted-foreground leading-relaxed">
+                  <p>
+                    Robert Jemison Van de Graaff was born on <span className="text-foreground font-medium">20 December 1901</span> in Tuscumbia, Alabama, USA. He completed a Bachelor of Science and Master of Science in Mechanical Engineering at the University of Alabama (1922–1923) before winning a <span className="text-foreground font-medium">Rhodes Scholarship to Oxford University</span>, where he studied physics and completed his PhD in 1928. He also spent time at the Sorbonne in Paris during this period.
+                  </p>
+                  <p>
+                    At Oxford he attended lectures by the physicist <span className="text-foreground font-medium">Ernest Rutherford</span>, who had recently split the atom. Rutherford's work convinced Van de Graaff of the need for a machine capable of producing very high voltages to accelerate charged particles — a tool that would allow physicists to probe the atomic nucleus.
+                  </p>
+                  <p>
+                    He conceived the generator that bears his name while at <span className="text-foreground font-medium">Princeton in 1929</span>, first demonstrated it at MIT in 1931, and then developed progressively more powerful versions throughout his career. He went on to found the <span className="text-foreground font-medium">High Voltage Engineering Corporation (HVEC)</span> in 1946, which built Van de Graaff accelerators used worldwide in nuclear physics, cancer radiotherapy, and materials analysis. Van de Graaff died on <span className="text-foreground font-medium">16 January 1967</span> in Boston, Massachusetts.
+                  </p>
+                </div>
+
+                {/* Generator — how it works + SVG side by side */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* SVG diagram */}
+                  <div className="bg-black/20 rounded-xl p-4">
+                    <p className="text-xs font-semibold text-muted-foreground mb-3 text-center">Van de Graaff Generator</p>
+                    <svg viewBox="0 0 200 320" className="w-full max-w-xs mx-auto" aria-label="Van de Graaff generator diagram">
+                      {/* Ground line */}
+                      <line x1="40" y1="300" x2="160" y2="300" stroke="#64748b" strokeWidth="2" />
+                      <line x1="55" y1="306" x2="145" y2="306" stroke="#64748b" strokeWidth="1.5" />
+                      <line x1="70" y1="312" x2="130" y2="312" stroke="#64748b" strokeWidth="1" />
+                      <text x="100" y="326" textAnchor="middle" fill="#64748b" fontSize="8">Earth / Ground</text>
+
+                      {/* Insulating column */}
+                      <rect x="88" y="120" width="24" height="170" rx="4" fill="#1e3a5f" stroke="#3b82f6" strokeWidth="1" />
+                      <text x="100" y="290" textAnchor="middle" fill="#60a5fa" fontSize="7">Insulating</text>
+                      <text x="100" y="298" textAnchor="middle" fill="#60a5fa" fontSize="7">column</text>
+
+                      {/* Belt — left and right sides going up */}
+                      <line x1="94" y1="115" x2="94" y2="270" stroke="#a3e635" strokeWidth="3" strokeLinecap="round" />
+                      <line x1="106" y1="115" x2="106" y2="270" stroke="#84cc16" strokeWidth="3" strokeLinecap="round" />
+
+                      {/* Lower roller */}
+                      <ellipse cx="100" cy="272" rx="16" ry="8" fill="#334155" stroke="#94a3b8" strokeWidth="1.5" />
+                      <text x="100" y="275" textAnchor="middle" fill="#94a3b8" fontSize="7">Motor roller</text>
+
+                      {/* Belt charge arrows going up (left side) */}
+                      {[240, 210, 180, 150].map((y) => (
+                        <line key={y} x1="90" y1={y + 10} x2="90" y2={y} stroke="#f59e0b" strokeWidth="1" markerEnd="url(#arrowUp2)" />
+                      ))}
+                      <defs>
+                        <marker id="arrowUp2" markerWidth="5" markerHeight="5" refX="2.5" refY="0" orient="auto">
+                          <path d="M0,5 L5,5 L2.5,0 z" fill="#f59e0b" />
+                        </marker>
+                        <marker id="arrowDown2" markerWidth="5" markerHeight="5" refX="2.5" refY="5" orient="auto">
+                          <path d="M0,0 L5,0 L2.5,5 z" fill="#94a3b8" />
+                        </marker>
+                      </defs>
+
+                      {/* Upper roller inside dome */}
+                      <ellipse cx="100" cy="128" rx="12" ry="6" fill="#475569" stroke="#94a3b8" strokeWidth="1" />
+
+                      {/* Metal dome (hollow sphere) */}
+                      <circle cx="100" cy="75" r="55" fill="#1e293b" stroke="#34d399" strokeWidth="2" />
+                      <circle cx="100" cy="75" r="52" fill="none" stroke="#34d399" strokeWidth="0.5" opacity="0.4" />
+                      <text x="100" y="68" textAnchor="middle" fill="#34d399" fontSize="9" fontWeight="bold">Metal</text>
+                      <text x="100" y="80" textAnchor="middle" fill="#34d399" fontSize="9" fontWeight="bold">Dome</text>
+
+                      {/* Charge accumulation — + signs on dome surface */}
+                      {[
+                        [100, 22], [138, 38], [152, 75], [138, 112],
+                        [62, 38], [48, 75], [62, 112],
+                      ].map(([x, y]) => (
+                        <text key={`${x}-${y}`} x={x} y={y} textAnchor="middle" fill="#f59e0b" fontSize="11" fontWeight="bold">+</text>
+                      ))}
+
+                      {/* Comb of points inside dome */}
+                      {[90, 95, 100, 105, 110].map((x) => (
+                        <line key={x} x1={x} y1="120" x2={x} y2="100" stroke="#f59e0b" strokeWidth="1" />
+                      ))}
+                      <text x="130" y="112" fill="#f59e0b" fontSize="7">charge</text>
+                      <text x="130" y="120" fill="#f59e0b" fontSize="7">comb</text>
+
+                      {/* Spark discharge */}
+                      <path d="M155 75 L168 68 L162 75 L175 65" fill="none" stroke="#fbbf24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <text x="178" y="72" fill="#fbbf24" fontSize="7">spark</text>
+
+                      {/* Voltage label */}
+                      <text x="100" y="165" textAnchor="middle" fill="#94a3b8" fontSize="7">Belt carries</text>
+                      <text x="100" y="174" textAnchor="middle" fill="#f59e0b" fontSize="7">+ charge up</text>
+                    </svg>
+                  </div>
+
+                  {/* How it works — steps */}
+                  <div className="space-y-3">
+                    <p className="text-xs font-semibold text-green-300">How the generator works</p>
+                    <ol className="space-y-2">
+                      {[
+                        { n: "1", step: "A motor drives an insulating belt (originally silk, later rubber or nylon) between a lower metal roller and an upper roller inside the dome." },
+                        { n: "2", step: "The lower roller rubs against the belt — the triboelectric effect transfers electrons from the belt to the roller, leaving the belt positively charged." },
+                        { n: "3", step: "The moving belt carries the positive charge upward through the insulating column into the interior of the hollow metal dome." },
+                        { n: "4", step: "A comb of sharp metal points inside the dome strips the charge off the belt and deposits it onto the inner surface of the dome." },
+                        { n: "5", step: "By Gauss's Law, charge on a conductor migrates to the outer surface. The charge accumulates there, building an increasingly high electric potential." },
+                        { n: "6", step: "When the electric field strength is sufficient, corona discharge or sparks occur — the accumulated charge is released. Laboratory machines reach millions of volts." },
+                      ].map((s) => (
+                        <li key={s.n} className="flex gap-3 text-xs">
+                          <span className="w-5 h-5 rounded-full bg-green-400/20 border border-green-400/30 text-green-300 text-xs font-bold flex items-center justify-center flex-shrink-0">{s.n}</span>
+                          <span className="text-muted-foreground leading-relaxed">{s.step}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </div>
+
+                {/* Applications */}
+                <div>
+                  <p className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">Applications &amp; Legacy</p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    {[
+                      {
+                        app: "Nuclear Physics Research",
+                        colour: "text-blue-400", border: "border-blue-400/20", bg: "bg-blue-400/5",
+                        detail: "The generator's original purpose — accelerating protons and other charged particles to bombard atomic nuclei, enabling the first systematic studies of nuclear structure in the 1930s–40s.",
+                      },
+                      {
+                        app: "Particle Accelerators",
+                        colour: "text-purple-400", border: "border-purple-400/20", bg: "bg-purple-400/5",
+                        detail: "The Tandem Van de Graaff accelerator (developed at MIT) uses two stages to reach higher energies. Many universities worldwide operated Van de Graaff accelerators for nuclear and materials research.",
+                      },
+                      {
+                        app: "Medical &amp; Industrial",
+                        colour: "text-green-400", border: "border-green-400/20", bg: "bg-green-400/5",
+                        detail: "High-energy X-ray therapy for cancer treatment; sterilisation of medical equipment; semiconductor materials testing; and the classic science museum demonstration of static electricity.",
+                      },
+                    ].map((a) => (
+                      <div key={a.app} className={cn("rounded-xl border p-3 space-y-1.5", a.border, a.bg)}>
+                        <p className={cn("text-xs font-semibold", a.colour)} dangerouslySetInnerHTML={{ __html: a.app }} />
+                        <p className="text-xs text-muted-foreground leading-relaxed" dangerouslySetInnerHTML={{ __html: a.detail }} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
             </div>
 
             <div className="rounded-lg p-3 border border-green-400/20 bg-green-400/5 text-xs">
