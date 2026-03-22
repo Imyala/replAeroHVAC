@@ -1024,6 +1024,44 @@ export default function EmfSources() {
               <div><span className="text-foreground font-medium">Static electricity buildup — </span><span className="text-muted-foreground">Produced by friction between dissimilar materials — walking on carpet, belts running on pulleys, plastic components rubbing together.</span></div>
             </div>
 
+            {/* ── Van de Graaff generator overview ── */}
+            <div className="bg-green-500/5 border border-green-400/20 rounded-xl p-4 space-y-3">
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4 text-green-400 flex-shrink-0" />
+                <h4 className="font-semibold text-sm text-green-300">Van de Graaff Generator</h4>
+                <span className="inline-flex items-center gap-1 text-xs bg-green-400/10 border border-green-400/25 text-green-300 px-2 py-0.5 rounded-full">
+                  <span className="opacity-60">invented</span><span className="font-mono font-bold">1929</span>
+                </span>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                A <span className="text-foreground font-medium">Van de Graaff generator</span> is an electrostatic machine that uses a moving belt to continuously transfer charge onto a large hollow metal sphere, building up very high voltages — commonly <span className="text-foreground font-medium">hundreds of thousands to several million volts</span>. The EMF is produced entirely by friction and charge separation, with no chemical reactions or magnetic fields involved.
+              </p>
+              <div className="grid grid-cols-3 gap-2 text-xs">
+                {[
+                  { label: "EMF source", value: "Triboelectric (belt friction)" },
+                  { label: "Output voltage", value: "Up to ~25 MV (large versions)" },
+                  { label: "Current output", value: "Very low — μA range" },
+                ].map(({ label, value }) => (
+                  <div key={label} className="bg-background/40 border border-white/8 rounded-lg p-2.5">
+                    <p className="text-muted-foreground/70 text-xs mb-0.5">{label}</p>
+                    <p className="text-foreground font-medium text-xs">{value}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="space-y-1.5 text-xs">
+                {[
+                  "A rubber or fabric belt runs between two rollers — friction at the lower roller transfers charge onto the belt.",
+                  "The belt carries charge upward into the hollow sphere, where a metal comb strips charge off the belt onto the sphere's inner surface.",
+                  "Charge migrates to the outer surface of the sphere, accumulating until the electric field is strong enough to ionise the surrounding air (producing a spark or corona discharge).",
+                ].map((step, i) => (
+                  <div key={i} className="flex gap-2.5 items-start">
+                    <span className="font-mono text-green-400/60 text-xs w-4 flex-shrink-0">{i + 1}.</span>
+                    <span className="text-muted-foreground">{step}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* ── Van de Graaff biography + generator ── */}
             <div className="bg-background/40 border border-white/8 rounded-xl overflow-hidden">
               {/* Header */}
