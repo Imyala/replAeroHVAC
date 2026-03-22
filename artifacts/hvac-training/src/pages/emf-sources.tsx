@@ -310,6 +310,202 @@ export default function EmfSources() {
               </div>
             </div>
 
+            {/* ── Lead-Acid Battery — Detail ── */}
+            <div className="space-y-4">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Secondary Cell Deep Dive — Lead-Acid Battery</p>
+
+              {/* Internal structure */}
+              <div className="bg-background/40 border border-white/8 rounded-xl p-4">
+                <p className="text-xs font-semibold text-muted-foreground mb-3 text-center">Automotive Lead-Acid Battery — Internal Structure</p>
+                <svg viewBox="0 0 500 260" className="w-full max-w-lg mx-auto" aria-label="Lead-acid battery internal structure">
+                  {/* Battery case */}
+                  <rect x="30" y="50" width="440" height="190" rx="6" fill="#1e293b" stroke="#64748b" strokeWidth="2" />
+                  {/* Battery top / lid */}
+                  <rect x="30" y="30" width="440" height="25" rx="4" fill="#334155" stroke="#64748b" strokeWidth="1.5" />
+                  {/* 6 cell partitions */}
+                  {[103, 176, 249, 322, 395].map((x) => (
+                    <line key={x} x1={x} y1="75" x2={x} y2="230" stroke="#475569" strokeWidth="1.5" />
+                  ))}
+                  {/* Cell plates — alternating PbO₂ (amber) and Pb (grey) with separators */}
+                  {[0, 1, 2, 3, 4, 5].map((cell) => {
+                    const cx = 30 + cell * 73 + 10;
+                    return (
+                      <g key={cell}>
+                        {/* PbO₂ positive plate */}
+                        <rect x={cx + 5} y="85" width="14" height="120" rx="2" fill="#92400e" />
+                        {/* Separator */}
+                        <rect x={cx + 21} y="85" width="6" height="120" rx="1" fill="#1e3a5f" />
+                        {/* Pb negative plate */}
+                        <rect x={cx + 29} y="85" width="14" height="120" rx="2" fill="#475569" />
+                        {/* Separator */}
+                        <rect x={cx + 45} y="85" width="6" height="120" rx="1" fill="#1e3a5f" />
+                        {/* Electrolyte fill */}
+                        <rect x={cx} y="200" width="62" height="28" rx="2" fill="#0f172a" opacity="0.7" />
+                        <text x={cx + 31} y="218" textAnchor="middle" fill="#38bdf8" fontSize="7">H₂SO₄(aq)</text>
+                      </g>
+                    );
+                  })}
+                  {/* Positive strap (top, amber) */}
+                  <rect x="35" y="30" width="215" height="8" rx="2" fill="#b45309" />
+                  {/* Negative strap (top, grey) */}
+                  <rect x="255" y="30" width="210" height="8" rx="2" fill="#475569" />
+                  {/* Intercell connectors */}
+                  {[103, 249, 395].map((x) => (
+                    <circle key={x} cx={x} cy="34" r="5" fill="#94a3b8" />
+                  ))}
+                  {/* Posts */}
+                  <rect x="55" y="10" width="18" height="25" rx="4" fill="#b45309" />
+                  <rect x="427" y="10" width="18" height="25" rx="4" fill="#475569" />
+                  <text x="64" y="8" textAnchor="middle" fill="#fbbf24" fontSize="9" fontWeight="bold">+</text>
+                  <text x="436" y="8" textAnchor="middle" fill="#94a3b8" fontSize="9" fontWeight="bold">−</text>
+                  {/* Labels */}
+                  <text x="64" y="242" textAnchor="middle" fill="#fbbf24" fontSize="8">+ve Post</text>
+                  <text x="436" y="242" textAnchor="middle" fill="#94a3b8" fontSize="8">−ve Post</text>
+                  <text x="67" y="254" textAnchor="middle" fill="#f59e0b" fontSize="7">+ve Strap</text>
+                  <text x="390" y="254" textAnchor="middle" fill="#64748b" fontSize="7">−ve Strap</text>
+                  <text x="250" y="254" textAnchor="middle" fill="#818cf8" fontSize="7">6 cells × ~2 V = 12 V nominal</text>
+                  {/* Legend */}
+                  <rect x="350" y="80" width="10" height="10" rx="1" fill="#92400e" />
+                  <text x="364" y="89" fill="#f59e0b" fontSize="8">PbO₂ (+ve plate)</text>
+                  <rect x="350" y="96" width="10" height="10" rx="1" fill="#475569" />
+                  <text x="364" y="105" fill="#94a3b8" fontSize="8">Pb (−ve plate)</text>
+                  <rect x="350" y="112" width="10" height="10" rx="1" fill="#1e3a5f" />
+                  <text x="364" y="121" fill="#60a5fa" fontSize="8">Separator</text>
+                </svg>
+                <div className="mt-3 grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
+                  {[
+                    { part: "Positive plate", material: "Lead dioxide (PbO₂)" },
+                    { part: "Negative plate", material: "Sponge lead (Pb)" },
+                    { part: "Separator", material: "Porous insulator between plates" },
+                    { part: "Partition", material: "Hard wall between cells" },
+                    { part: "Intercell connector", material: "Links cells in series" },
+                    { part: "Electrolyte", material: "Dilute sulphuric acid (H₂SO₄)" },
+                  ].map((r) => (
+                    <div key={r.part} className="bg-black/20 rounded-lg p-2">
+                      <p className="font-semibold text-foreground">{r.part}</p>
+                      <p className="text-muted-foreground">{r.material}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Discharging */}
+              <div className="bg-background/40 border border-red-500/20 rounded-xl p-4 space-y-3">
+                <p className="text-xs font-semibold text-red-400 uppercase tracking-wider">Discharging — Chemical Reactions</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  During discharge, both electrodes react with the sulphate ions from the electrolyte to form lead sulphate (PbSO₄). The electrolyte becomes weaker (specific gravity falls) as sulphuric acid is consumed and water is produced.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-3 text-center">
+                    <p className="text-xs font-semibold text-red-400 mb-2">Negative plate — Anode (oxidation)</p>
+                    <p className="font-mono text-xs text-foreground bg-black/30 rounded-lg p-2">Pb + SO₄²⁻ → PbSO₄ + 2e⁻</p>
+                    <p className="text-xs text-muted-foreground mt-2">Sponge lead is oxidised to lead sulphate</p>
+                  </div>
+                  <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-3 text-center">
+                    <p className="text-xs font-semibold text-green-400 mb-2">Positive plate — Cathode (reduction)</p>
+                    <p className="font-mono text-xs text-foreground bg-black/30 rounded-lg p-2">PbO₂ + 4H⁺ + SO₄²⁻ + 2e⁻ → PbSO₄ + 2H₂O</p>
+                    <p className="text-xs text-muted-foreground mt-2">Lead dioxide is reduced to lead sulphate; water is produced</p>
+                  </div>
+                </div>
+                <div className="overflow-x-auto rounded-xl border border-white/8">
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr className="border-b border-white/8 bg-background/40">
+                        <th className="text-left py-2 px-3 font-semibold text-muted-foreground">State</th>
+                        <th className="text-left py-2 px-3 font-semibold text-muted-foreground">Negative plate</th>
+                        <th className="text-left py-2 px-3 font-semibold text-muted-foreground">Positive plate</th>
+                        <th className="text-left py-2 px-3 font-semibold text-muted-foreground">Electrolyte SG</th>
+                        <th className="text-right py-2 px-3 font-semibold text-muted-foreground">Volts/cell</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                      <tr className="bg-green-500/5">
+                        <td className="py-2 px-3 text-green-400 font-semibold">Charged</td>
+                        <td className="py-2 px-3 text-muted-foreground">Sponge Lead (Pb)</td>
+                        <td className="py-2 px-3 text-muted-foreground">Lead Dioxide (PbO₂)</td>
+                        <td className="py-2 px-3 font-mono text-foreground">1.300</td>
+                        <td className="py-2 px-3 font-mono text-green-400 text-right">2.14 V</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 px-3 text-yellow-400 font-semibold">Discharging</td>
+                        <td className="py-2 px-3 text-muted-foreground">↓ Lead Sulphate forming</td>
+                        <td className="py-2 px-3 text-muted-foreground">↓ Lead Sulphate forming</td>
+                        <td className="py-2 px-3 font-mono text-foreground">1.210</td>
+                        <td className="py-2 px-3 font-mono text-yellow-400 text-right">1.84 V</td>
+                      </tr>
+                      <tr className="bg-red-500/5">
+                        <td className="py-2 px-3 text-red-400 font-semibold">Discharged</td>
+                        <td className="py-2 px-3 text-muted-foreground">Lead Sulphate (PbSO₄)</td>
+                        <td className="py-2 px-3 text-muted-foreground">Lead Sulphate (PbSO₄)</td>
+                        <td className="py-2 px-3 font-mono text-foreground">1.120</td>
+                        <td className="py-2 px-3 font-mono text-red-400 text-right">1.75 V</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Charging */}
+              <div className="bg-background/40 border border-blue-500/20 rounded-xl p-4 space-y-3">
+                <p className="text-xs font-semibold text-blue-400 uppercase tracking-wider">Charging — Chemical Reactions (reversed)</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  An external charger (2.30 V DC per cell minimum) forces current in the reverse direction, reversing the discharge reactions. Lead sulphate is converted back to sponge lead and lead dioxide. The electrolyte regains H₂SO₄ and loses water — specific gravity rises as the battery charges.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-3 text-center">
+                    <p className="text-xs font-semibold text-red-400 mb-2">Negative plate (charging)</p>
+                    <p className="font-mono text-xs text-foreground bg-black/30 rounded-lg p-2">PbSO₄ + 2e⁻ → Pb + SO₄²⁻</p>
+                    <p className="text-xs text-muted-foreground mt-2">Lead sulphate is reduced back to sponge lead</p>
+                  </div>
+                  <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-3 text-center">
+                    <p className="text-xs font-semibold text-green-400 mb-2">Positive plate (charging)</p>
+                    <p className="font-mono text-xs text-foreground bg-black/30 rounded-lg p-2">PbSO₄ + 2H₂O → PbO₂ + 4H⁺ + SO₄²⁻ + 2e⁻</p>
+                    <p className="text-xs text-muted-foreground mt-2">Lead sulphate is oxidised back to lead dioxide</p>
+                  </div>
+                </div>
+                <div className="overflow-x-auto rounded-xl border border-white/8">
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr className="border-b border-white/8 bg-background/40">
+                        <th className="text-left py-2 px-3 font-semibold text-muted-foreground">State</th>
+                        <th className="text-left py-2 px-3 font-semibold text-muted-foreground">Negative plate</th>
+                        <th className="text-left py-2 px-3 font-semibold text-muted-foreground">Positive plate</th>
+                        <th className="text-left py-2 px-3 font-semibold text-muted-foreground">Electrolyte SG</th>
+                        <th className="text-right py-2 px-3 font-semibold text-muted-foreground">Volts/cell</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                      <tr className="bg-red-500/5">
+                        <td className="py-2 px-3 text-red-400 font-semibold">Discharged</td>
+                        <td className="py-2 px-3 text-muted-foreground">Lead Sulphate (PbSO₄)</td>
+                        <td className="py-2 px-3 text-muted-foreground">Lead Sulphate (PbSO₄)</td>
+                        <td className="py-2 px-3 font-mono text-foreground">1.120</td>
+                        <td className="py-2 px-3 font-mono text-red-400 text-right">1.96 V</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 px-3 text-yellow-400 font-semibold">Charging</td>
+                        <td className="py-2 px-3 text-muted-foreground">↑ Sponge Lead forming</td>
+                        <td className="py-2 px-3 text-muted-foreground">↑ Lead Dioxide forming</td>
+                        <td className="py-2 px-3 font-mono text-foreground">1.210</td>
+                        <td className="py-2 px-3 font-mono text-yellow-400 text-right">2.01 V</td>
+                      </tr>
+                      <tr className="bg-green-500/5">
+                        <td className="py-2 px-3 text-green-400 font-semibold">Charged</td>
+                        <td className="py-2 px-3 text-muted-foreground">Sponge Lead (Pb)</td>
+                        <td className="py-2 px-3 text-muted-foreground">Lead Dioxide (PbO₂)</td>
+                        <td className="py-2 px-3 font-mono text-foreground">1.300</td>
+                        <td className="py-2 px-3 font-mono text-green-400 text-right">2.05 V</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3 text-xs">
+                  <span className="font-semibold text-blue-300">Charger voltage: </span>
+                  <span className="text-muted-foreground">A minimum of 2.30 V DC per cell is required to overcome the back-EMF and force the charging reaction. For a standard 12 V (6-cell) battery, the charger output must exceed ~13.8 V. Gassing (hydrogen/oxygen release) occurs near full charge — ensure adequate ventilation.</span>
+                </div>
+              </div>
+            </div>
+
             {/* Electrode potential table */}
             <div>
               <p className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">Standard Electrode Potential (E°) — Selected Elements</p>

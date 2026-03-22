@@ -1412,6 +1412,271 @@ export default function BasicElectricalCircuit() {
         </div>
       </section>
 
+      {/* Measuring & Indicating Devices */}
+      <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
+          <Zap className="w-4 h-4 text-cyan-400" />
+          <h2 className="font-semibold text-foreground">Measuring &amp; Indicating Devices</h2>
+        </div>
+        <div className="p-6 space-y-6">
+
+          {/* Indicators */}
+          <div>
+            <h3 className="text-sm font-semibold text-foreground mb-1">Indicators</h3>
+            <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
+              An indicator tells what condition a circuit or piece of equipment is in. Indicators do not measure a quantity — they signal a state. Four types of indication method are used:
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {[
+                {
+                  type: "Light", colour: "text-yellow-400", border: "border-yellow-400/20", bg: "bg-yellow-400/5",
+                  icon: "💡",
+                  methods: ["Colour (red = fault, green = run)", "Flash rate / strobe pattern", "Digital readout / numeric display"],
+                  examples: "Pilot lights, fault LEDs, run indicators, alarm annunciators",
+                },
+                {
+                  type: "Sound", colour: "text-orange-400", border: "border-orange-400/20", bg: "bg-orange-400/5",
+                  icon: "🔔",
+                  methods: ["Bells", "Hooters / buzzers", "Sirens", "Voice speaker"],
+                  examples: "Fire alarm hooter, low-refrigerant buzzer, door-open alert",
+                },
+                {
+                  type: "Flags", colour: "text-blue-400", border: "border-blue-400/20", bg: "bg-blue-400/5",
+                  icon: "🚩",
+                  methods: ["Colour coding (red, yellow, green)", "Physical flag on relay or trip device"],
+                  examples: "Relay flag indicators, fault flags on protection relays",
+                },
+                {
+                  type: "Feeling", colour: "text-purple-400", border: "border-purple-400/20", bg: "bg-purple-400/5",
+                  icon: "🖐",
+                  methods: ["Vibration (felt by hand or foot)", "Physical movement of a component"],
+                  examples: "Compressor running (vibration on pipe/housing), solenoid valve click",
+                },
+              ].map((ind) => (
+                <div key={ind.type} className={cn("rounded-xl border p-4 space-y-2", ind.border, ind.bg)}>
+                  <div className="text-2xl">{ind.icon}</div>
+                  <p className={cn("font-semibold text-sm", ind.colour)}>{ind.type}</p>
+                  <div className="space-y-1">
+                    {ind.methods.map((m) => (
+                      <div key={m} className="flex gap-2 text-xs">
+                        <span className={cn("w-1 h-1 rounded-full flex-shrink-0 mt-1.5", ind.colour.replace("text-", "bg-"))} />
+                        <span className="text-muted-foreground">{m}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-muted-foreground/70 italic leading-relaxed">{ind.examples}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Voltage measurement overview */}
+          <div className="bg-background/40 border border-white/8 rounded-xl p-4 space-y-3">
+            <h3 className="text-sm font-semibold text-foreground">Voltage Measurement — Overview</h3>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Several devices are available to detect or measure voltage. The choice depends on the required accuracy, the voltage range, and whether a quantitative reading or a simple presence indication is needed.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+              <div className="bg-black/20 rounded-lg p-3 space-y-1">
+                <p className="font-semibold text-foreground">Series test lamp / Combi checker / Wigger</p>
+                <p className="text-muted-foreground">Simple voltage presence indicators. <span className="text-yellow-300 font-medium">Low input impedance</span> — may trip an ELCB (Earth Leakage Circuit Breaker) when connected. Use with caution on sensitive circuits.</p>
+              </div>
+              <div className="bg-black/20 rounded-lg p-3 space-y-1">
+                <p className="font-semibold text-foreground">Digital/Analog Voltmeter</p>
+                <p className="text-muted-foreground"><span className="text-green-300 font-medium">Very high input impedance</span> (typically 10 MΩ) to minimise the loading effect on the circuit. Connected <span className="text-foreground font-medium">in parallel</span> across the component or circuit under test.</p>
+              </div>
+              <div className="bg-black/20 rounded-lg p-3 space-y-1">
+                <p className="font-semibold text-foreground">Non-contact voltage tester</p>
+                <p className="text-muted-foreground">Detects AC electric fields through insulation without physical contact. Safe for initial presence check — confirms whether a conductor is live before touching.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Voltage test probes */}
+          <div>
+            <h3 className="text-sm font-semibold text-foreground mb-3">Voltage Test Probes — Three Types</h3>
+            <div className="space-y-3">
+
+              {/* Combicheck */}
+              <div className="rounded-xl border border-cyan-400/20 bg-cyan-400/5 p-4 space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-cyan-400/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-cyan-400 font-bold text-sm">C</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-sm text-cyan-300">Combicheck Circuit Tester</p>
+                    <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                      The most popular test probe for electrical workers to check for voltage. Gives a visible indication of AC or DC voltage that is present. Simple operation and fuse protected. <span className="text-foreground font-medium">The combicheck must be tested before each use.</span>
+                    </p>
+                  </div>
+                </div>
+                <div className="pl-11 space-y-2">
+                  <p className="text-xs font-semibold text-muted-foreground">Voltage ranges indicated:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {["6 V", "12 V", "24 V", "50 V", "110 V", "240 V", "415 V", "660 V"].map((v) => (
+                      <span key={v} className={cn(
+                        "font-mono text-xs px-2 py-1 rounded border",
+                        ["240 V", "415 V"].includes(v)
+                          ? "bg-yellow-400/10 border-yellow-400/30 text-yellow-300"
+                          : "bg-background/40 border-white/10 text-muted-foreground"
+                      )}>{v}</span>
+                    ))}
+                  </div>
+                  <p className="text-xs text-muted-foreground">The probe lights illuminate progressively — more lights = higher voltage range detected.</p>
+                </div>
+              </div>
+
+              {/* Series test lamp */}
+              <div className="rounded-xl border border-amber-400/20 bg-amber-400/5 p-4 space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-amber-400/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-amber-400 font-bold text-sm">S</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-sm text-amber-300">Series Test Lamp</p>
+                    <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                      One of the most elementary voltage indication units. Two <span className="text-foreground font-medium">250 V, 15 W lamps</span> are connected in series with a <span className="text-foreground font-medium">500 mA fuse</span>. Total operating voltage = <span className="text-foreground font-medium">500 V</span>. The series test lamp must be tested regularly.
+                    </p>
+                  </div>
+                </div>
+                <div className="pl-11">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div className="bg-background/40 border border-white/8 rounded-lg p-3 text-center">
+                      <p className="text-xs font-semibold text-muted-foreground mb-1">Parts</p>
+                      <div className="space-y-1 text-xs text-muted-foreground text-left">
+                        {["Cover (insulated handle)", "Two lamp sockets (series)", "Two 250 V / 15 W globes", "500 mA fuse", "Test probes"].map((p) => (
+                          <div key={p} className="flex gap-2"><span className="w-1 h-1 rounded-full bg-amber-400 flex-shrink-0 mt-1.5" /><span>{p}</span></div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 text-center">
+                      <p className="text-xs font-semibold text-yellow-400 mb-2">At 240 V (single-phase)</p>
+                      <div className="text-2xl mb-1">🔆</div>
+                      <p className="text-xs text-muted-foreground">Dull/dim indication — voltage is below the lamp's rated series voltage</p>
+                    </div>
+                    <div className="bg-orange-500/10 border border-orange-500/20 rounded-lg p-3 text-center">
+                      <p className="text-xs font-semibold text-orange-400 mb-2">At 415 V (three-phase)</p>
+                      <div className="text-2xl mb-1">💡</div>
+                      <p className="text-xs text-muted-foreground">Bright indication — voltage approaches the lamps' total rated series voltage</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Plug-style tester */}
+              <div className="rounded-xl border border-green-400/20 bg-green-400/5 p-4 space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-green-400/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-400 font-bold text-sm">P</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-sm text-green-300">Plug-Style Circuit Tester</p>
+                    <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                      Designed to give a quick indication of the <span className="text-foreground font-medium">correctness</span> of a socket outlet circuit. Plugs directly into a standard outlet — no probe connection required.
+                    </p>
+                  </div>
+                </div>
+                <div className="pl-11 grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3">
+                    <p className="text-xs font-semibold text-green-400 mb-2">✓ CAN indicate</p>
+                    <div className="space-y-1">
+                      {["Correct wiring polarity (active/neutral/earth in correct terminals)", "Whether the earth conductor is present and connected", "Neutral faults (open neutral)"].map((c) => (
+                        <div key={c} className="flex gap-2 text-xs"><span className="w-1 h-1 rounded-full bg-green-400 flex-shrink-0 mt-1.5" /><span className="text-muted-foreground">{c}</span></div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+                    <p className="text-xs font-semibold text-red-400 mb-2">✗ CANNOT indicate</p>
+                    <div className="space-y-1">
+                      {["The value of earth continuity resistance", "Insulation resistance of the circuit", "Specific earth loop impedance"].map((c) => (
+                        <div key={c} className="flex gap-2 text-xs"><span className="w-1 h-1 rounded-full bg-red-400 flex-shrink-0 mt-1.5" /><span className="text-muted-foreground">{c}</span></div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Clamp meter */}
+          <div className="rounded-xl border border-indigo-400/20 bg-indigo-400/5 p-4 space-y-4">
+            <h3 className="text-sm font-semibold text-indigo-300">Clamp Meter (Clamp-Action Ammeter)</h3>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              A clamp-action meter measures current <span className="text-foreground font-medium">without having to interrupt the circuit</span> being tested. The jaws of the meter contain an iron circuit that conducts the magnetic field created by the current to the meter's sensing device. It is important that the jaws close correctly and the cable is centrally located.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-3">
+                <div className="bg-background/40 border border-white/8 rounded-lg p-3 space-y-2">
+                  <p className="text-xs font-semibold text-muted-foreground">How it works</p>
+                  <svg viewBox="0 0 280 160" className="w-full max-w-xs mx-auto" aria-label="Clamp meter diagram">
+                    {/* Moving-coil meter */}
+                    <rect x="5" y="20" width="70" height="60" rx="4" fill="#1e293b" stroke="#64748b" strokeWidth="1.5" />
+                    <path d="M15 75 Q40 30 65 75" fill="none" stroke="#64748b" strokeWidth="1" />
+                    <line x1="40" y1="75" x2="40" y2="45" stroke="#f59e0b" strokeWidth="1.5" />
+                    <text x="40" y="90" textAnchor="middle" fill="#94a3b8" fontSize="7">Moving-coil</text>
+                    <text x="40" y="99" textAnchor="middle" fill="#94a3b8" fontSize="7">meter</text>
+                    {/* Circuit to convert AC to DC */}
+                    <rect x="90" y="35" width="55" height="30" rx="3" fill="#1e3a5f" stroke="#3b82f6" strokeWidth="1" />
+                    <text x="117" y="48" textAnchor="middle" fill="#60a5fa" fontSize="7">AC→DC</text>
+                    <text x="117" y="58" textAnchor="middle" fill="#60a5fa" fontSize="7">converter</text>
+                    {/* Wires */}
+                    <line x1="75" y1="50" x2="90" y2="50" stroke="#94a3b8" strokeWidth="1.5" />
+                    <line x1="145" y1="50" x2="165" y2="50" stroke="#94a3b8" strokeWidth="1.5" />
+                    {/* Clamp jaw assembly */}
+                    <path d="M165 10 L165 90 Q200 90 220 70 L220 30 Q200 10 165 10 Z" fill="#334155" stroke="#64748b" strokeWidth="1.5" />
+                    <path d="M165 50 L195 50" fill="none" stroke="#818cf8" strokeWidth="1.5" />
+                    {/* Movable jaw */}
+                    <path d="M220 30 Q240 30 240 50 Q240 70 220 70" fill="none" stroke="#94a3b8" strokeWidth="2" strokeDasharray="4 3" />
+                    <text x="248" y="54" fill="#94a3b8" fontSize="7">movable</text>
+                    <text x="248" y="63" fill="#94a3b8" fontSize="7">jaw</text>
+                    {/* Cable inside jaw */}
+                    <circle cx="195" cy="50" r="8" fill="none" stroke="#f59e0b" strokeWidth="1.5" />
+                    <text x="195" y="53" textAnchor="middle" fill="#f59e0b" fontSize="7">≈</text>
+                    {/* Labels */}
+                    <text x="185" y="115" textAnchor="middle" fill="#94a3b8" fontSize="7">Coil (sensing)</text>
+                    <text x="185" y="124" textAnchor="middle" fill="#94a3b8" fontSize="7">Iron jaw circuit</text>
+                    <text x="165" y="140" textAnchor="middle" fill="#818cf8" fontSize="7">Cable centrally located</text>
+                  </svg>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="grid grid-cols-1 gap-2">
+                  {[
+                    {
+                      type: "Induction Type", colour: "text-blue-400", border: "border-blue-400/20", bg: "bg-blue-400/5",
+                      measures: "AC current only",
+                      principle: "The alternating magnetic field from AC current induces a small current in the meter's coil — like a transformer. Cannot detect steady DC magnetic fields.",
+                    },
+                    {
+                      type: "Hall Effect Type", colour: "text-purple-400", border: "border-purple-400/20", bg: "bg-purple-400/5",
+                      measures: "AC and DC current",
+                      principle: "A Hall effect sensor detects the magnetic field directly (both static and alternating). More expensive but suitable for DC circuits including solar, battery, and VFD outputs.",
+                    },
+                  ].map((t) => (
+                    <div key={t.type} className={cn("rounded-lg border p-3 space-y-1", t.border, t.bg)}>
+                      <div className="flex justify-between items-center">
+                        <p className={cn("text-xs font-semibold", t.colour)}>{t.type}</p>
+                        <span className={cn("text-xs font-mono px-2 py-0.5 rounded border", t.border, t.bg, t.colour)}>{t.measures}</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{t.principle}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 text-xs">
+                  <p className="font-semibold text-yellow-400 mb-1">⚠ Important operating rules</p>
+                  <div className="space-y-1 text-muted-foreground">
+                    <div className="flex gap-2"><span className="w-1 h-1 rounded-full bg-yellow-400 flex-shrink-0 mt-1.5" /><span>Clamp around a <span className="text-foreground font-medium">single conductor only</span> — clamping both active and neutral cancels the fields and reads zero.</span></div>
+                    <div className="flex gap-2"><span className="w-1 h-1 rounded-full bg-yellow-400 flex-shrink-0 mt-1.5" /><span>Ensure jaws close correctly — a gap reduces accuracy.</span></div>
+                    <div className="flex gap-2"><span className="w-1 h-1 rounded-full bg-yellow-400 flex-shrink-0 mt-1.5" /><span>Position cable centrally within the jaw for best accuracy.</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       {/* Safety Rules */}
       <section className="bg-red-950/30 border border-red-500/20 rounded-2xl overflow-hidden">
         <div className="flex items-center gap-2 px-6 py-4 border-b border-red-500/20">
