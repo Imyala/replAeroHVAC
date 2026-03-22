@@ -1,16 +1,39 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { theorySections } from "@/data/content";
 import { ProgressButton } from "@/components/progress-button";
 import { motion, AnimatePresence } from "framer-motion";
-import { ThermometerSun, Snowflake, Waves } from "lucide-react";
+import { ThermometerSun, Snowflake, Waves, Hammer, Zap, Battery, Gauge, Calculator, ChevronRight } from "lucide-react";
+
+const units = [
+  {
+    heading: "1A",
+    colour: "border-amber-400/30 bg-amber-400/5",
+    headingColour: "text-amber-300",
+    items: [
+      { href: "/basic-tools", label: "Bolts & Screws", icon: Hammer, desc: "Fastener types, thread standards, torque and installation technique." },
+    ],
+  },
+  {
+    heading: "1B",
+    colour: "border-blue-400/30 bg-blue-400/5",
+    headingColour: "text-blue-300",
+    items: [
+      { href: "/basic-electrical-circuit", label: "Electrical Fundamentals", icon: Zap, desc: "Voltage, current, resistance and the basics of electrical circuits." },
+      { href: "/emf-sources", label: "EMF Sources", icon: Battery, desc: "Batteries, generators, thermocouples, solar cells and other EMF sources." },
+      { href: "/resistance", label: "Resistance", icon: Gauge, desc: "Resistivity, colour codes, series/parallel circuits and voltage drop." },
+      { href: "/ohms-law-power", label: "Ohm's Law & Power", icon: Calculator, desc: "Ohm's Law, Watt's Law, energy, work, efficiency and torque." },
+    ],
+  },
+];
 
 export default function Learn() {
   const [activeSection, setActiveSection] = useState(theorySections[0].id);
   const currentData = theorySections.find(s => s.id === activeSection);
 
   return (
-    <div className="p-8 md:p-12 max-w-6xl mx-auto">
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+    <div className="p-8 md:p-12 max-w-6xl mx-auto space-y-12">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground">Theory & Principles</h1>
           <p className="text-muted-foreground mt-2">Master the core concepts of thermodynamics and refrigeration.</p>
@@ -38,7 +61,6 @@ export default function Learn() {
 
         {/* Content Area */}
         <div className="lg:col-span-3 glass-panel rounded-2xl p-8 relative overflow-hidden">
-          {/* Decorative background elements */}
           <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
           
           <AnimatePresence mode="wait">
@@ -69,7 +91,6 @@ export default function Learn() {
                   ))}
                 </div>
 
-                {/* Simulated Diagram Area */}
                 <div className="mt-8 border border-white/10 rounded-xl bg-black/40 p-8 flex items-center justify-center min-h-[300px] relative overflow-hidden group">
                   <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
                   <p className="text-muted-foreground/50 font-mono text-sm relative z-10 text-center">
@@ -81,6 +102,39 @@ export default function Learn() {
             )}
           </AnimatePresence>
         </div>
+      </div>
+
+      {/* ── Study Units ── */}
+      <div className="space-y-6">
+        <div>
+          <h2 className="text-xl font-display font-bold text-foreground">Study Units</h2>
+          <p className="text-sm text-muted-foreground mt-1">Select a topic to begin studying.</p>
+        </div>
+        {units.map(({ heading, colour, headingColour, items }) => (
+          <div key={heading} className={`border rounded-2xl overflow-hidden ${colour}`}>
+            <div className="px-6 py-3 border-b border-white/10">
+              <span className={`text-xs font-bold uppercase tracking-widest ${headingColour}`}>Unit {heading}</span>
+            </div>
+            <div className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {items.map(({ href, label, icon: Icon, desc }) => (
+                <Link key={href} href={href}>
+                  <div className="group flex items-start gap-3 bg-card/60 hover:bg-card border border-white/5 hover:border-primary/30 rounded-xl p-4 transition-all duration-200 cursor-pointer h-full">
+                    <div className="p-2 rounded-lg bg-primary/10 border border-primary/20 flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                      <Icon className="w-4 h-4 text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-sm font-semibold text-foreground">{label}</span>
+                        <ChevronRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{desc}</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
