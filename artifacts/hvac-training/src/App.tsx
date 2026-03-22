@@ -14,6 +14,7 @@ import FaultFinding from "@/pages/fault-finding";
 import Quiz from "@/pages/quiz";
 import BasicTools from "@/pages/basic-tools";
 import BasicElectricalCircuit from "@/pages/basic-electrical-circuit";
+import EmfSources from "@/pages/emf-sources";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient({
@@ -39,6 +40,7 @@ function Router() {
         <Route path="/quiz" component={Quiz} />
         <Route path="/basic-tools" component={BasicTools} />
         <Route path="/basic-electrical-circuit" component={BasicElectricalCircuit} />
+        <Route path="/emf-sources" component={EmfSources} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
