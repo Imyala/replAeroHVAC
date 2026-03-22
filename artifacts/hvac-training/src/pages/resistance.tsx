@@ -71,7 +71,7 @@ export default function Resistance() {
         </div>
         <h1 className="text-4xl font-display font-bold text-foreground tracking-tight mb-3">Resistance</h1>
         <p className="text-muted-foreground leading-relaxed max-w-2xl">
-          Resistance is the opposition a material offers to the flow of electric current. Every conductor, component, and connection in an HVAC/R circuit has resistance — understanding it is essential for fault finding, cable sizing, and interpreting meter readings.
+          Resistance is the opposition a material offers to the flow of electric current. Every conductor, component, and connection in an electrical circuit has resistance — understanding it is essential for fault finding, cable sizing, and interpreting meter readings.
         </p>
       </div>
 
@@ -292,8 +292,7 @@ export default function Resistance() {
           </div>
           <p className="text-xs text-muted-foreground leading-relaxed">Different materials oppose current flow to different degrees. This property is called <span className="text-foreground font-medium">resistivity (ρ)</span>, measured in Ω·m. The amount of opposition depends on the number of free electrons in the material. Impurities and structural defects also increase resistivity.</p>
           <div className="flex gap-2 items-start text-xs">
-            <span className="text-green-400 flex-shrink-0 font-semibold">HVAC/R</span>
-            <span className="text-muted-foreground">Copper conductors are used throughout HVAC/R wiring for their low resistance. Nichrome wire is used in electric reheat coils and strip heaters because its high resistivity generates heat efficiently.</span>
+            <span className="text-muted-foreground">Copper conductors are used throughout electrical wiring for their low resistance. Nichrome wire is used in electric heating elements and strip heaters because its high resistivity generates heat efficiently.</span>
           </div>
         </div>
 
@@ -337,8 +336,7 @@ export default function Resistance() {
             </svg>
           </div>
           <div className="flex gap-2 items-start text-xs">
-            <span className="text-green-400 flex-shrink-0 font-semibold">HVAC/R</span>
-            <span className="text-muted-foreground">Long cable runs to remote condensing units cause voltage drop. Undersized or overly long cables raise resistance, causing excessive heat and motor underperformance.</span>
+            <span className="text-muted-foreground">Long cable runs to remote equipment cause voltage drop. Undersized or overly long cables raise resistance, causing excessive heat and motor underperformance.</span>
           </div>
         </div>
 
@@ -373,8 +371,7 @@ export default function Resistance() {
             </svg>
           </div>
           <div className="flex gap-2 items-start text-xs">
-            <span className="text-green-400 flex-shrink-0 font-semibold">HVAC/R</span>
-            <span className="text-muted-foreground">Higher-current loads (compressors, large fans) require larger cable cross-sections to keep resistance — and voltage drop and heat — within safe limits per AS/NZS 3000.</span>
+            <span className="text-muted-foreground">Higher-current loads require larger cable cross-sections to keep resistance — and therefore voltage drop and heat — within safe limits.</span>
           </div>
         </div>
 
@@ -424,7 +421,6 @@ export default function Resistance() {
             </svg>
           </div>
           <div className="flex gap-2 items-start text-xs">
-            <span className="text-green-400 flex-shrink-0 font-semibold">HVAC/R</span>
             <span className="text-muted-foreground">Motor windings heat up under load, increasing winding resistance. RTDs (Resistance Temperature Detectors) such as Pt100 exploit this predictable linear relationship for precision temperature measurement.</span>
           </div>
         </div>
@@ -582,7 +578,7 @@ export default function Resistance() {
             <div className="space-y-1.5 text-xs text-muted-foreground">
               <div className="flex gap-2"><span className="text-cyan-400">•</span><span><span className="text-foreground font-medium">Rheostat</span> — 2-terminal connection, used for current control.</span></div>
               <div className="flex gap-2"><span className="text-cyan-400">•</span><span><span className="text-foreground font-medium">Potentiometer</span> — 3-terminal connection, used as a voltage divider.</span></div>
-              <div className="flex gap-2"><span className="text-cyan-400">•</span><span>In HVAC/R: fan speed controls, damper position feedback, older thermostat dials.</span></div>
+              <div className="flex gap-2"><span className="text-cyan-400">•</span><span>Used for fan speed controls, position feedback, volume/brightness dials.</span></div>
             </div>
             <div className="bg-black/20 rounded-xl p-3 flex flex-col items-center gap-2">
               <p className="text-xs text-muted-foreground">Circuit symbol</p>
@@ -604,11 +600,11 @@ export default function Resistance() {
             <h3 className="font-semibold text-sm text-red-300">Thermistors (Temperature)</h3>
             <span className="text-xs text-muted-foreground">Rated in <span className="text-foreground font-medium">Ohms &amp; Watts</span></span>
           </div>
-          <p className="text-xs text-muted-foreground leading-relaxed">A thermistor's resistance changes significantly and predictably with temperature. They are semiconductor devices packaged in disc or rectangular form, and are the most common temperature sensor in HVAC/R control circuits.</p>
+          <p className="text-xs text-muted-foreground leading-relaxed">A thermistor's resistance changes significantly and predictably with temperature. They are semiconductor devices packaged in disc or rectangular form, and are the most common type of temperature sensor used in control circuits.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="bg-blue-400/5 border border-blue-400/20 rounded-xl p-3 space-y-1.5">
               <p className="font-semibold text-blue-300 text-xs">NTC — Negative Temperature Coefficient</p>
-              <p className="text-xs text-muted-foreground">Resistance <span className="text-blue-300 font-medium">decreases</span> as temperature rises. Most common in HVAC/R — used as air, pipe, and outdoor ambient temperature sensors.</p>
+              <p className="text-xs text-muted-foreground">Resistance <span className="text-blue-300 font-medium">decreases</span> as temperature rises. Used as air, pipe, and ambient temperature sensors in control circuits.</p>
               <p className="font-mono text-xs text-muted-foreground bg-background/40 rounded px-2 py-1">e.g. 10 kΩ at 25 °C → ~1 kΩ at 85 °C</p>
             </div>
             <div className="bg-red-400/5 border border-red-400/20 rounded-xl p-3 space-y-1.5">
@@ -675,7 +671,7 @@ export default function Resistance() {
               <div className="flex gap-2"><span className="text-amber-400">•</span><span>In <span className="text-foreground font-medium">darkness</span>: resistance up to 10 MΩ</span></div>
               <div className="flex gap-2"><span className="text-amber-400">•</span><span>In <span className="text-foreground font-medium">bright daylight</span>: resistance as low as 100 Ω</span></div>
               <div className="flex gap-2"><span className="text-amber-400">•</span><span>Construction: sulphide element on metallic grid</span></div>
-              <div className="flex gap-2"><span className="text-amber-400">•</span><span>HVAC/R use: daylight/occupancy sensing for building automation and lighting control circuits</span></div>
+              <div className="flex gap-2"><span className="text-amber-400">•</span><span>Used for daylight/occupancy sensing in building automation and lighting control circuits</span></div>
               <div className="bg-black/20 rounded-xl p-3 flex flex-col items-center gap-1">
                 <p className="text-muted-foreground">Circuit symbol</p>
                 <svg viewBox="0 0 120 50" className="w-28" aria-label="LDR circuit symbol">
@@ -704,7 +700,7 @@ export default function Resistance() {
               <div className="flex gap-2"><span className="text-violet-400">•</span><span>Rated in <span className="text-foreground font-medium">Joules</span> (energy absorbed) and <span className="text-foreground font-medium">Volts</span> (clamping voltage)</span></div>
               <div className="flex gap-2"><span className="text-violet-400">•</span><span>Common materials: Zinc Oxide (ZnO) and Silicon Carbide (SiC)</span></div>
               <div className="flex gap-2"><span className="text-violet-400">•</span><span><span className="text-foreground font-medium">VDR protection circuit:</span> the VDR is connected in parallel across the supply. A surge causes high current to flow through the VDR, which ruptures an in-series fuse before the surge reaches the equipment.</span></div>
-              <div className="flex gap-2"><span className="text-violet-400">•</span><span>HVAC/R use: surge protection on control boards, VFDs, and compressor electronics.</span></div>
+              <div className="flex gap-2"><span className="text-violet-400">•</span><span>Used for surge protection on control boards, VFDs, and sensitive electronics.</span></div>
             </div>
             <div className="bg-black/20 rounded-xl p-3">
               <p className="text-xs text-muted-foreground text-center mb-2">VDR Surge Protection Circuit</p>
@@ -822,8 +818,8 @@ export default function Resistance() {
             </svg>
           </div>
           <div className="space-y-2 text-xs text-muted-foreground">
-            <div className="flex gap-2 items-start"><span className="text-red-400 flex-shrink-0">•</span><span><span className="text-foreground font-medium">Oven fan speed control resistor</span> — ceramic-bodied wire-wound resistor used to control the speed of HVAC/R fan motors by dropping voltage.</span></div>
-            <div className="flex gap-2 items-start"><span className="text-red-400 flex-shrink-0">•</span><span><span className="text-foreground font-medium">Grid resistors</span> — large banks of resistance wire used in motor starting circuits and dynamic braking for large HVAC/R plant.</span></div>
+            <div className="flex gap-2 items-start"><span className="text-red-400 flex-shrink-0">•</span><span><span className="text-foreground font-medium">Oven fan speed control resistor</span> — ceramic-bodied wire-wound resistor used to control fan motor speed by dropping voltage.</span></div>
+            <div className="flex gap-2 items-start"><span className="text-red-400 flex-shrink-0">•</span><span><span className="text-foreground font-medium">Grid resistors</span> — large banks of resistance wire used in motor starting circuits and dynamic braking for large electrical plant.</span></div>
             <div className="flex gap-2 items-start"><span className="text-red-400 flex-shrink-0">•</span><span>Power resistors are rated in both <span className="text-foreground font-medium">Ohms</span> and <span className="text-foreground font-medium">Watts</span> — the wattage rating must not be exceeded or the resistor will overheat and fail.</span></div>
             <div className="flex gap-2 items-start"><span className="text-red-400 flex-shrink-0">•</span><span>A <span className="text-foreground font-medium">pig-tail</span> connection (flexible lead) is used on high-power resistors to allow for thermal expansion.</span></div>
           </div>
