@@ -56,6 +56,7 @@ const circuitTypes = [
       "If one component fails open, the entire circuit stops",
     ],
     hvac: "Safety controls wired in series (high-pressure cutout, low-pressure cutout, freeze stat, motor overload). Any one trip opens the circuit and shuts down the compressor.",
+    electrical: "Three 100 Ω resistors in series across a 12 V supply. Total R = 100 + 100 + 100 = 300 Ω. Current: I = V ÷ R = 12 ÷ 300 = 0.04 A (40 mA). Each resistor drops 4 V — the voltages add up to the full 12 V supply.",
   },
   {
     name: "Parallel Circuit",
@@ -69,6 +70,7 @@ const circuitTypes = [
       "If one branch fails open, other branches continue to operate",
     ],
     hvac: "Multiple evaporator fan motors or condenser fans wired in parallel across the supply. Failure of one fan does not kill the others.",
+    electrical: "Three 60 W lamps wired in parallel across a 240 V supply. Each draws I = P ÷ V = 60 ÷ 240 = 0.25 A. Total current = 0.75 A. Each lamp receives the full 240 V — removing one lamp has no effect on the others.",
   },
 ];
 
@@ -1224,9 +1226,12 @@ export default function BasicElectricalCircuit() {
                   </li>
                 ))}
               </ul>
-              <div className="border-t border-white/8 pt-3">
+              <div className="border-t border-white/8 pt-3 space-y-2">
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   <span className="text-foreground font-medium">HVAC/R example: </span>{ct.hvac}
+                </p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  <span className="text-foreground font-medium">Electrical example: </span>{ct.electrical}
                 </p>
               </div>
             </div>
