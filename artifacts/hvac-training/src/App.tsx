@@ -12,6 +12,7 @@ import Disassemble from "@/pages/disassemble";
 import Repair from "@/pages/repair";
 import FaultFinding from "@/pages/fault-finding";
 import Quiz from "@/pages/quiz";
+import BasicTools from "@/pages/basic-tools";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient({
@@ -35,6 +36,7 @@ function Router() {
         <Route path="/repair" component={Repair} />
         <Route path="/fault-finding" component={FaultFinding} />
         <Route path="/quiz" component={Quiz} />
+        <Route path="/basic-tools" component={BasicTools} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

@@ -10,7 +10,8 @@ import {
   GraduationCap, 
   ChevronLeft, 
   ChevronRight,
-  Wind
+  Wind,
+  Hammer
 } from "lucide-react";
 import { useGetProgress } from "@workspace/api-client-react";
 
@@ -22,6 +23,7 @@ const navItems = [
   { href: "/", label: "Dashboard", icon: Activity },
   { href: "/learn", label: "Learn Theory", icon: BookOpen },
   { href: "/components", label: "Component Library", icon: Box },
+  { href: "/basic-tools", label: "Basic Tools", icon: Hammer },
   { href: "/build", label: "Build & Assemble", icon: Wrench },
   { href: "/disassemble", label: "Disassemble", icon: PenTool },
   { href: "/fault-finding", label: "Fault Finding", icon: Activity },
