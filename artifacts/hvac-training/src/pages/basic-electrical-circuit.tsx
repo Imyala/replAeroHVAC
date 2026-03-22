@@ -351,7 +351,7 @@ export default function BasicElectricalCircuit() {
       <section className="bg-card border border-white/8 rounded-2xl overflow-hidden">
         <div className="flex items-center gap-2 px-6 py-4 border-b border-white/8">
           <Info className="w-4 h-4 text-primary" />
-          <h2 className="font-semibold text-foreground">SI Units — Système Internationale</h2>
+          <h2 className="font-semibold text-foreground">SI Units — International System of Units <span className="text-muted-foreground font-normal text-xs">(Système International d'Unités)</span></h2>
         </div>
         <div className="p-6 space-y-6">
           <p className="text-sm text-muted-foreground leading-relaxed">
