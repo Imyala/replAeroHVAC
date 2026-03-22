@@ -907,133 +907,6 @@ export default function OhmsLawPower() {
         </div>
       </div>
 
-      {/* ── Formula Wheel ── */}
-      <div className="bg-card border border-border rounded-2xl p-5 space-y-4">
-        <div className="flex items-center gap-2">
-          <Calculator className="w-4 h-4 text-yellow-400" />
-          <h2 className="font-semibold text-foreground">The Formula Wheel — All 12 Permutations</h2>
-        </div>
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          Combining Ohm's Law and Watt's Law produces 12 equations — three formulas for each of the four quantities (V, I, R, P). Given any two known values, any unknown can be calculated.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {[
-            {
-              qty: "V", name: "Voltage", unit: "Volts", colour: "text-yellow-300", bg: "bg-yellow-400/5", border: "border-yellow-400/25",
-              formulas: [
-                { eq: "V = R × I", label: "Ohm's Law" },
-                { eq: "V = P / I", label: "Watt's Law" },
-                { eq: "V = √(P × R)", label: "Combined" },
-              ]
-            },
-            {
-              qty: "I", name: "Current", unit: "Amperes", colour: "text-blue-300", bg: "bg-blue-400/5", border: "border-blue-400/25",
-              formulas: [
-                { eq: "I = V / R", label: "Ohm's Law" },
-                { eq: "I = P / V", label: "Watt's Law" },
-                { eq: "I = √(P / R)", label: "Combined" },
-              ]
-            },
-            {
-              qty: "R", name: "Resistance", unit: "Ohms", colour: "text-orange-300", bg: "bg-orange-400/5", border: "border-orange-400/25",
-              formulas: [
-                { eq: "R = V / I", label: "Ohm's Law" },
-                { eq: "R = V² / P", label: "Watt's Law" },
-                { eq: "R = P / I²", label: "Combined" },
-              ]
-            },
-            {
-              qty: "P", name: "Power", unit: "Watts", colour: "text-green-300", bg: "bg-green-400/5", border: "border-green-400/25",
-              formulas: [
-                { eq: "P = I × V", label: "Watt's Law" },
-                { eq: "P = R × I²", label: "Combined" },
-                { eq: "P = V² / R", label: "Combined" },
-              ]
-            },
-          ].map(({ qty, name, unit, colour, bg, border, formulas }) => (
-            <div key={qty} className={`${bg} border ${border} rounded-xl p-4 space-y-3`}>
-              <div className="flex items-baseline gap-2">
-                <span className={`text-3xl font-display font-bold ${colour}`}>{qty}</span>
-                <span className="text-foreground font-semibold text-sm">{name}</span>
-                <span className={`text-xs font-mono ${colour} ml-auto`}>{unit}</span>
-              </div>
-              <div className="space-y-2">
-                {formulas.map(({ eq, label }) => (
-                  <div key={eq} className="flex items-center justify-between gap-2">
-                    <div className={`font-mono text-sm font-bold ${colour}`}>{eq}</div>
-                    <div className="text-xs text-muted-foreground bg-background/40 rounded px-2 py-0.5">{label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-        {/* Formula wheel SVG — 4-colour pie style matching the source image */}
-        <div className="flex justify-center pt-2">
-          <svg viewBox="0 0 340 340" className="w-72 h-72" aria-label="Formula wheel — P top-left (blue), V top-right (yellow), I bottom-left (green), R bottom-right (orange)">
-            {/* Background segments */}
-            {/* P — top-left */}
-            <path d="M170,170 L10,10 L170,10 Z" fill="#60a5fa" fillOpacity="0.12"/>
-            <path d="M170,170 L10,10 L10,170 Z" fill="#60a5fa" fillOpacity="0.12"/>
-            {/* V — top-right */}
-            <path d="M170,170 L330,10 L170,10 Z" fill="#fbbf24" fillOpacity="0.12"/>
-            <path d="M170,170 L330,10 L330,170 Z" fill="#fbbf24" fillOpacity="0.12"/>
-            {/* I — bottom-left */}
-            <path d="M170,170 L10,330 L170,330 Z" fill="#4ade80" fillOpacity="0.12"/>
-            <path d="M170,170 L10,330 L10,170 Z" fill="#4ade80" fillOpacity="0.12"/>
-            {/* R — bottom-right */}
-            <path d="M170,170 L330,330 L170,330 Z" fill="#fb923c" fillOpacity="0.12"/>
-            <path d="M170,170 L330,330 L330,170 Z" fill="#fb923c" fillOpacity="0.12"/>
-
-            {/* Outer ring */}
-            <circle cx="170" cy="170" r="155" fill="none" stroke="#374151" strokeWidth="1.5"/>
-            {/* Inner ring */}
-            <circle cx="170" cy="170" r="100" fill="none" stroke="#374151" strokeWidth="1.5"/>
-            {/* Centre ring */}
-            <circle cx="170" cy="170" r="46" fill="#1e293b" stroke="#374151" strokeWidth="1.5"/>
-            {/* Quadrant dividers */}
-            <line x1="170" y1="15" x2="170" y2="325" stroke="#374151" strokeWidth="1.5"/>
-            <line x1="15" y1="170" x2="325" y2="170" stroke="#374151" strokeWidth="1.5"/>
-
-            {/* Centre labels */}
-            <text x="140" y="162" textAnchor="middle" fill="#60a5fa" fontSize="17" fontWeight="bold" fontFamily="monospace">P</text>
-            <text x="140" y="178" textAnchor="middle" fill="#6b7280" fontSize="8">watts</text>
-            <text x="200" y="162" textAnchor="middle" fill="#fbbf24" fontSize="17" fontWeight="bold" fontFamily="monospace">V</text>
-            <text x="200" y="178" textAnchor="middle" fill="#6b7280" fontSize="8">volts</text>
-            <text x="140" y="195" textAnchor="middle" fill="#4ade80" fontSize="17" fontWeight="bold" fontFamily="monospace">I</text>
-            <text x="140" y="210" textAnchor="middle" fill="#6b7280" fontSize="8">amps</text>
-            <text x="200" y="195" textAnchor="middle" fill="#fb923c" fontSize="17" fontWeight="bold" fontFamily="monospace">R</text>
-            <text x="200" y="210" textAnchor="middle" fill="#6b7280" fontSize="8">ohms</text>
-
-            {/* Inner ring formulas — P top-left */}
-            <text x="90" y="110" textAnchor="middle" fill="#60a5fa" fontSize="9" fontFamily="monospace">V²/R</text>
-            <text x="60" y="142" textAnchor="middle" fill="#60a5fa" fontSize="9" fontFamily="monospace">R×I²</text>
-            <text x="110" y="148" textAnchor="middle" fill="#60a5fa" fontSize="9" fontFamily="monospace">V×I</text>
-
-            {/* Inner ring — V top-right */}
-            <text x="250" y="110" textAnchor="middle" fill="#fbbf24" fontSize="9" fontFamily="monospace">R×I</text>
-            <text x="218" y="148" textAnchor="middle" fill="#fbbf24" fontSize="9" fontFamily="monospace">P/I</text>
-            <text x="280" y="142" textAnchor="middle" fill="#fbbf24" fontSize="9" fontFamily="monospace">√(P×R)</text>
-
-            {/* Inner ring — I bottom-left */}
-            <text x="90" y="230" textAnchor="middle" fill="#4ade80" fontSize="9" fontFamily="monospace">V/R</text>
-            <text x="60" y="200" textAnchor="middle" fill="#4ade80" fontSize="9" fontFamily="monospace">P/V</text>
-            <text x="110" y="196" textAnchor="middle" fill="#4ade80" fontSize="9" fontFamily="monospace">√(P/R)</text>
-
-            {/* Inner ring — R bottom-right */}
-            <text x="250" y="230" textAnchor="middle" fill="#fb923c" fontSize="9" fontFamily="monospace">V/I</text>
-            <text x="218" y="196" textAnchor="middle" fill="#fb923c" fontSize="9" fontFamily="monospace">V²/P</text>
-            <text x="280" y="200" textAnchor="middle" fill="#fb923c" fontSize="9" fontFamily="monospace">P/I²</text>
-
-            {/* Corner labels */}
-            <text x="68" y="28" textAnchor="middle" fill="#60a5fa" fontSize="10" fontWeight="bold">P = power</text>
-            <text x="272" y="28" textAnchor="middle" fill="#fbbf24" fontSize="10" fontWeight="bold">V = voltage</text>
-            <text x="68" y="322" textAnchor="middle" fill="#4ade80" fontSize="10" fontWeight="bold">I = current</text>
-            <text x="272" y="322" textAnchor="middle" fill="#fb923c" fontSize="10" fontWeight="bold">R = resistance</text>
-          </svg>
-        </div>
-      </div>
-
       {/* ── Power Worked Examples ── */}
       <div className="bg-card border border-border rounded-2xl p-5 space-y-4">
         <div className="flex items-center gap-2">
@@ -1637,8 +1510,7 @@ export default function OhmsLawPower() {
             { n: "8", text: "Power is the rate of doing work. P = Energy ÷ Time. More power = same work done faster." },
             { n: "9", text: "Watt's Law: P = I × V. Power = Current × Voltage. Unit = Watt (W) = J/s." },
             { n: "10", text: "P = I²R and P = V²/R are derived by combining Ohm's and Watt's Laws." },
-            { n: "11", text: "The formula wheel gives 12 equations — three ways to find each of V, I, R, and P." },
-            { n: "12", text: "Always convert prefix units (mA → A, kΩ → Ω) before substituting into formulas." },
+            { n: "11", text: "Always convert prefix units (mA → A, kΩ → Ω) before substituting into formulas." },
           ].map(({ n, text }) => (
             <div key={n} className="flex gap-3 items-start bg-muted/30 rounded-xl p-3">
               <span className="w-5 h-5 rounded-full bg-yellow-400/20 text-yellow-300 text-xs flex items-center justify-center flex-shrink-0 font-bold">{n}</span>
