@@ -7,11 +7,18 @@ import { ThermometerSun, Snowflake, Waves, Hammer, Zap, Battery, Gauge, Calculat
 
 const units = [
   {
-    heading: "1B",
+    heading: "1A",
     colour: "border-amber-400/30 bg-amber-400/5",
     headingColour: "text-amber-300",
     items: [
       { href: "/legislation", label: "Legislation", icon: Scale, desc: "Queensland legislative hierarchy, WHS/OHS, codes of practice and workplace documentation." },
+    ],
+  },
+  {
+    heading: "1B",
+    colour: "border-amber-400/30 bg-amber-400/5",
+    headingColour: "text-amber-300",
+    items: [
       { href: "/basic-tools", label: "Bolts & Screws", icon: Hammer, desc: "Fastener types, thread standards, torque and installation technique." },
     ],
   },

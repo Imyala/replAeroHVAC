@@ -46,9 +46,14 @@ const navSections: NavSection[] = [
     icon: BookOpen,
     groups: [
       {
-        heading: "1B",
+        heading: "1A",
         items: [
           { href: "/legislation", label: "Legislation", icon: Scale },
+        ],
+      },
+      {
+        heading: "1B",
+        items: [
           { href: "/basic-tools", label: "Bolts & Screws", icon: Hammer },
         ],
       },
