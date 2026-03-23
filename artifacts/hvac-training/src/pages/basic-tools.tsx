@@ -183,7 +183,7 @@ export default function BasicTools() {
           <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
             <Wrench className="w-6 h-6 text-primary" />
           </div>
-          <span className="text-sm font-medium text-primary uppercase tracking-widest">Bolts &amp; Screws</span>
+          <span className="text-sm font-medium text-primary uppercase tracking-widest">1A — Bolts &amp; Screws</span>
         </div>
         <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Bolts &amp; Screws</h1>
         <p className="text-muted-foreground text-lg">

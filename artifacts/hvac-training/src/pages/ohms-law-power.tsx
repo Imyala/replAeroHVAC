@@ -6,10 +6,11 @@ export default function OhmsLawPower() {
 
       {/* ── Page Header ── */}
       <div>
-        <div className="flex items-center gap-2 mb-3">
+        <div className="flex items-center gap-3 mb-3">
           <div className="bg-yellow-400/10 border border-yellow-400/20 rounded-lg p-2">
             <Calculator className="w-5 h-5 text-yellow-400" />
           </div>
+          <span className="text-sm font-medium text-primary uppercase tracking-widest">1B — Electrical Theory</span>
         </div>
         <h1 className="text-4xl font-display font-bold text-foreground tracking-tight mb-3">Ohm's Law &amp; Power</h1>
         <p className="text-muted-foreground leading-relaxed max-w-2xl">
