@@ -56,6 +56,7 @@ const navSections: NavSection[] = [
           { href: "/emf-sources", label: "EMF Sources", icon: Battery },
           { href: "/resistance", label: "Resistance", icon: Gauge },
           { href: "/ohms-law-power", label: "Ohm's Law & Power", icon: Calculator },
+          { href: "/effects-of-current", label: "Effects of Current", icon: Zap },
         ],
       },
     ],
