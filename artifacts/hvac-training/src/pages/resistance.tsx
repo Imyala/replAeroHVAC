@@ -426,6 +426,49 @@ export default function Resistance() {
           <div className="flex gap-2 items-start text-xs">
             <span className="text-muted-foreground">Motor windings heat up under load, increasing winding resistance. RTDs (Resistance Temperature Detectors) such as Pt100 exploit this predictable linear relationship for precision temperature measurement.</span>
           </div>
+
+          {/* Temperature Coefficient Table 5.3 */}
+          <div className="bg-background/30 border border-white/8 rounded-xl p-4 space-y-3">
+            <p className="text-xs font-semibold text-foreground uppercase tracking-widest">Table 5.3 — Temperature Coefficients at 20 °C (α₂₀)</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              The temperature coefficient of resistance (α) is defined as the change in resistance per ohm per degree Celsius.
+              The value is given at 20 °C because α itself changes with temperature. Most pure metals have a positive α (resistance rises with temperature).
+              Semiconductors such as carbon have a <strong className="text-foreground">negative</strong> α.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-white/8">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-white/8 bg-background/40">
+                    <th className="text-left py-2 px-3 font-semibold text-muted-foreground">Material</th>
+                    <th className="text-center py-2 px-3 font-semibold text-muted-foreground">α₂₀ (per °C)</th>
+                    <th className="text-left py-2 px-3 font-semibold text-muted-foreground">Type</th>
+                    <th className="text-left py-2 px-3 font-semibold text-muted-foreground">Note</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {[
+                    { mat:"Silver",    a:"0.004",   type:"Positive", note:"Resistance increases ~0.4% per °C" },
+                    { mat:"Copper",    a:"0.00392", type:"Positive", note:"Most common conductor; α ≈ 0.004" },
+                    { mat:"Gold",      a:"0.0034",  type:"Positive", note:"Lower α than copper — more stable" },
+                    { mat:"Aluminium", a:"0.0039",  type:"Positive", note:"α ≈ 0.004; used in overhead lines" },
+                    { mat:"Tungsten",  a:"0.0045",  type:"Positive", note:"Lamp filaments — highest α listed" },
+                    { mat:"Nichrome",  a:"0.0017",  type:"Positive", note:"Heating elements — low α by design" },
+                    { mat:"Carbon",    a:"−0.0005", type:"Negative", note:"Most carbon forms are NTC; value is for amorphous carbon" },
+                  ].map(({ mat, a, type, note }) => (
+                    <tr key={mat} className="hover:bg-white/2">
+                      <td className="py-2 px-3 font-medium text-foreground">{mat}</td>
+                      <td className={`py-2 px-3 font-mono text-center font-bold ${a.startsWith("−") ? "text-green-300" : "text-red-300"}`}>{a}</td>
+                      <td className={`py-2 px-3 text-xs ${a.startsWith("−") ? "text-green-400" : "text-red-400"}`}>{type}</td>
+                      <td className="py-2 px-3 text-muted-foreground">{note}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="bg-yellow-400/5 border border-yellow-400/20 rounded-lg px-3 py-2">
+              <p className="text-xs text-muted-foreground"><strong className="text-yellow-300">Worked example:</strong> A 40 W incandescent lamp has a cold resistance of about 100 Ω. When operating at temperature, it rises to 1 440 Ω. This is why lamps draw a large current surge when first switched on — the cold resistance is far lower than the normal operating resistance.</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -481,6 +524,38 @@ export default function Resistance() {
               </tbody>
             </table>
             <p className="text-xs text-muted-foreground/60 px-3 pb-2 pt-1">Note: Silver has a resistivity expressed without scientific notation of 0.0000000163 Ω·m</p>
+          </div>
+        </div>
+
+        {/* Worked Examples — R = ρl/A */}
+        <div className="space-y-3 pt-2">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Worked Examples — R = ρl / A</p>
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            Cross-sectional area (A) must be in square metres (m²). Cable is typically rated in mm² —
+            convert by multiplying mm² by 10⁻⁶. For circular conductors: <span className="font-mono text-foreground">A = π × d² / 4</span> where d is in metres.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-cyan-400/5 border border-cyan-400/25 rounded-xl p-4 space-y-2">
+              <p className="text-xs font-bold text-cyan-300 uppercase tracking-widest">Example 5.1 — Copper cable</p>
+              <p className="text-xs text-muted-foreground">Find the resistance of a 100 m length of 2.5 mm² copper cable (ρ = 1.72 × 10⁻⁸ Ω·m).</p>
+              <div className="font-mono text-xs text-muted-foreground space-y-0.5">
+                <p>A = 2.5 mm² = 2.5 × 10⁻⁶ m²</p>
+                <p>R = ρ × l / A</p>
+                <p>R = (1.72 × 10⁻⁸ × 100) / (2.5 × 10⁻⁶)</p>
+                <p>R = 1.72 × 10⁻⁶ / 2.5 × 10⁻⁶</p>
+              </div>
+              <p className="font-mono text-sm font-bold text-cyan-300">R = 0.688 Ω</p>
+            </div>
+            <div className="bg-cyan-400/5 border border-cyan-400/25 rounded-xl p-4 space-y-2">
+              <p className="text-xs font-bold text-cyan-300 uppercase tracking-widest">Example 5.2 — Nichrome heating element</p>
+              <p className="text-xs text-muted-foreground">Find R of a 0.6 m length of nichrome wire 0.3 mm diameter (ρ = 112 × 10⁻⁸ Ω·m).</p>
+              <div className="font-mono text-xs text-muted-foreground space-y-0.5">
+                <p>d = 0.3 mm = 3 × 10⁻⁴ m</p>
+                <p>A = π × (3×10⁻⁴)² / 4 = 7.07 × 10⁻⁸ m²</p>
+                <p>R = (112 × 10⁻⁸ × 0.6) / (7.07 × 10⁻⁸)</p>
+              </div>
+              <p className="font-mono text-sm font-bold text-cyan-300">R = 9.5 Ω</p>
+            </div>
           </div>
         </div>
       </div>
@@ -788,6 +863,157 @@ export default function Resistance() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Mnemonic + reading tips */}
+        <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 space-y-3">
+          <p className="text-xs font-semibold text-foreground uppercase tracking-widest">Mnemonic — Colour Sequence (0 → 9)</p>
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-1">
+            {[
+              { word:"Black",   colour:"#000000", text:"text-white", digit:"0" },
+              { word:"Berries", colour:"#8B4513", text:"text-white", digit:"1" },
+              { word:"Roam",    colour:"#FF0000", text:"text-white", digit:"2" },
+              { word:"Over",    colour:"#FF8C00", text:"text-white", digit:"3" },
+              { word:"Your",    colour:"#FFD700", text:"text-black", digit:"4" },
+              { word:"Garden",  colour:"#008000", text:"text-white", digit:"5" },
+              { word:"But",     colour:"#0000FF", text:"text-white", digit:"6" },
+              { word:"Violets", colour:"#8B008B", text:"text-white", digit:"7" },
+              { word:"Grow",    colour:"#808080", text:"text-white", digit:"8" },
+              { word:"Wild",    colour:"#FFFFFF", text:"text-black", digit:"9" },
+            ].map(({ word, colour, text, digit }) => (
+              <div key={word} className="flex items-center gap-2 rounded-lg overflow-hidden border border-white/10">
+                <span className={`w-7 h-7 flex-shrink-0 flex items-center justify-center text-xs font-bold ${text}`} style={{ backgroundColor: colour }}>{digit}</span>
+                <span className="text-xs text-muted-foreground pr-1">{word}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs font-mono font-bold text-primary mt-1">"Black Berries Roam Over Your Garden But Violets Grow Wild"</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground mt-1">
+            <div className="flex gap-2"><span className="text-primary">•</span><span>The <strong className="text-foreground">tolerance band</strong> is spaced further apart from the others — always read from the end closest to the digit bands.</span></div>
+            <div className="flex gap-2"><span className="text-primary">•</span><span>The <strong className="text-foreground">first band</strong> can never be black, gold or silver.</span></div>
+            <div className="flex gap-2"><span className="text-primary">•</span><span><strong className="text-foreground">4-band:</strong> digits 1–2, multiplier 3, tolerance 4 (gold = 5%, silver = 10%).</span></div>
+            <div className="flex gap-2"><span className="text-primary">•</span><span><strong className="text-foreground">5-band:</strong> digits 1–3, multiplier 4, tolerance 5 (usually red = 2%, brown = 1%).</span></div>
+            <div className="flex gap-2"><span className="text-primary">•</span><span>The <strong className="text-foreground">multiplier band</strong> is unlikely to be violet, grey or white (large exponents rarely used).</span></div>
+            <div className="flex gap-2"><span className="text-primary">•</span><span>If in doubt — <strong className="text-foreground">measure with an ohmmeter!</strong></span></div>
+          </div>
+        </div>
+
+        {/* Preferred values E12/E24 */}
+        <div className="space-y-3">
+          <p className="text-xs font-semibold text-foreground uppercase tracking-widest">Preferred Resistor Values — E12 &amp; E24</p>
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            It is not economical to manufacture every possible resistance value. Instead, manufacturers produce a standard set
+            called <strong className="text-foreground">preferred values</strong>. The E12 range (12 values per decade) suits 10% tolerance resistors;
+            the E24 range (24 values per decade) suits 5% tolerance resistors. Multiply any preferred value by the decade factor
+            to get a specific resistance (e.g. 2.2 × 1000 = 2.2 kΩ).
+          </p>
+          <div className="bg-background/30 border border-white/8 rounded-xl overflow-hidden">
+            <div className="px-4 py-2 bg-background/40 border-b border-white/8">
+              <p className="text-xs font-semibold text-primary">E12 Preferred Values (×0.01, ×0.1, ×1, ×10, ×100, ×1k, ×10k, ×100k, ×1M, ×10M)</p>
+            </div>
+            <div className="p-4">
+              <div className="flex flex-wrap gap-2">
+                {[1, 1.2, 1.5, 1.8, 2.2, 2.7, 3.3, 3.9, 4.7, 5.6, 6.8, 8.2].map((v) => (
+                  <span key={v} className="font-mono text-xs bg-primary/10 border border-primary/25 rounded px-2 py-1 text-primary font-bold">{v}</span>
+                ))}
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">12 values · 10 decades = 120 possible values from 0.01 Ω to 82 MΩ</p>
+            </div>
+          </div>
+          <div className="bg-background/30 border border-white/8 rounded-xl overflow-hidden">
+            <div className="px-4 py-2 bg-background/40 border-b border-white/8">
+              <p className="text-xs font-semibold text-orange-300">E24 Preferred Values (includes E12 + 12 extra)</p>
+            </div>
+            <div className="p-4 space-y-2">
+              <div>
+                <p className="text-xs text-muted-foreground mb-1">E12 values (italic in textbook):</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {[1, 1.2, 1.5, 1.8, 2.2, 2.7, 3.3, 3.9, 4.7, 5.6, 6.8, 8.2].map((v) => (
+                    <span key={v} className="font-mono text-xs bg-primary/10 border border-primary/25 rounded px-2 py-1 text-primary font-bold">{v}</span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground mb-1">Extra E24 values (bold in textbook):</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {[1.1, 1.3, 1.6, 2.0, 2.4, 3.0, 3.6, 4.3, 5.1, 6.2, 7.5, 9.1].map((v) => (
+                    <span key={v} className="font-mono text-xs bg-orange-400/10 border border-orange-400/25 rounded px-2 py-1 text-orange-300 font-bold">{v}</span>
+                  ))}
+                </div>
+              </div>
+              <p className="text-xs text-muted-foreground">24 values per decade · covers 5% tolerance without gaps in range.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Measuring Resistance with an Ohmmeter ── */}
+      <div className="bg-card border border-border rounded-2xl p-5 space-y-4">
+        <div className="flex items-center gap-2">
+          <Activity className="w-4 h-4 text-green-400" />
+          <h2 className="font-semibold text-foreground">5.4 — Measuring Resistance (Ohmmeter)</h2>
+        </div>
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          Resistance is measured with an ohmmeter (usually part of a multimeter). Both analogue and digital types are common.
+          An analogue ohmmeter reads <strong className="text-foreground">right to left</strong> (zero on the right, infinity on the left) —
+          the opposite of voltmeter/ammeter scales.
+        </p>
+
+        {/* Safety warnings */}
+        <div className="bg-red-400/5 border border-red-400/30 rounded-xl p-4 space-y-2">
+          <p className="text-sm font-semibold text-red-300">Critical Safety Warnings</p>
+          <div className="space-y-1.5">
+            <div className="flex gap-2 text-xs">
+              <span className="text-red-400 font-bold flex-shrink-0">1.</span>
+              <span className="text-muted-foreground"><strong className="text-foreground">Never measure resistance in a live circuit.</strong> If voltage is present, it will damage the meter. In extreme cases, the meter can explode, catch fire, and cause injury. Always isolate and verify the circuit is de-energised first.</span>
+            </div>
+            <div className="flex gap-2 text-xs">
+              <span className="text-red-400 font-bold flex-shrink-0">2.</span>
+              <span className="text-muted-foreground"><strong className="text-foreground">Do not touch both probes simultaneously.</strong> Your body resistance (~10 kΩ or more) will appear in parallel with the component being measured, giving an inaccurate (lower) reading.</span>
+            </div>
+          </div>
+        </div>
+
+        {/* 5-step procedure */}
+        <div className="space-y-3">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">5-Step Measurement Procedure</p>
+          <div className="space-y-2">
+            {[
+              {
+                n:"1", colour:"blue",
+                title:"Select the resistance (Ω) function",
+                body:"Use the rotary selector switch on the multimeter to select OHMS or Ω. Ensure the test leads are plugged into the correct sockets (usually COM and Ω/V).",
+              },
+              {
+                n:"2", colour:"blue",
+                title:"Zero the pointer (analogue meters only)",
+                body:"With probes apart: adjust the mechanical zero if the pointer is not at the infinity (∞) end. With probes touching: adjust the 'zero ohm' control until the pointer reads 0 Ω. Repeat the zero adjustment every time you change range.",
+              },
+              {
+                n:"3", colour:"blue",
+                title:"Select a suitable range",
+                body:"Many digital multimeters are auto-ranging — select Ω and they find the range automatically. For an analogue meter: choose the range that gives a pointer deflection between ¼ and ¾ of full scale. For a digital meter: select the range closest to the expected value (e.g. 2 kΩ range for a 1 kΩ resistor).",
+              },
+              {
+                n:"4", colour:"blue",
+                title:"Connect probes — adjust range if needed",
+                body:"Connect the ohmmeter probes across the component or between the circuit test points. If the reading is at either extreme, re-select a more suitable range. For analogue: pointer barely moves → select a higher range; pointer near full scale → select a lower range.",
+              },
+              {
+                n:"5", colour:"blue",
+                title:"Read the resistance value",
+                body:"On a digital meter: read the display directly. On an analogue meter: the resistance reading = scale reading × range multiplier. For example, a pointer at 50 on the OHMS × 100 range = 50 × 100 = 5 000 Ω = 5 kΩ.",
+              },
+            ].map(({ n, colour, title, body }) => (
+              <div key={n} className={`flex gap-3 bg-${colour}-400/5 border border-${colour}-400/20 rounded-xl p-4`}>
+                <span className={`text-${colour}-300 font-mono font-bold text-lg flex-shrink-0 w-5`}>{n}</span>
+                <div className="space-y-1">
+                  <p className={`text-sm font-semibold text-${colour}-200`}>{title}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
