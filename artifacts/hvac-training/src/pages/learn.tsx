@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { theorySections } from "@/data/content";
 import { ProgressButton } from "@/components/progress-button";
 import { motion, AnimatePresence } from "framer-motion";
-import { ThermometerSun, Snowflake, Waves, Hammer, Zap, Battery, Gauge, Calculator, ChevronRight, Layers } from "lucide-react";
+import { ThermometerSun, Snowflake, Waves, Hammer, Zap, Battery, Gauge, Calculator, ChevronRight, Layers, Scale } from "lucide-react";
 
 const units = [
   {
@@ -11,6 +11,7 @@ const units = [
     colour: "border-amber-400/30 bg-amber-400/5",
     headingColour: "text-amber-300",
     items: [
+      { href: "/legislation", label: "Legislation", icon: Scale, desc: "Queensland legislative hierarchy, WHS/OHS, codes of practice and workplace documentation." },
       { href: "/basic-tools", label: "Bolts & Screws", icon: Hammer, desc: "Fastener types, thread standards, torque and installation technique." },
     ],
   },

@@ -17,7 +17,8 @@ import {
   Battery,
   Gauge,
   Calculator,
-  Layers
+  Layers,
+  Scale
 } from "lucide-react";
 import { useGetProgress } from "@workspace/api-client-react";
 
@@ -47,6 +48,7 @@ const navSections: NavSection[] = [
       {
         heading: "1B",
         items: [
+          { href: "/legislation", label: "Legislation", icon: Scale },
           { href: "/basic-tools", label: "Bolts & Screws", icon: Hammer },
         ],
       },
