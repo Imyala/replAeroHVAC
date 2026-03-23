@@ -17,6 +17,7 @@ import BasicElectricalCircuit from "@/pages/basic-electrical-circuit";
 import EmfSources from "@/pages/emf-sources";
 import Resistance from "@/pages/resistance";
 import OhmsLawPower from "@/pages/ohms-law-power";
+import Power from "@/pages/power";
 import EffectsOfCurrent from "@/pages/effects-of-current";
 import SeriesCircuit from "@/pages/series-circuit";
 import Legislation from "@/pages/legislation";
@@ -48,6 +49,7 @@ function Router() {
         <Route path="/emf-sources" component={EmfSources} />
         <Route path="/resistance" component={Resistance} />
         <Route path="/ohms-law-power" component={OhmsLawPower} />
+        <Route path="/power" component={Power} />
         <Route path="/effects-of-current" component={EffectsOfCurrent} />
         <Route path="/series-circuit" component={SeriesCircuit} />
         <Route path="/legislation" component={Legislation} />
