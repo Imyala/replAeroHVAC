@@ -18,6 +18,7 @@ import EmfSources from "@/pages/emf-sources";
 import Resistance from "@/pages/resistance";
 import OhmsLawPower from "@/pages/ohms-law-power";
 import EffectsOfCurrent from "@/pages/effects-of-current";
+import SeriesCircuit from "@/pages/series-circuit";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient({
@@ -47,6 +48,7 @@ function Router() {
         <Route path="/resistance" component={Resistance} />
         <Route path="/ohms-law-power" component={OhmsLawPower} />
         <Route path="/effects-of-current" component={EffectsOfCurrent} />
+        <Route path="/series-circuit" component={SeriesCircuit} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { theorySections } from "@/data/content";
 import { ProgressButton } from "@/components/progress-button";
 import { motion, AnimatePresence } from "framer-motion";
-import { ThermometerSun, Snowflake, Waves, Hammer, Zap, Battery, Gauge, Calculator, ChevronRight } from "lucide-react";
+import { ThermometerSun, Snowflake, Waves, Hammer, Zap, Battery, Gauge, Calculator, ChevronRight, Layers } from "lucide-react";
 
 const units = [
   {
@@ -24,6 +24,7 @@ const units = [
       { href: "/resistance", label: "Resistance", icon: Gauge, desc: "Resistivity, colour codes, series/parallel circuits and voltage drop." },
       { href: "/ohms-law-power", label: "Ohm's Law & Power", icon: Calculator, desc: "Ohm's Law, Watt's Law, energy, work, efficiency and torque." },
       { href: "/effects-of-current", label: "Effects of Current", icon: Zap, desc: "Heating, magnetic, chemical and physiological effects of electric current." },
+      { href: "/series-circuit", label: "Series Circuit", icon: Layers, desc: "Current, voltage and resistance rules for components connected end-to-end." },
     ],
   },
 ];

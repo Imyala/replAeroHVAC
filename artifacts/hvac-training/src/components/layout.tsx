@@ -16,7 +16,8 @@ import {
   Zap,
   Battery,
   Gauge,
-  Calculator
+  Calculator,
+  Layers
 } from "lucide-react";
 import { useGetProgress } from "@workspace/api-client-react";
 
@@ -57,6 +58,7 @@ const navSections: NavSection[] = [
           { href: "/resistance", label: "Resistance", icon: Gauge },
           { href: "/ohms-law-power", label: "Ohm's Law & Power", icon: Calculator },
           { href: "/effects-of-current", label: "Effects of Current", icon: Zap },
+          { href: "/series-circuit", label: "Series Circuit", icon: Layers },
         ],
       },
     ],
