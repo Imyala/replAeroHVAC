@@ -18,7 +18,8 @@ import {
   Gauge,
   Calculator,
   Layers,
-  Scale
+  Scale,
+  GitBranch
 } from "lucide-react";
 import { useGetProgress } from "@workspace/api-client-react";
 
@@ -67,6 +68,7 @@ const navSections: NavSection[] = [
           { href: "/power", label: "Power", icon: Zap },
           { href: "/effects-of-current", label: "Effects of Current", icon: Zap },
           { href: "/series-circuit", label: "Series Circuit", icon: Layers },
+          { href: "/parallel-circuit", label: "Parallel Circuit", icon: GitBranch },
         ],
       },
     ],

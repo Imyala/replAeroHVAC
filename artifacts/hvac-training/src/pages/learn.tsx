@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { theorySections } from "@/data/content";
 import { ProgressButton } from "@/components/progress-button";
 import { motion, AnimatePresence } from "framer-motion";
-import { ThermometerSun, Snowflake, Waves, Hammer, Zap, Battery, Gauge, Calculator, ChevronRight, Layers, Scale } from "lucide-react";
+import { ThermometerSun, Snowflake, Waves, Hammer, Zap, Battery, Gauge, Calculator, ChevronRight, Layers, Scale, GitBranch } from "lucide-react";
 
 const units = [
   {
@@ -34,6 +34,7 @@ const units = [
       { href: "/power", label: "Power", icon: Zap, desc: "Watt's Law, power equations, energy, kilowatt-hours and efficiency." },
       { href: "/effects-of-current", label: "Effects of Current", icon: Zap, desc: "Heating, magnetic, chemical and physiological effects of electric current." },
       { href: "/series-circuit", label: "Series Circuit", icon: Layers, desc: "Current, voltage and resistance rules for components connected end-to-end." },
+      { href: "/parallel-circuit", label: "Parallel Circuit", icon: GitBranch, desc: "Branch currents, reciprocal resistance equations, KCL, power and fault analysis." },
     ],
   },
 ];

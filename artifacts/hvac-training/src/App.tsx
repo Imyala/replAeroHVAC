@@ -20,6 +20,7 @@ import OhmsLawPower from "@/pages/ohms-law-power";
 import Power from "@/pages/power";
 import EffectsOfCurrent from "@/pages/effects-of-current";
 import SeriesCircuit from "@/pages/series-circuit";
+import ParallelCircuit from "@/pages/parallel-circuit";
 import Legislation from "@/pages/legislation";
 import NotFound from "@/pages/not-found";
 
@@ -52,6 +53,7 @@ function Router() {
         <Route path="/power" component={Power} />
         <Route path="/effects-of-current" component={EffectsOfCurrent} />
         <Route path="/series-circuit" component={SeriesCircuit} />
+        <Route path="/parallel-circuit" component={ParallelCircuit} />
         <Route path="/legislation" component={Legislation} />
         <Route component={NotFound} />
       </Switch>
