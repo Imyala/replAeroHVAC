@@ -150,7 +150,7 @@ export default function EmfSources() {
           <div className="w-10 h-10 rounded-xl bg-orange-400/10 border border-orange-400/20 flex items-center justify-center">
             <Battery className="w-5 h-5 text-orange-400" />
           </div>
-          <span className="text-sm font-medium text-primary uppercase tracking-widest">1B — Electrical Theory</span>
+          <span className="text-sm font-medium text-primary uppercase tracking-widest">1C — Electrical Theory</span>
         </div>
         <h1 className="text-4xl font-display font-bold text-foreground tracking-tight mb-3">EMF Sources</h1>
         <p className="text-muted-foreground text-base leading-relaxed max-w-2xl">

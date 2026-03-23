@@ -7,7 +7,7 @@ import { ThermometerSun, Snowflake, Waves, Hammer, Zap, Battery, Gauge, Calculat
 
 const units = [
   {
-    heading: "1A",
+    heading: "1B",
     colour: "border-amber-400/30 bg-amber-400/5",
     headingColour: "text-amber-300",
     items: [
@@ -15,7 +15,7 @@ const units = [
     ],
   },
   {
-    heading: "1B",
+    heading: "1C",
     colour: "border-blue-400/30 bg-blue-400/5",
     headingColour: "text-blue-300",
     items: [

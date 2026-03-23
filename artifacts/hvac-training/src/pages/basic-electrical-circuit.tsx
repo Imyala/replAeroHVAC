@@ -222,7 +222,7 @@ export default function BasicElectricalCircuit() {
           <div className="w-10 h-10 rounded-xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center">
             <Zap className="w-5 h-5 text-yellow-400" />
           </div>
-          <span className="text-sm font-medium text-primary uppercase tracking-widest">1B — Electrical Theory</span>
+          <span className="text-sm font-medium text-primary uppercase tracking-widest">1C — Electrical Theory</span>
         </div>
         <h1 className="text-4xl font-display font-bold text-foreground tracking-tight mb-3">Electrical Fundamentals</h1>
         <p className="text-muted-foreground text-base leading-relaxed max-w-2xl">

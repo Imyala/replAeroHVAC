@@ -149,7 +149,7 @@ export default function SeriesCircuit() {
           <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
             <Layers className="w-6 h-6 text-primary" />
           </div>
-          <span className="text-sm font-medium text-primary uppercase tracking-widest">1B — Electrical Theory</span>
+          <span className="text-sm font-medium text-primary uppercase tracking-widest">1C — Electrical Theory</span>
         </div>
         <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground tracking-tight mb-3">Series Circuit</h1>
         <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl">

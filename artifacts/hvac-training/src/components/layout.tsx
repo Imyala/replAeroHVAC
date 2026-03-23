@@ -45,13 +45,13 @@ const navSections: NavSection[] = [
     icon: BookOpen,
     groups: [
       {
-        heading: "1A",
+        heading: "1B",
         items: [
           { href: "/basic-tools", label: "Bolts & Screws", icon: Hammer },
         ],
       },
       {
-        heading: "1B",
+        heading: "1C",
         items: [
           { href: "/basic-electrical-circuit", label: "Electrical Fundamentals", icon: Zap },
           { href: "/emf-sources", label: "EMF Sources", icon: Battery },
