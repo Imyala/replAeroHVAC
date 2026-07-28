@@ -117,7 +117,7 @@ export default function Home() {
               Technical Training Platform v1.0
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-4 text-glow leading-tight">
-              Master Refrigeration &<br className="hidden sm:block" /> Air Conditioning
+              Master Refrigeration &amp;<br className="hidden sm:block" /> Air Conditioning
             </h1>
             <p className="text-base md:text-xl text-muted-foreground max-w-2xl">
               Interactive components, guided assemblies, thermodynamic theory, and symptom-based fault finding.

@@ -217,6 +217,7 @@ export function Layout({ children }: LayoutProps) {
 
       {/* Sidebar — fixed overlay on mobile, in-flow on desktop */}
       <aside
+        id="mobile-sidebar"
         className={cn(
           "flex flex-col glass-panel border-r border-white/5 transition-all duration-300",
           // Mobile: fixed overlay; desktop: in-flow relative
