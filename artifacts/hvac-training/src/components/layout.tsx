@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { 
@@ -19,7 +19,9 @@ import {
   Calculator,
   Layers,
   Scale,
-  GitBranch
+  GitBranch,
+  Menu,
+  X
 } from "lucide-react";
 import { useGetProgress } from "@workspace/api-client-react";
 
@@ -182,7 +184,13 @@ function NavLink({ item, isActive, isCollapsed }: { item: NavItem; isActive: boo
 export function Layout({ children }: LayoutProps) {
   const [location] = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const { data: progressData } = useGetProgress();
+
+  // Close mobile nav whenever the route changes
+  useEffect(() => {
+    setIsMobileOpen(false);
+  }, [location]);
 
   const modulesCompleted = progressData?.filter(p => p.completed).length || 0;
   const totalModules = 6;
@@ -190,68 +198,125 @@ export function Layout({ children }: LayoutProps) {
 
   return (
     <div className="flex h-screen bg-background overflow-hidden selection:bg-primary/30">
-      {/* Sidebar */}
-      <aside
-        className={cn(
-          "relative flex flex-col glass-panel border-r border-y-0 border-l-0 border-white/5 transition-all duration-300 z-20",
-          isCollapsed ? "w-20" : "w-64"
-        )}
+      {/* Skip-to-content link for keyboard / screen-reader users */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[999] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-primary-foreground focus:font-semibold focus:shadow-lg"
       >
+        Skip to content
+      </a>
+
+      {/* Mobile backdrop */}
+      {isMobileOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 md:hidden"
+          onClick={() => setIsMobileOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Sidebar — fixed overlay on mobile, in-flow on desktop */}
+      <aside
+        id="mobile-sidebar"
+        className={cn(
+          "flex flex-col glass-panel border-r border-white/5 transition-all duration-300",
+          // Mobile: fixed overlay; desktop: in-flow relative
+          "fixed inset-y-0 left-0 z-40 md:relative md:inset-y-auto md:left-auto md:z-20",
+          // Mobile slide-in / always-visible on desktop
+          isMobileOpen
+            ? "translate-x-0 shadow-2xl shadow-black/50"
+            : "-translate-x-full md:translate-x-0",
+          // Width: always 256px on mobile; responsive on desktop
+          isCollapsed ? "w-64 md:w-20" : "w-64",
+        )}
+        aria-label="Primary navigation"
+      >
+        {/* Sidebar header */}
         <div className="flex h-16 items-center justify-between px-4 border-b border-white/5">
-          {!isCollapsed && (
+          {(!isCollapsed || isMobileOpen) && (
             <div className="flex items-center gap-2 text-primary font-display font-bold text-xl tracking-tight">
               <Wind className="w-6 h-6 text-primary" />
               <span>AeroHVACR</span>
             </div>
           )}
-          {isCollapsed && <Wind className="w-8 h-8 text-primary mx-auto" />}
+          {isCollapsed && !isMobileOpen && (
+            <Wind className="w-8 h-8 text-primary mx-auto" aria-hidden="true" />
+          )}
+
+          {/* Close button — mobile only */}
+          <button
+            onClick={() => setIsMobileOpen(false)}
+            className="md:hidden p-1.5 rounded-lg hover:bg-white/10 transition-colors text-muted-foreground hover:text-foreground ml-auto"
+            aria-label="Close navigation menu"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
-        <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+        <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1 custom-scrollbar" aria-label="Site sections">
           {navSections.map((section) => {
             if (isParent(section)) {
               return (
-                <ParentNavItem key={section.href} parent={section} location={location} isCollapsed={isCollapsed} />
+                <ParentNavItem key={section.href} parent={section} location={location} isCollapsed={isCollapsed && !isMobileOpen} />
               );
             }
             if (isGroup(section)) {
               return (
-                <CollapsibleNavGroup key={section.heading} group={section} location={location} isCollapsed={isCollapsed} />
+                <CollapsibleNavGroup key={section.heading} group={section} location={location} isCollapsed={isCollapsed && !isMobileOpen} />
               );
             }
             return (
-              <NavLink key={section.href} item={section} isActive={location === section.href} isCollapsed={isCollapsed} />
+              <NavLink key={section.href} item={section} isActive={location === section.href} isCollapsed={isCollapsed && !isMobileOpen} />
             );
           })}
         </nav>
 
         {/* Global Progress */}
-        {!isCollapsed && (
+        {(!isCollapsed || isMobileOpen) && (
           <div className="p-4 border-t border-white/5 bg-black/20">
             <div className="flex justify-between items-center mb-2">
               <span className="text-xs font-medium text-muted-foreground">Course Progress</span>
               <span className="text-xs font-bold text-primary">{progressPercent}%</span>
             </div>
-            <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+            <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden" role="progressbar" aria-valuenow={progressPercent} aria-valuemin={0} aria-valuemax={100} aria-label={`Course progress: ${progressPercent}%`}>
               <div
                 className="h-full bg-primary shadow-[0_0_10px_var(--color-primary)] transition-all duration-1000 ease-out"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
+            <p className="text-xs text-muted-foreground mt-2">{modulesCompleted} of {totalModules} modules complete</p>
           </div>
         )}
 
-        {/* Collapse toggle */}
+        {/* Desktop collapse toggle */}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="absolute -right-3 top-20 w-6 h-6 bg-card border border-white/10 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors z-30 shadow-lg"
+          aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          className="hidden md:flex absolute -right-3 top-20 w-6 h-6 bg-card border border-white/10 rounded-full items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors z-30 shadow-lg"
         >
-          {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+          {isCollapsed ? <ChevronRight className="w-4 h-4" aria-hidden="true" /> : <ChevronLeft className="w-4 h-4" aria-hidden="true" />}
         </button>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col h-screen overflow-hidden relative">
+      <main id="main-content" className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden relative">
+        {/* Mobile header bar */}
+        <header className="flex md:hidden items-center justify-between px-4 h-14 border-b border-white/5 bg-card/30 backdrop-blur-sm shrink-0">
+          <div className="flex items-center gap-2 text-primary font-display font-bold">
+            <Wind className="w-5 h-5" aria-hidden="true" />
+            <span>AeroHVACR</span>
+          </div>
+          <button
+            onClick={() => setIsMobileOpen(true)}
+            className="p-2 rounded-lg hover:bg-white/10 transition-colors text-muted-foreground hover:text-foreground"
+            aria-label="Open navigation menu"
+            aria-expanded={isMobileOpen}
+            aria-controls="mobile-sidebar"
+          >
+            <Menu className="w-6 h-6" aria-hidden="true" />
+          </button>
+        </header>
+
         <div className="flex-1 overflow-y-auto custom-scrollbar">
           {children}
         </div>

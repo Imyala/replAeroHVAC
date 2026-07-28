@@ -75,6 +75,7 @@ export default function Quiz() {
             <GraduationCap className="w-8 h-8 text-primary" /> Assessment
           </h1>
           <p className="text-muted-foreground mt-2">Test your knowledge of the training modules.</p>
+          <p className="text-xs text-muted-foreground/60 mt-1">Questions are based on Australian HVAC/R standards and Queensland legislation.</p>
         </div>
         
         {previousResults && previousResults.length > 0 && (

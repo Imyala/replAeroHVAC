@@ -100,4 +100,24 @@
   .box-glow {
     box-shadow: 0 0 20px hsla(210, 100%, 55%, 0.2);
   }
+
+  /* Custom scrollbar — thin and themed */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsla(210, 100%, 55%, 0.3) transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsla(210, 100%, 55%, 0.3);
+    border-radius: 9999px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsla(210, 100%, 55%, 0.5);
+  }
 }
