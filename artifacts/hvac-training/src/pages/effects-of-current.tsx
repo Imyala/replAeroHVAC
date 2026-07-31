@@ -133,7 +133,7 @@ function CurrentThresholdChart() {
             <text x="70" y={y + 14 + height / 2 + 4} textAnchor="middle" fill={textCol} fontSize="9" fontWeight="bold">{mA} mA</text>
             <line x1="140" y1={y + 14 + height / 2} x2="155" y2={y + 14 + height / 2} stroke="#475569" strokeWidth="1"/>
             <foreignObject x="158" y={y + 12} width="260" height={height}>
-              <div xmlns="http://www.w3.org/1999/xhtml" style={{ fontSize: "9px", color: textCol, lineHeight: "1.3", paddingTop: "4px" }}>{label}</div>
+              <div style={{ fontSize: "9px", color: textCol, lineHeight: "1.3", paddingTop: "4px" }}>{label}</div>
             </foreignObject>
           </g>
         );
