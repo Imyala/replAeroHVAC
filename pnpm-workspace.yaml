@@ -42,7 +42,23 @@ onlyBuiltDependencies:
   - unrs-resolver
 
 overrides:
+  '@babel/core': ^7.29.6
   '@esbuild-kit/esm-loader': npm:tsx@^4.21.0
+  ajv>fast-uri: ^3.1.4
+  body-parser: ^2.3.0
+  brace-expansion: ^5.0.8
+  fdir>picomatch: ^4.0.4
+  js-yaml: ^4.3.0
+  linkify-it: ^5.0.2
+  lodash: ^4.18.1
+  markdown-it: ^14.3.0
+  micromatch>picomatch: ^2.3.2
+  path-to-regexp: ^8.4.2
+  postcss: ^8.5.18
+  qs: ^6.15.3
+  tinyglobby>picomatch: ^4.0.4
+  vite>picomatch: ^4.0.4
+  yaml: ^2.8.4
   '@expo/ngrok-bin>@expo/ngrok-bin-darwin-arm64': '-'
   '@expo/ngrok-bin>@expo/ngrok-bin-darwin-x64': '-'
   '@expo/ngrok-bin>@expo/ngrok-bin-freebsd-ia32': '-'
@@ -63,7 +79,7 @@ overrides:
   '@tailwindcss/oxide>@tailwindcss/oxide-linux-x64-musl': '-'
   '@tailwindcss/oxide>@tailwindcss/oxide-win32-arm64-msvc': '-'
   '@tailwindcss/oxide>@tailwindcss/oxide-win32-x64-msvc': '-'
-  esbuild: 0.27.3
+  esbuild: 0.28.1
   esbuild>@esbuild/aix-ppc64: '-'
   esbuild>@esbuild/android-arm: '-'
   esbuild>@esbuild/android-arm64: '-'
